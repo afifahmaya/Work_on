@@ -1,0 +1,10 @@
+set term png
+set zrange [0:4]
+do for [i=1:32] {
+    set output "h_image_".i.".png"
+    set title "Exact and Numerical Solution"
+    splot "sol".i.".00.txt" w l palette, "exact".i.".00.txt" w l
+    set output "hh_image_".i.".png"
+    set title "Exact and Numerical Solution"
+    splot "hh_sol".i.".00.txt" w l palette, "hh_exact".i.".00.txt" w l
+}
