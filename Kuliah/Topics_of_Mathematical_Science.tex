@@ -34,7 +34,36 @@ Using these notation :
 \end{defi}
 
 \begin{defi}
-	A subsequence of a sequence $ (x_{n})_{n=1}^{\infty} $  is a sequence $ (y_{j})_{j=1}^{\infty} $ defined by $ y_{j}=x_{n_{j}} $ for some sequence $ (n_{j})_{j=1}^{\infty} $
+	A subsequence of a sequence $ (x_{n})_{n=1}^{\infty} $  is a sequence $ (y_{j})_{j=1}^{\infty} $ defined by $ y_{j}=x_{n_{j}} $ for some sequence $ (n_{j})_{j=1}^{\infty} $ in $ \mathbb{N} $ such that $ n_{j}<n_{j+1} \ (j=1,2,\dots) $.\\
+	Example : sequence $ (x_{n})_{n=1}^{\infty} = 1, \dfrac{1}{2} , \dfrac{1}{3}, \dots, \dfrac{1}{100} $ , takes $ n_{1}=1, n_{2}=3, n_{3}=5, n_{4}=100 $\\
+	subsequence $ (x_{n_{j}})_{j=1}^{\infty} = x_{n_{1}}, x_{n_{2}}, x_{n_{3}}, x_{n_{4}} = 1, \dfrac{1}{3}, \dfrac{1}{5}, \dfrac{1}{100}$.
 \end{defi}
+
+\begin{defi}
+	Let $ (x_{n})_{n=1}^{\infty} $ be a sequence converges to $ \alpha \in \mathbb{R} $ if for any $ \epsilon>0 $, there is an $ N \in \mathbb{N} $ such that $ n>N , \ |x_{n}-\alpha|<\epsilon $.\\
+	In the mathematical symbol $ \forall \epsilon > 0, \exists N \in \mathbb{N} $ such that $ n>N , \ |x_{n}-\alpha|<\epsilon $ for $ n>N $.\\
+	In this case we write, $ \lim\limits_{n \rightarrow \infty} $ or $ x_{n}\rightarrow \alpha \ (n \rightarrow \infty ) $
+\end{defi}
+
+\begin{ex}
+	
+\end{ex}
+
+\begin{theo}
+	$ (x_{n})_{n=1}^{\infty} , (y_{n})_{n=1}^{\infty} $ is sequence. Suppose $ x_{n} \rightarrow \alpha $ and $ y_{n} \rightarrow \beta $ as $ n\rightarrow \infty $.
+	\begin{enumerate}
+		\item $ x_{n} \pm y_{n} \rightarrow \alpha \pm \beta , \ (n \rightarrow \infty) $
+		\item $ x_{n} \cdot y_{n} \rightarrow \alpha \cdot \beta , \ (n \rightarrow \infty) $
+		\item \label{theoseq3} if $ \beta \neq 0, \ \dfrac{x_{n}}{y_{n}} \rightarrow \dfrac{\alpha}{\beta} , \ (n \rightarrow \infty) $
+	\end{enumerate}
+\end{theo}
+
+\begin{remark}
+	On \ref{theoseq3}, $ \dfrac{x_{n}}{y_{n}} $ is not defined for all $ n \in \mathbb{N} $ because $ y_{n}=0 $ possibly for some $ n \in \mathbb{N} $. But, since $ y_{n} \rightarrow \beta \neq 0, \ y_{n} $ eventually is not 0. Hence $ \dfrac{x_{n}}{y_{n}} $ is defined eventually.
+\end{remark}
+
+\begin{theo}
+	$ (x_{n})_{n=1}^{\infty} $ a sequence. If $ (x_{n})_{n=1}^{\infty} $ converges to $ \alpha \in \mathbb{R} $, any subsequence of $ (x_{n}) $
+\end{theo}
 
 \end{document}
