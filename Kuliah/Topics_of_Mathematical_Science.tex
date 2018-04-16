@@ -66,4 +66,127 @@ Using these notation :
 	$ (x_{n})_{n=1}^{\infty} $ a sequence. If $ (x_{n})_{n=1}^{\infty} $ converges to $ \alpha \in \mathbb{R} $, any subsequence of $ (x_{n}) $
 \end{theo}
 
+\section{16-04-2018}
+
+\subsection{n-dimensional space}
+$ \mathbb{R^2} = \mathbb{R} \times \mathbb{R} \times \dots \times \mathbb{R}  = \{ (x_{1}, \dots, x_{n}) | x_{i}\in \mathbb{R} \} $.
+Takes $ n=2 $, $ \mathbb{R}^2  \Leftrightarrow $ plane, we have $ P(a,b) $. For $ n=3 $, we have $ P(a,b,c) $.
+
+\begin{defi}
+	$ P_{m} = (x_{1}^{m}, \dots, x_{n}^{m}) \in \mathbb{R}^n$. $ \{ P_{m} \}_{m=1}^{\infty} $ :  a sequence in $ \mathbb{R}^{n} $.\\
+	 $ \{P_{m}\} $ converges to $ A = (a_{1}, \dots , a_{n}) \in \mathbb{R}^n $ if $ \forall k=1, \dots, n , \ x_{k}^{m} \rightarrow a_{k} $ as $ n \rightarrow \infty $
+\end{defi}
+
+\begin{defi}
+	\textbf{Inner product and norm}.\\
+	$ \mathbf{x} = (x_{1}, \dots, x_{n}) , \mathbf{y} = (y_{1}, \dots, y_{n}  ) \in \mathbb{R}^n $\\
+	$ \mathbf{x} \cdot \mathbf{y} = x_{1}y_{1} + \dots + x_{n}y_{n} $ ; inner product\\
+	$ ||x|| = \sqrt{\mathbf{x} \cdot \mathbf{x}} $ ; norm
+\end{defi}
+
+\begin{ex}
+	$ \mathbf{x} \cdot \mathbf{y} =0 \Leftrightarrow \mathbf{x} $ is perpendicular to $ \mathbf{y} $\\
+	Takes $ n=0 $ then
+	\begin{eqnarray} \nonumber
+	x_{1}y_{1} + x_{2}y_{2} &=& 0 \\ \nonumber
+	x_{1}y_{1} = -x_{2}y_{2} \\ \nonumber
+	\dfrac{y_{1}}{y_{2}} = - \dfrac{x_{2}}{x_{1}}\\ \nonumber
+	\text{ then } (x_{1},x_{2}) = c \cdot(-y_{2},y_{1})
+	\text{give pict}
+	\end{eqnarray}
+\end{ex}
+
+\begin{ex}
+	$ ||\mathbf{x}||=0 \Leftrightarrow x=0$\\
+	$ (\Rightarrow) $\\
+	$ 0 = ||x||^2 = x_{1}^2 + \dots + x_{n}^2 $ then $ x_{1}^2 =0 (\forall i =1, \dots, n )$ and finally $ x_{1}=0 $.
+\end{ex}
+
+\begin{remark}
+	%diganti note nanti
+	$ ||x|| $ is the distance between $ \mathbf{0} = (0, \dots, 0) \in \mathbb{R}^n $ and $ \mathbf{x}= (x_{1}, \dots, x_{n}) $.\\
+	For notation, we will use $ P,Q \in \mathbb{R}^n $ as points and $ \mathbf{x}, \mathbf{y} \in \mathbb{R}^n $ as vectors. We also use $ ||x-y|| = \sqrt{(x_{1}-y_{1})^2 + \dots + (x_{n}-y_{n})^2} $ as distance between $ \mathbf{x} $ and $ \mathbf{y} $.  $ ||P-Q|| $ is distance between $ P $ and $ Q $.
+	\[ \mathbf{x} \pm \mathbf{y} = ( x_{1} \pm y_{1} , \dots, x_{n} \pm y_{n} ) \]
+	\[ P=(p_{1}, \dots, p_{n}) ,  Q = (q_{1}, \dots, q_{n})  \text{ then } P+Q = (p_{1}+q_{1}, \dots, p_{n}+q_{n}) \]
+	\[ \alpha \in \mathbb{R}, \ \alpha\mathbf{x} = (\alpha x_{1}, \dots, \alpha x_{n}),  \alpha\mathbf{x} = (\alpha x_{1}, \dots, \alpha x_{n})\]
+	%coba cek ada yg pass ini
+	\[  \{P_{m}\}_{m=1}^{\infty} : \text{a sequence in} \mathbb{R}^n , P_{m} \rightarrow A \Leftrightarrow ||P_{m}-A|| \rightarrow 0 \]
+\end{remark}
+
+\begin{theo}
+	\textbf{Cauchy-Schwarz inequality}. For any $ \mathbf{x}, \mathbf{y} \in \mathbb{R} $,
+	\[ |\mathbf{x} \cdot \mathbf{y}| \leq ||x|| ||y||\]
+	"$ = $" $ \Rightarrow  a\mathbf{y} = b\mathbf{x}$ for some $ a,b \in \mathbb{R} $.\\
+	Conclusion. We may assume $ \mathbf{x} \neq 0 , \forall t \in \mathbb{R} $.
+	\[ 0 \leq ||t\mathbf{x}+\mathbf{y} = t^2||\mathbf{x}||^2+2t(\mathbf{x}\cdot\mathbf{y})+||\mathbf{y}||^2 \]
+	\[D/4 \leq 0\]
+\end{theo}
+
+\begin{theo}
+	\textbf{Bolzano=Weierstrass}. Let $ (P_{m})_{m=1}^{\infty} \subset \mathbb{R}^n $ be a sequence. Suppose that $ (P_{m})_{m=1}^{\infty} $ is bounded. In the sense that $ ||P_{m}|| \leq M (m \in \mathbb{N}) $ for some $ M \geq 0 $. Then $ (P_{m})_{m=1}^{\infty} $ contains a convergent subsequence.
+\end{theo}
+
+\begin{defi}
+	\textbf{Ball}. $ A \in \mathbb{R}^n, R>0 $
+	\[ \mathbf{B}(A,R) = \{ P \in \mathbb{R}^n | ||P-A||<R \} \text{; open ball of center A with radius R} \]
+	\[ \bar{\mathbf{B}}(A,R) = \{ P \in \mathbb{R}^n | ||P-A||\leq R \} \text{; closed ball} \]
+\end{defi}
+
+\begin{defi}
+	\begin{enumerate}
+		\item $ E \subset \mathbb{R}^n $ is said to be \textbf{an open set} if $ E = \emptyset $ or $ \forall A \in E , \exists R>0 \text{ such that } \mathbf{B}(A,R) \subset E $.
+		\item $ E \subset \mathbb{R}^n $ is said to be \textbf{a closed set} if $ E^{c} = \mathbb{R}^n \ E $ is an open set.
+	\end{enumerate}
+	$ E : $ open, then neighbor in any point %tanya
+\end{defi}
+
+\begin{defi}
+	\textbf{Accumulation point}. $ E \subset \mathbb{R}^n $; a set. $ A \in \mathbb{R}^n $ is called \textbf{an accumulation point} of $ E $ if $ \forall R>0, (\mathbf{B}(A,R)-\{A\}) \text{irisan } E \neq \emptyset $.
+\end{defi}
+
+\begin{remark}
+	ini notes. $ E \subset \mathbb{R}^n $ is closed if and only id $ E $ contains any accumulation point of $ E $ . \textbf{Homework report, prove this}
+\end{remark}
+
+\begin{remark}
+	note juga.
+	\begin{enumerate}
+		\item Both $ \emptyset $ and $ \mathbb{R}^n $ are open and closed
+		\item $ \{E_{\lambda}\lambda \in A \} $; a collection of open sets $ \Rightarrow $ union $ \lambda \in A E_{\lambda} $ is also open 
+		\item $ \{E_{\lambda}\}_{\lambda=1}^{N} $, a finite collection of open sets $ \Rightarrow $ irisan $ _{lamda=1}^{N} E_{\lambda} $ is also open.
+		\item  \textbf{Rephrase of Bolzano Weierstrass theorem}. $ E \subset \mathbb{R}^n $ ; a \textbf{ounded closed set} $ \Leftrightarrow $ $ E $ is a closed set such that $ E \subset \mathbf{B}(\mathbb{0},R) $ for some $ R>0 $. $ E $ ; a bounded closed set then any sequence of $ E $ contains a convergent subsequence whose limit is in $ E $.
+	\end{enumerate}
+\end{remark}
+
+\begin{defi}
+	A bounded closed set in $ \mathbb{R}^n $ is called \textbf{compact}.
+\end{defi}
+
+\begin{ex}
+	$ \bar{\mathbf{B}}(A,R) $ is compact. \textbf{Report! prove this}
+\end{ex}
+
+\subsection{Continuity and differentiability of a function}
+
+\subsubsection{Continuity}
+$ E $ : a set in $ \mathbb{R}^n $ and $ f $ : is a function of $ E $ (real valued function). i.e. $ f $ is an assignment a (real) number to a point in $ E $. %insert pict
+
+\begin{defi}
+	\begin{enumerate}
+		\item $ f $ is \textbf{continuous at $ A \in E $} if $ \forall (P_{m})_{m=1}^{\infty} \subset E $ : sequence with $ P_{m} \rightarrow A \ (m \rightarrow \infty) $
+		\[ f(P_{m}) \rightarrow f(A) \ (m \rightarrow \infty) \]
+		\item $ f $ is \textbf{continuous on E} if $ f $ is continuous at any point of $ E $.
+	\end{enumerate}
+\end{defi}
+
+\subsubsection{Basic of continuous function on an interval in \mathbb{R}}
+
+\begin{theo}
+	\textbf{Intermediate value theorem}. $ f $ : function on a closed interval $ [a,b] $ $ = \{ x \in \mathbb{R} | a \leq x \leq b \} $. Suppose that $ f(a) \leq f(b) $. Then, $ \forall \gamma $ with $ f(a) \leq \gamma \leq f(b) $, $ \exists c \in [a,b] $ with $ f(c)=\gamma $.
+\end{theo}
+
+\begin{theo}
+	\textbf{Extreme value theorem}. $ f $ is a continuous function
+\end{theo}
+
 \end{document}
