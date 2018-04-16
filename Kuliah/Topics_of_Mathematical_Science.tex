@@ -6,11 +6,12 @@
 \usepackage{color}
 \usepackage{graphicx}
 
-\newtheorem{remark}{Remark}[]
+\newtheorem{remark}{Remark}
 \newtheorem{prop}{Proposition}
-\newtheorem{theo}{Theorem}[]
-\newtheorem{defi}{Definition}[]
-\newtheorem{ex}{Example}[]
+\newtheorem{theo}{Theorem}
+\newtheorem{defi}{Definition}
+\newtheorem{ex}{Example}
+\newtheorem{note}{Notes}
 
 \begin{document}
 
@@ -69,19 +70,20 @@ Using these notation :
 \section{16-04-2018}
 
 \subsection{n-dimensional space}
-$ \mathbb{R^2} = \mathbb{R} \times \mathbb{R} \times \dots \times \mathbb{R}  = \{ (x_{1}, \dots, x_{n}) | x_{i}\in \mathbb{R} \} $.
-Takes $ n=2 $, $ \mathbb{R}^2  \Leftrightarrow $ plane, we have $ P(a,b) $. For $ n=3 $, we have $ P(a,b,c) $.
+$ \mathbb{R}^2 = \mathbb{R} \times \mathbb{R} \times \dots \times \mathbb{R}  = \{ (x_{1}, \dots, x_{n}) | x_{i}\in \mathbb{R} \} $.\\
+Takes $ n=2 $, $ \mathbb{R}^2  \Leftrightarrow $ plane, we have $ P(a,b) $.\\
+For $ n=3 $, we have $ P(a,b,c) $.
 
 \begin{defi}
-	$ P_{m} = (x_{1}^{m}, \dots, x_{n}^{m}) \in \mathbb{R}^n$. $ \{ P_{m} \}_{m=1}^{\infty} $ :  a sequence in $ \mathbb{R}^{n} $.\\
-	 $ \{P_{m}\} $ converges to $ A = (a_{1}, \dots , a_{n}) \in \mathbb{R}^n $ if $ \forall k=1, \dots, n , \ x_{k}^{m} \rightarrow a_{k} $ as $ n \rightarrow \infty $
+	$ P_{m} = (x_{1}^{m}, \dots, x_{n}^{m}) \in \mathbb{R}^n$, and $ \{ P_{m} \}_{m=1}^{\infty} $ :  a sequence in $ \mathbb{R}^{n} $.\\
+	 $ \{P_{m}\} $ converges to $ A = (a_{1}, \dots , a_{n}) \in \mathbb{R}^n $, if $ \forall k=1, \dots, n , \ x_{k}^{m} \rightarrow a_{k} $ as $ n \rightarrow \infty $.
 \end{defi}
 
 \begin{defi}
 	\textbf{Inner product and norm}.\\
 	$ \mathbf{x} = (x_{1}, \dots, x_{n}) , \mathbf{y} = (y_{1}, \dots, y_{n}  ) \in \mathbb{R}^n $\\
-	$ \mathbf{x} \cdot \mathbf{y} = x_{1}y_{1} + \dots + x_{n}y_{n} $ ; inner product\\
-	$ ||x|| = \sqrt{\mathbf{x} \cdot \mathbf{x}} $ ; norm
+	$ \mathbf{x} \cdot \mathbf{y} = x_{1}y_{1} + \dots + x_{n}y_{n} $ ; \textbf{inner product}\\
+	$ ||x|| = \sqrt{\mathbf{x} \cdot \mathbf{x}} $ ; \textbf{norm}
 \end{defi}
 
 \begin{ex}
@@ -179,7 +181,7 @@ $ E $ : a set in $ \mathbb{R}^n $ and $ f $ : is a function of $ E $ (real value
 	\end{enumerate}
 \end{defi}
 
-\subsubsection{Basic of continuous function on an interval in \mathbb{R}}
+\subsubsection{Basic of continuous function on an interval in $ \mathbb{R} $}
 
 \begin{theo}
 	\textbf{Intermediate value theorem}. $ f $ : function on a closed interval $ [a,b] $ $ = \{ x \in \mathbb{R} | a \leq x \leq b \} $. Suppose that $ f(a) \leq f(b) $. Then, $ \forall \gamma $ with $ f(a) \leq \gamma \leq f(b) $, $ \exists c \in [a,b] $ with $ f(c)=\gamma $.

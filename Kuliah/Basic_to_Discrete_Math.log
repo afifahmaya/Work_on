@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  16 APR 2018 12:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  16 APR 2018 14:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Topics_of_Mathematical_Science.tex
-(./Topics_of_Mathematical_Science.tex
+**Basic_to_Discrete_Math.tex
+(./Basic_to_Discrete_Math.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
 (/opt/local/share/texmf-texlive/tex/latex/base/article.cls
@@ -172,8 +172,8 @@ Package graphics Info: Driver file: pdftex.def on input line 99.
 \c@defi=\count106
 \c@ex=\count107
 
-(./Topics_of_Mathematical_Science.aux)
-\openout1 = `Topics_of_Mathematical_Science.aux'.
+(./Basic_to_Discrete_Math.aux)
+\openout1 = `Basic_to_Discrete_Math.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
@@ -281,60 +281,59 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 24.
-
-(/opt/local/share/texmf-texlive/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 24.
-LaTeX Font Info:    Try loading font information for U+msa on input line 24.
+LaTeX Font Info:    Try loading font information for U+msa on input line 20.
 
 (/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 24.
+LaTeX Font Info:    Try loading font information for U+msb on input line 20.
 
 (/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+Underfull \hbox (badness 10000) in paragraph at lines 33--35
 
-{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (26.77235pt too wide) in paragraph at lines 108--110
-\OT1/cmr/m/it/10 For no-ta-tion, we will use $\OML/cmm/m/it/10 P; Q \OMS/cmsy/m
-/n/10 2 \U/msb/m/n/10 R[]$ \OT1/cmr/m/it/10 as points and $\OT1/cmr/bx/n/10 x\O
-ML/cmm/m/it/10 ; \OT1/cmr/bx/n/10 y \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 R[]$ \OT1/
-cmr/m/it/10 as vec-tors. We also use $\OMS/cmsy/m/n/10 jj\OML/cmm/m/it/10 x \OM
-S/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 y\OMS/cmsy/m/n/10 jj \OT1/cmr/m/n/10 = []$
  []
 
-[2] [3] (./Topics_of_Mathematical_Science.aux) ) 
+
+Overfull \hbox (10.61449pt too wide) in paragraph at lines 82--83
+[]\OT1/cmr/m/it/10 if $\OML/cmm/m/it/10 f \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 c 
+g[] g[] [] g[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 d h[] h[] [] h[]$ \OT1/cmr/m/
+it/10 (fac-tor-iza-tion). Then (a) $\OML/cmm/m/it/10 m \OT1/cmr/m/n/10 = \OML/c
+mm/m/it/10 l$\OT1/cmr/m/it/10 , (b) by change of in-dex, $\OML/cmm/m/it/10 g[] 
+[]h[]; [] ; g[] []h[]$\OT1/cmr/m/it/10 . 
+ []
+
+[1
+
+{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+(./Basic_to_Discrete_Math.aux) ) 
 Here is how much of TeX's memory you used:
- 2808 strings out of 492995
- 38607 string characters out of 6134533
- 117343 words of memory out of 5000000
- 6318 multiletter control sequences out of 15000+600000
+ 2790 strings out of 492995
+ 38231 string characters out of 6134533
+ 117334 words of memory out of 5000000
+ 6303 multiletter control sequences out of 15000+600000
  8879 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,8n,31p,394b,269s stack positions out of 5000i,500n,10000p,200000b,80000s
-</opt/local/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/local/share/texmf-texlive/font
-s/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/share/texmf-texlive/fonts/typ
-e1/public/amsfonts/cm/cmbxti10.pfb></opt/local/share/texmf-texlive/fonts/type1/
-public/amsfonts/cm/cmex10.pfb></opt/local/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmmi10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmmi5.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/
-cm/cmmi7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr
-10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb>
-</opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/l
-ocal/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/
-share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/local/share/
-texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></opt/local/share/texmf
--texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Topics_of_Mathematical_Science.pdf (3 pages, 166896 bytes).
+ 39i,9n,31p,288b,164s stack positions out of 5000i,500n,10000p,200000b,80000s
+</opt/local/share/texmf-texlive/fonts/type1/pub
+lic/amsfonts/cm/cmbx10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/a
+msfonts/cm/cmbx12.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfon
+ts/cm/cmbxti10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmex10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
+mi10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi5.p
+fb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></o
+pt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/loc
+al/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb></opt/local/shar
+e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/local/share/texmf
+-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/texmf-texl
+ive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/local/share/texmf-texlive/fo
+nts/type1/public/amsfonts/cm/cmti10.pfb></opt/local/share/texmf-texlive/fonts/t
+ype1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Basic_to_Discrete_Math.pdf (2 pages, 155401 bytes).
 PDF statistics:
- 70 PDF objects out of 1000 (max. 8388607)
- 50 compressed objects within 1 object stream
+ 67 PDF objects out of 1000 (max. 8388607)
+ 48 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
