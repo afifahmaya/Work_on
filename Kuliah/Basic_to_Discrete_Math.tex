@@ -18,28 +18,27 @@
 
 \subsection{Definitions and basic properties of polynomial}
 $ \mathbb{N} $ = set of natural number\\
-$ \mathbb{N}_{0}  = \mathbb{N} union \{0\}$\\
-for $ n \in \mathbb{N} $, $ \mathbb{N}_{0}^{n} = \{ \alpha=(\alpha_{1}, \dots, \alpha_{n}) | \alpha_{1}, \dots, \alpha_{n} \in \mathbb{N}_{0} \} $ is semi-module because closed over addition (?)\\
-$ \mathbb{0} = (0, \dots, 0) $ and $ x_{1}, \dots, x_{n} $ ; variables\\
+$ \mathbb{N}_{0}  = \mathbb{N} \cup \{0\}$\\
+for $ n \in \mathbb{N} $, $ \mathbb{N}_{0}^{n} = \{ \alpha=(\alpha_{1}, \dots, \alpha_{n}) | \alpha_{1}, \dots, \alpha_{n} \in \mathbb{N}_{0} \} $ (is semi-module because closed over addition) \\ \\
+$ 0 = (0, \dots, 0) $ and $ x_{1}, \dots, x_{n} $ ; variables\\
 for $ \alpha=(\alpha_{1}, \dots, \alpha_{n}) \in \mathbb{N}_{0}^{n} $\\
-\textbf{a mononomial}, or direct product of variables $ x^{\alpha} = \begin{cases}
-1 , (if \alpha=0) \\ x_{1}^{\alpha_{1}} \ x_{2}^{\alpha_{2}} \ \dots x_{n}^{\alpha_{n}}, (otherwise)
-\end{cases} $
-
-$ K $ is field. [Field : is a set on which addition, subtraction, multiplication, and division are defined, and behave as when they are applied to rational and real numbers.]
+\textbf{a mononomial} (or direct product of variables) $ x^{\alpha} = \begin{cases}
+1 &, (\text{ if } \alpha=0) \\ x_{1}^{\alpha_{1}} \ x_{2}^{\alpha_{2}} \ \dots x_{n}^{\alpha_{n}} &, (\text{otherwise})
+\end{cases} $ \\ \\ \\
+$ K $ is \textbf{field}. [Field : is a set on which addition, subtraction, multiplication, and division are defined, and behave as when they are applied to rational and real numbers.-wikipedia]
 
 \begin{defi}
-	Let $ A \subset \mathbb{N}_{0}^{n} $ :finite
+	Let $ A \subset \mathbb{N}_{0}^{n} $ : finite
 	\[ f = \sum_{\alpha \in A} c_{\alpha} x^{\alpha} \ (c_{\alpha} \in K) \]
-	is called \textbf{a polynomial} of $ x_{1}, \dots, x_{n} $ with K-coefficients.\\
-	\[ K[\mathbf{x}] = K [x_{1}, \dots, x_{n}]  = \{ f | f \text{is a polynomial of } x_{1}, \dots, x_{n}  \text{ with K-coefficients }\}\]
+	is called \textbf{a polynomial} of $ x_{1}, \dots, x_{n} $ with K-coefficients. It also can be written as
+	\[ K[x] = K [x_{1}, \dots, x_{n}]  = \{ f | f \text{is a polynomial of } x_{1}, \dots, x_{n}  \text{ with K-coefficients }\}. \]
 	\[M_{n} = \{ x^{\alpha} | \alpha \in \mathbb{N}_{0}^{n} \} \subset K[x] \]
 \end{defi}
 
 \begin{ex}
-	$ n=2 $ then we have $ A =\{ (0,0), (1,1), (0,3), (2,0), (2,1) \} $.
-	\[ f = x_{1}^2 x_{2} + 5x_{2}^3 -2x_{1}x_{2} + 10 \]
-	$ C_{(2,1)} =1 , C_{(2,0)}=0, C_{(0,3)}=5, C_{(1,1)}=-2, C_{(0,0)}=10 $.
+	$ n=2 $ then we have $ A =\{ (0,0), (1,1), (0,3), (2,0), (2,1) \} $. 
+	\[ \text{For } f = x_{1}^2 x_{2} + 5x_{2}^3 -2x_{1}x_{2} + 10 , \]
+	we can obtain $ C_{(2,1)} =1 , C_{(2,0)}=0, C_{(0,3)}=5, C_{(1,1)}=-2, C_{(0,0)}=10 $.
 \end{ex}
 
 \begin{defi}
@@ -52,8 +51,8 @@ $ K $ is field. [Field : is a set on which addition, subtraction, multiplication
 \end{ex}
 
 \begin{defi}
-	\textbf{Total degree}. $ |\alpha| = \alpha_{1} + \dots + \alpha_{n} (\alpha \in \mathbb(N)_{0}^{n} )$. If $ supp(f) \neq \emptyset $
-	\[ tdeg(f) = max \{ |\alpha| | \alpha \in supp(f) \} \]
+	\textbf{Total degree}. $ |\alpha| = \alpha_{1} + \dots + \alpha_{n} , \ (\alpha \in \mathbb(N)_{0}^{n} )$. If $ supp(f) \neq \emptyset $
+	\[ tdeg(f) = max \{ |\alpha| \ | \ \alpha \in supp(f) \} \]
 \end{defi}
 
 \begin{ex}
