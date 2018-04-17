@@ -1,0 +1,42 @@
+real theta = 20.0;
+real kappa = 1;
+real dt = 0.5;
+
+int n=32;
+real  x0=0.0,y0=0.0,Lx=1.0,Ly=1.0;
+border  a1(t=0,1){x=x0+Lx*t; y=y0;}
+border  a2(t=0,1){x=x0+Lx; y=y0+Ly*t;}
+border  a3(t=1,0){x=x0+Lx*t; y=y0+Ly;}
+border  a4(t=1,0){x=x0; y=y0+Ly*t;}
+mesh Th=buildmesh(a1(n)+a2(n)+a3(n)+a4(n));
+
+plot ( Th, wait = 1, ps = "heat_mesh.ps" );
+
+fespace Vh ( Th, P1 );
+
+Vh uh;
+Vh uold;
+Vh vh;
+uh = theta;
+uold = theta;
+
+problem heatstep ( uh, vh, solver = LU ) = 
+    int2d ( Th ) ( uh * vh / dt )
+  - int2d ( Th ) ( uold * vh / dt )
+  + int2d ( Th ) ( kappa * dx ( uh ) * dx ( vh )
+                 + kappa * dy ( uh ) * dy ( vh ) );
+  // + int1d ( Th, Gamma1 ) ( kappa * vh )
+  // + on ( Gamma2, uh = theta );
+
+for ( int it = 1; it <= 6; it++ )
+  {
+    heatstep;
+    plot ( uh, nbiso = 50, fill = 1, value = 1, wait = 1, 
+      ps = "heat_uh_" + it + ".ps" );
+    uold = uh;
+  }
+
+cout << "\n";
+cout << "HEAT:\n";
+cout << "  Normal end of execution.\n";
+
