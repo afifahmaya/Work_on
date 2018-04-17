@@ -1,6 +1,7 @@
-real theta = 20.0;
+load "iovtk"
+
 real kappa = 1;
-real dt = 0.5;
+real dt = 0.01;
 
 int n=32;
 real  x0=0.0,y0=0.0,Lx=1.0,Ly=1.0;
@@ -14,27 +15,31 @@ plot ( Th, wait = 1, ps = "heat_mesh.ps" );
 
 fespace Vh ( Th, P1 );
 
-Vh uh;
-Vh uold;
-Vh vh;
+Vh uh, uold, vh, f, theta;
+theta = 2*sin(pi*x)*(pi*y); //value at t=0
 uh = theta;
 uold = theta;
 
-problem heatstep ( uh, vh, solver = LU ) = 
+problem heat ( uh, vh, solver = LU ) = 
     int2d ( Th ) ( uh * vh / dt )
   - int2d ( Th ) ( uold * vh / dt )
   + int2d ( Th ) ( kappa * dx ( uh ) * dx ( vh )
-                 + kappa * dy ( uh ) * dy ( vh ) );
-  // + int1d ( Th, Gamma1 ) ( kappa * vh )
-  // + on ( Gamma2, uh = theta );
+                 + kappa * dy ( uh ) * dy ( vh ) )
+  - int2d ( Th ) ( f * vh )
+  + on (a1,a2,a3,a4, uh = 0 );
 
-for ( int it = 1; it <= 6; it++ )
+real t;
+for ( int it = 1; it <= 1./dt; it++ )
   {
-    heatstep;
-    plot ( uh, nbiso = 50, fill = 1, value = 1, wait = 1, 
+    t=it*dt;
+    f = ( pi*cos(pi*t) + 2*kappa*pi*pi*(2+sin(pi*t)) ) * sin(pi*x) * sin(pi*y) ; //value of f
+    heat;
+    plot ( uh, nbiso = 25, fill = 1, value = 1, wait = 1, 
       ps = "heat_uh_" + it + ".ps" );
     uold = uh;
+    savevtk("heat_plot"+it+".vtk",Th,uh,dataname="heat"); //saves vtk file for each iteration
   }
+
 
 cout << "\n";
 cout << "HEAT:\n";
