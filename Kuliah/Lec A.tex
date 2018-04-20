@@ -1,0 +1,26 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[a4paper, hmargin={1.5cm,1.5cm}, vmargin={1.5cm,1.5cm}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage{graphicx}
+
+\begin{document}
+\section{19-04-18}
+\begin{itemize}
+	\item Coba cek program pake Python. Kalo bisa, baru ke C dkk.
+	\item vi cprogname :visual
+	\item array in c++ is nicer, ga perlu define alloc dkk kayak di C
+	\item tergantung Processor juga, jadi bukan karena C aja, bisa karena besarnya processor
+	\item The -O3 optimization : dia bisa tahu variabel apa yang dipake dan ngga. Jadi kalo ada variabel yang ga kepake untuk selanjutnya, di skip. Jadi karena itu dia lebih cepat. kalo 1jt di jumlah terus di print, 1/3 Processor harusnya waktunya.
+	\item 1 addition take 3 cycle
+	\item komp cuma simpen finite number, sekitar 50/15 digit. Jadi kita bisa kehilangan info, misalnya dengan asosiatif.
+	\item komputer ngubah float ke binary, bisa jadi 0.1 ga sama. ngubah urutan operasi bisa jadi jawaban yang keluar ga sama
+	\item kalo pake kurung, bisa jadi lebih efektif. karena 4 hal yang dijumlahkan bisa 2 kali dikerjakan dalam satu waktu
+	\item -ffast-math bisa save 2/3 dr -O3, karena re order opertaion itself, tapi kudu ati2. Jadi kalo -O3 dan -O3 -ffast-math sama, berarti program uda max. ada lagi -march=native bikin lebih cepat, karena works di komp kita sendiri , in new computer is helping karena ada banyak command baru ?.
+	\item coba profiling, jadi biar kelihatan bagian mana dari code yang lama.
+	\item  running cuma di 1 core. Kalo mau parallel code, lebih complicated, pake IMD ?
+\end{itemize}
+\end{document}
