@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.2.26)  19 APR 2018 12:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.2.26)  19 APR 2018 17:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -289,17 +289,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--33
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--50
+
+ []
+
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (./Seminar.aux) ) 
 Here is how much of TeX's memory you used:
- 2750 strings out of 494945
- 37720 string characters out of 6181032
- 107826 words of memory out of 5000000
- 6010 multiletter control sequences out of 15000+600000
- 6857 words of font info for 27 fonts, out of 8000000 for 9000
+ 2752 strings out of 494945
+ 37741 string characters out of 6181032
+ 108826 words of memory out of 5000000
+ 6011 multiletter control sequences out of 15000+600000
+ 7203 words of font info for 28 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 39i,12n,31p,490b,135s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,12n,31p,490b,137s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texli
@@ -309,11 +314,13 @@ t/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/symbols/msbm10.pfb>
-Output written on Seminar.pdf (2 pages, 96322 bytes).
+s/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
+m10.pfb>
+Output written on Seminar.pdf (2 pages, 123184 bytes).
 PDF statistics:
- 47 PDF objects out of 1000 (max. 8388607)
- 33 compressed objects within 1 object stream
+ 55 PDF objects out of 1000 (max. 8388607)
+ 39 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -35,8 +35,33 @@ means that the total amount of body does not change. By
 \[ 0 = \int_{V} \nabla \cdot u \ dx = \int_{\partial V} u \cdot n \ ds \]
 means that the energy that comes in and comes out is same and the normal component of velocity is $ 0 = \int_{\partial V} u \cdot n \ ds $ where $ n $ is the normal vector works on boundary. \vspace{3cm} \\
 \textbf{Convection effect :}\\
-\textbf{[simple explanation.]} Let $ \phi^{0}(x), c>0 $ is given. Consider $ \phi(x,t) = \phi^{0}(x-ct) $, that represent the movement of function without changing the shape. \vspace{4cm} \\
-at $ t=0 $ we have $ \phi(x,0) = \phi^{0}(x) $ ; at at $ t=1 $ we have $ \phi(x,1) = \phi^{0}(x-c) $ ; at $ t=2 $ we have $ \phi(x,2) = \phi^{0}(x-2c) $ as shown above. 
+\textbf{[simple explanation]} Let $ \phi^{0}(x), c>0 $ is given. Consider $ \phi(x,t) = \phi^{0}(x-ct) $, that represent the movement of function without changing the shape. \vspace{4cm} \\
+at $ t=0 $ we have $ \phi(x,0) = \phi^{0}(x) $ ; at at $ t=1 $ we have $ \phi(x,1) = \phi^{0}(x-c) $ ; at $ t=2 $ we have $ \phi(x,2) = \phi^{0}(x-2c) $ as shown above.
+
+If we differentiate $ \phi $ over $ x $ and $ t $, then we obtain 
+\[ \begin{cases}
+\dfrac{\partial \phi}{\partial t} (x,t) = \phi^{0}\prime (x-ct) \ (-c) = -c \ \phi^{0}\prime (x-ct) \text{; the initial function}\\
+\dfrac{\partial \phi}{\partial x} (x,t) = \phi^{0}\prime (x-ct) \text{; moves to right with velocity c}
+\end{cases}. \]
+From the above relation, we get 
+\[ \dfrac{\partial \phi}{\partial t} + c \ \dfrac{\partial \phi}{\partial x} = 0. \]
+If we consider velocity, $ c \leftarrow u $ then $ \dfrac{\partial \phi}{\partial t} + u \ \dfrac{\partial \phi}{\partial x} = 0 $. Next, for \textbf{multidimensional convection equation}, $ \dfrac{\partial}{\partial x} \leftarrow \nabla $, $ \dfrac{\partial \phi}{\partial t} + (u \cdot \nabla) \phi= 0 $. In Navier-Stokes equations, if we $ \phi \leftarrow u_{i} $, then the first two term in first equation of equation (\ref{Navier-Stokes}). \\ \\
+\textbf{[explanation]} Let $ u : \Omega \times (0,T) \rightarrow \R^d $ is given.
+\[ \dfrac{\partial \phi}{\partial t} (x,t) + [(u \cdot \nabla) \phi](x,t) = 0 , \ (x,t) \in \Omega \times (0,T). \]
+Let us consider the position of a fluid particle that satisfy
+\[ \begin{cases}
+X\prime (t) &= u (X(t),t), \ \forall t \\
+X(t\star) &= x
+\end{cases}. \]
+Calculate
+\begin{eqnarray}\nonumber
+\dfrac{d}{dt}[\phi(X(t),t)] &=& (\nabla \phi)(X(t),t) \cdot X \prime (t) + \dfrac{\partial \phi}{\partial t}(X(t),t) \\ \nonumber
+&=& [(u \cdot \nabla)\phi](X(t),t) + \dfrac{\partial \phi}{\partial t}(X(t),t) \\ \nonumber
+&=& \Big[ \dfrac{\partial \phi}{\partial t}+(u \cdot \nabla)\phi \Big] (X(t),t).
+\end{eqnarray}
+If we set $ t=t\star $, then
+\[ \dfrac{d}{dt}[\phi(X(t),t)]_{|t=t\star} = \Big[ \dfrac{\partial \phi}{\partial t}+(u \cdot \nabla)\phi \Big] (x,t\star) = 0 \]
+or means that the function value does not change if it is changes by the velocity $ u $, or called \textbf{characterictic line trajectory of particle}.
 
 \subsubsection{3D Problem}
 For $ d=3 $, then $ u = \left[ {\begin{array}{c} u_{1} \\ u_{2} \\ u_{3}
@@ -62,5 +87,9 @@ and
 \end{eqnarray}
 \textbf{Note :}we have $ u_{1}, u_{2}, u_{3}, p $ as four unknown functions and four equations (as first equation defined for three $ u $ and second equation), then we could find the solution.
 
+\subsection{Research Topic}
+We will study about axisymmetric flow (example : air). Consider sylindrical domain for first. We do two simulation, first : with the initial velocity with velocity concentration is in the center of axis, second : we include swirl, like tornado type velocity.
+
+In this research it is proved that \textit{if there is blow up, then there is swirl}. But has not proved that there is some blow-up phenomena ($ \exists(x\star, t\star), t\star<\infty $ such that $ \lim\limits_{(x,t)\rightarrow(x\star,t\star) }|u(x,t)|=\infty $) by Navier-Stokes.
 
 \end{document}
