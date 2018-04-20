@@ -1,0 +1,66 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[a4paper, hmargin={1.5cm,1.5cm}, vmargin={1.5cm,1.5cm}]{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage{graphicx}
+
+\newcommand{\R}{\mathbb{R}}
+
+\begin{document}
+
+\section{18-04-18}
+This research is collaboration with Prof. Yoneda from University of Tokyo.\\
+Main equation discussed is \textbf{Navier-Stokes equation} that usually discusses in fluid, for example air.
+
+\subsection{Navier-Stokes Equation}
+
+\subsubsection{General Problem}
+For dimension $ d=2,3,... $ (usually $ 2 $ or $ 3 $) and $ T>0 $, we want to find \[(u,p) : \Omega \times (0,T) \rightarrow \R^d \times \R\] where $ u $ is unknown velocity and $ p $ is unknown pressure such that
+\begin{equation}\label{Navier-Stokes}
+\begin{cases}
+\dfrac{\partial u}{\partial t} + (u \cdot \nabla) u - \nu \bigtriangleup u + \nabla p = f & \text{ in } \Omega \times (0,T)\\
+\nabla \cdot u = 0 & \text{ in } \Omega \times (0,T)\\
+u = 0 & \text{ on } \partial \Omega \times (0,T)\\
+u = u^0 & \text{ in } \Omega \text{, at } t=0
+\end{cases}
+\end{equation}
+where $ f : \Omega \times (0,T) \rightarrow \R^d $ and $ u^0 : \Omega \rightarrow \R^d $ are given functions, $ \nu > 0 $ is a viscosity.
+
+From equation (\ref{Navier-Stokes}) we can see that $ \dfrac{\partial u}{\partial t} + (u \cdot \nabla) u $ is the \textbf{convection part} that explain the movement of fluid. This part, contain \textbf{nonlinear term} $ (u \cdot \nabla) u $. We can also see, that $ \nu \bigtriangleup u $ (similar to Heat equation) is the \textbf{diffusion part}. In the second equations, $ \nabla \cdot u = 0 $ explained the \textbf{incompressible condition} of fluid. \\ \\
+\textbf{Incompressible condition :}
+\[ \nabla \cdot u = div \ u = 0 \Leftrightarrow \text{ fluid is incompressible} \]
+means that the total amount of body does not change. By
+\[ 0 = \int_{V} \nabla \cdot u \ dx = \int_{\partial V} u \cdot n \ ds \]
+means that the energy that comes in and comes out is same and the normal component of velocity is $ 0 = \int_{\partial V} u \cdot n \ ds $ where $ n $ is the normal vector works on boundary. \vspace{3cm} \\
+\textbf{Convection effect :}\\
+\textbf{[simple explanation.]} Let $ \phi^{0}(x), c>0 $ is given. Consider $ \phi(x,t) = \phi^{0}(x-ct) $, that represent the movement of function without changing the shape. \vspace{4cm} \\
+at $ t=0 $ we have $ \phi(x,0) = \phi^{0}(x) $ ; at at $ t=1 $ we have $ \phi(x,1) = \phi^{0}(x-c) $ ; at $ t=2 $ we have $ \phi(x,2) = \phi^{0}(x-2c) $ as shown above. 
+
+\subsubsection{3D Problem}
+For $ d=3 $, then $ u = \left[ {\begin{array}{c} u_{1} \\ u_{2} \\ u_{3}
+\end{array} } \right] $ such that for $ (i=1,2,3) $ we have
+\[ \dfrac{\partial u_{i}}{\partial t} + (u \cdot \nabla) u_{i} - \nu \bigtriangleup u_{i} + [\nabla p]_{i} = f_{i} \]
+where
+\begin{eqnarray}\nonumber
+(u \cdot \nabla) u_{i} &=& \Big( \left[ 
+\begin{array}{c}
+u_{1} \\ u_{2} \\ u_{3}
+\end{array} 
+\right] \cdot \left[
+\begin{array}{c}
+\partial_{1} \\ \partial_{2} \\ \partial_{3}
+\end{array}
+\right] \Big) u_{i} \\ \nonumber
+&=& (u_{1} \partial_{1} + u_{2} \partial_{2} + u_{3} \partial_{3}) u_{i} \\ \nonumber
+&=& u_{1}\dfrac{\partial u_{i}}{x_{1}} + u_{2}\dfrac{\partial u_{i}}{x_{2}} + u_{3}\dfrac{\partial u_{i}}{x_{3}}
+\end{eqnarray}
+and
+\begin{eqnarray} \nonumber
+\bigtriangleup u_{i} &=& \dfrac{\partial^{2}u_{i}}{\partial x_{1}^2} + \dfrac{\partial^{2}u_{i}}{\partial x_{2}^2} + \dfrac{\partial^{2}u_{i}}{\partial x_{3}^2}.
+\end{eqnarray}
+\textbf{Note :}we have $ u_{1}, u_{2}, u_{3}, p $ as four unknown functions and four equations (as first equation defined for three $ u $ and second equation), then we could find the solution.
+
+
+\end{document}
