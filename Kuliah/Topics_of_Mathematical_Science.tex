@@ -92,7 +92,7 @@ For $ n=3 $, we have $ P(a,b,c) $.
 	\textbf{Inner product and norm}.\\
 	$ \bx = (x_{1}, \dots, x_{n}) , \by = (y_{1}, \dots, y_{n}  ) \in \R^n $. We can define : \\
 	$ \bx \cdot \by = x_{1}y_{1} + \dots + x_{n}y_{n} $ ; \textbf{inner product}\\
-	$ || \bx ||= \sqrt{\bx \cdot \bx} $ ; \textbf{norm}
+	$ \| \bx \|= \sqrt{\bx \cdot \bx} $ ; \textbf{norm}
 \end{defi}
 
 \begin{ex}
@@ -108,79 +108,79 @@ For $ n=3 $, we have $ P(a,b,c) $.
 \end{ex}
 
 \begin{ex}
-	$ ||\bx||=0 \Leftrightarrow x=0$\\
-	$ (\Rightarrow) \ 0 = || x ||^2 = x_{1}^2 + \dots + x_{n}^2 $, then $ x_{1}^2 =0 \ (\forall i =1, \dots, n )$ and finally $ x_{1}=0 $.
+	$ \|\bx\|=0 \Leftrightarrow x=0$\\
+	$ (\Rightarrow) \ 0 = \| x \|^2 = x_{1}^2 + \dots + x_{n}^2 $, then $ x_{1}^2 =0 \ (\forall i =1, \dots, n )$ and finally $ x_{1}=0 $.
 \end{ex}
 
 \begin{note}
 	%diganti note nanti
-	$ || x || $ is the distance between $ \mathbf{0} = (0, \dots, 0) \in \R^n $ and $ \bx= (x_{1}, \dots, x_{n}) $.\\
+	$ \| x \| $ is the distance between $ \mathbf{0} = (0, \dots, 0) \in \R^n $ and $ \bx= (x_{1}, \dots, x_{n}) $.\\
 	For notation, we will use $ P,Q \in \R^n $ as points and  $ \bx, \by \in \R^n $ as vectors. \\
-	We also use $ || x-y || = \sqrt{(x_{1}-y_{1})^2 + \dots + (x_{n}-y_{n})^2} $ as distance between $ \bx $ and $ \by $. \\
-	$ || P-Q || $ is distance between $ P $ and $ Q $.
+	We also use $ \| x-y \| = \sqrt{(x_{1}-y_{1})^2 + \dots + (x_{n}-y_{n})^2} $ as distance between $ \bx $ and $ \by $. \\
+	$ \| P-Q \| $ is distance between $ P $ and $ Q $.
 	\[ \bx \pm \by = ( x_{1} \pm y_{1} , \dots, x_{n} \pm y_{n} ) \]
 	\[ P=(p_{1}, \dots, p_{n}) ,  Q = (q_{1}, \dots, q_{n})  \text{, then } P+Q = (p_{1}+q_{1}, \dots, p_{n}+q_{n}) \]
 	\[ \alpha \in \R, \ \alpha\bx = (\alpha x_{1}, \dots, \alpha x_{n}),  \alpha P = (\alpha p_{1}, \dots, \alpha p_{n})\]
-	\[  \{P_{m}\}_{m=1}^{\infty} : \text{a sequence in } \R^n , \ P_{m} \rightarrow A \Leftrightarrow || P_{m}-A || \rightarrow 0 \]
+	\[  \{P_{m}\}_{m=1}^{\infty} : \text{a sequence in } \R^n , \ P_{m} \rightarrow A \Leftrightarrow \| P_{m}-A \| \rightarrow 0 \]
 \end{note}
 
 \begin{theo}
 	\textbf{Cauchy-Schwarz inequality}. For any $ \bx, \by \in \R^n $,
-	\[ \mid \bx \cdot \by \mid \leq || x || || y || \]
+	\[ \mid \bx \cdot \by \mid \leq \| x \| \| y \| \]
 	"$ = $" $ \Rightarrow  a\by = b\bx$ for some $ a,b \in \R $.\\
 	$ \therefore $ We may assume $ \bx \neq \emptyset , \ \forall t \in \R $.
-	\[ 0 \leq || t\bx+\by || = (t\bx+\by) (t\bx+\by) =  t^2 ||\bx||^2 + 2t(\bx\cdot\by)+||\by||^2 \]
+	\[ 0 \leq \| t\bx+\by \| = (t\bx+\by) (t\bx+\by) =  t^2 \|\bx\|^2 + 2t(\bx\cdot\by)+\|\by\|^2 \]
 	\[D/4 \leq 0\]
 \end{theo}
 
 \begin{theo}
-	\textbf{Bolzano=Weierstrass}. Let $ (P_{m})_{m=1}^{\infty} \subset \R^n $ be a sequence. Suppose that $ (P_{m})_{m=1}^{\infty} $ is bounded. In the sense that $ ||P_{m}|| \leq M (m \in \N) $ for some $ M \geq 0 $. Then $ (P_{m})_{m=1}^{\infty} $ contains a convergent subsequence.
+	\textbf{Bolzano=Weierstrass}. Let $ (P_{m})_{m=1}^{\infty} \subset \R^n $ be a sequence. Suppose that $ (P_{m})_{m=1}^{\infty} $ is bounded. In the sense that $ \|P_{m}\| \leq M (m \in \N) $ for some $ M \geq 0 $. Then $ (P_{m})_{m=1}^{\infty} $ contains a convergent subsequence.
 \end{theo}
 
 \begin{defi}
 	\textbf{Ball}. $ A \in \R^n, R>0 $
-	\[ \mathbf{B}(A,R) = \{ P \in \R^n | ||P-A||<R \} \text{; open ball of center A with radius R} \]
-	\[ \bar{\mathbf{B}}(A,R) = \{ P \in \R^n | ||P-A||\leq R \} \text{; closed ball} \]
+	\[ \mathbf{B}(A,R) = \{ P \in \R^n | \|P-A\|<R \} \text{; open ball of center A with radius R} \]
+	\[ \overline{\mathbf{B}}(A,R) = \{ P \in \R^n | \|P-A\|\leq R \} \text{; closed ball} \]
 \end{defi}
 
 \begin{defi}
 	\begin{enumerate}
 		\item $ E \subset \R^n $ is said to be \textbf{an open set} if $ E = \emptyset $ or $ \forall A \in E , \exists R>0 \text{ such that } \mathbf{B}(A,R) \subset E $.
-		\item $ E \subset \R^n $ is said to be \textbf{a closed set} if $ E^{c} = \R^n \ E $ is an open set.
+		\item $ E \subset \R^n $ is said to be \textbf{a closed set} if $ E^{c} \in \R^n \ E $ is an open set.
 	\end{enumerate}
 	$ E : $ open, then neighbor in any point %tanya
 \end{defi}
 
 \begin{defi}
-	\textbf{Accumulation point}. $ E \subset \R^n $; a set. $ A \in \R^n $ is called \textbf{an accumulation point} of $ E $ if $ \forall R>0, (\mathbf{B}(A,R)-\{A\}) \text{irisan } E \neq \emptyset $.
+	\textbf{Accumulation point}. $ E \subset \R^n $; a set. $ A \in \R^n $ is called \textbf{an accumulation point} of $ E $ if $ \forall R>0, (\mathbf{B}(A,R)-\{A\}) \bigcap E \neq \emptyset $.
 \end{defi}
 
-\begin{remark}
-	ini notes. $ E \subset \R^n $ is closed if and only id $ E $ contains any accumulation point of $ E $ . \textbf{Homework report, prove this}
-\end{remark}
+\begin{note}
+	$ E \subset \R^n $ is closed if and only if $ E $ contains any accumulation point of $ E $ . \textbf{Homework report, prove this}
+\end{note}
 
-\begin{remark}
-	note juga.
+\begin{note}
 	\begin{enumerate}
 		\item Both $ \emptyset $ and $ \R^n $ are open and closed
 		\item $ \{E_{\lambda}\lambda \in A \} $; a collection of open sets $ \Rightarrow $ union $ \lambda \in A E_{\lambda} $ is also open 
 		\item $ \{E_{\lambda}\}_{\lambda=1}^{N} $, a finite collection of open sets $ \Rightarrow $ irisan $ _{lamda=1}^{N} E_{\lambda} $ is also open.
-		\item  \textbf{Rephrase of Bolzano Weierstrass theorem}. $ E \subset \R^n $ ; a \textbf{ounded closed set} $ \Leftrightarrow $ $ E $ is a closed set such that $ E \subset \mathbf{B}(\mathbb{0},R) $ for some $ R>0 $. $ E $ ; a bounded closed set then any sequence of $ E $ contains a convergent subsequence whose limit is in $ E $.
+		\item  \textbf{Rephrase of Bolzano Weierstrass theorem}. $ E \subset \R^n $ ; a \textbf{bounded closed set} $ \Leftrightarrow $ $ E $ is a closed set such that $ E \subset \mathbf{B}(\mathbf{0},R) $ for some $ R>0 $. $ E $ ; a bounded closed set then any sequence of $ E $ contains a convergent subsequence whose limit is in $ E $.
 	\end{enumerate}
-\end{remark}
+\end{note}
 
 \begin{defi}
 	A bounded closed set in $ \R^n $ is called \textbf{compact}.
 \end{defi}
 
 \begin{ex}
-	$ \bar{\mathbf{B}}(A,R) $ is compact. \textbf{Report! prove this}
+	$ \overline{\mathbf{B}}(A,R) $ is compact. \textbf{Report! prove this}
 \end{ex}
 
 \subsection{Continuity and differentiability of a function}
 
 \subsubsection{Continuity}
-$ E $ : a set in $ \R^n $ and $ f $ : is a function of $ E $ (real valued function). i.e. $ f $ is an assignment a (real) number to a point in $ E $. %insert pict
+$ E $ : a set in $ \R^n $ and $ f $ : is a function of $ E $ (real valued function).\\
+ i.e. $ f $ is an assignment a (real) number to a point in $ E $. %insert pict
 
 \begin{defi}
 	\begin{enumerate}
@@ -199,5 +199,47 @@ $ E $ : a set in $ \R^n $ and $ f $ : is a function of $ E $ (real valued functi
 \begin{theo}
 	\textbf{Extreme value theorem}. $ f $ is a continuous function
 \end{theo}
+
+\newpage
+ Name	: Afifah Maya Iknaningrum  (1715011053)\\ \\
+ \hspace{2cm}
+\textbf{REPORT 1}
+
+\begin{enumerate}
+	\item $ E \subset \R^n $ is closed if and only if $ E $ contains any accumulation point of $ E $
+	\item $ \overline{\mathbf{B}}(A,R) $ is compact.
+\end{enumerate}
+
+\textbf{Proof :}
+\begin{enumerate}
+	\item $ (\Rightarrow) $ if $ E $ is closed then $ E $ contains all of its accumulation point. Let $ x $ accumulation point of $ E, \ x \in E $ and $ E $ is closed then $ E^{c} $ is open . \\ \\ 
+	Let $ x \in E^{c} $ and $ R>0 \Rightarrow \forall x\in E^{c}, \exists B(x,R) $ such that $ \forall y \in B(x,R) \Rightarrow y \in E^{c} $.\\
+	Suppose $ x $ is accumulation point of $ E $ that is not in $ E $.\\
+	 Then, $ \forall e \in B(x,R), \exists y \neq x $ with $ y\in e \bigcap E $. \\
+	$ y\in e\bigcap E \Rightarrow y \notin E^{c} $ contradiction.\\ \\
+	$ (\Leftarrow) $ $ E $ contains all of its accumulation point then $ E $ is closed. \\ \\
+	Suppose $ E $ contains all of its accumulation point. Suppose $ E^{c} $ is not open. \\
+	$ \exists x \in E^{c} $ such that $ \forall e \in B(x,R), R>0, \exists y \in e $ that also in $ E $.\\
+	Its contradict the premise, because $ x $ is accumulation point.
+	\item Suppose $ x \notin \overline{B}(A,R) \Rightarrow \|x-A\| >R $.\\
+	So let $ \|x-A\| -R = \epsilon >0 $. \\
+	Consider $ y \in B(x, \epsilon/2) $,
+	\begin{eqnarray} \nonumber
+	\|y-A\| &\geq& \|x-A\| -\|y-x\| \\ \nonumber
+	\|y-A\| &\geq& R + \epsilon - (\epsilon/2) \\ \nonumber
+	\|y-A\| &\geq& R + (\epsilon/2) \\ \nonumber
+	\|y-A\| &>& R
+	\end{eqnarray}
+	shows that $ y \in \overline{B}(A,R) $. Hence $ B(x, \epsilon/2) $ subset of $ \overline{B}(A,R)^{c} $.\\
+	Because $ \overline{B}(A,R)^{c} $ hence $ \overline{B}(A,R) $ is closed. \\ \\
+	By definition, $ \overline{B}(A,R) = \{ x\in \R^n | \|x-A\| \leq R \}$\\
+	Then $ \forall x \in \overline{B}(A,R) $ we can find
+	\begin{eqnarray}\nonumber
+	&\|x-A\|& \leq R\\
+	-R \leq&|x-A|& \leq R.
+	\end{eqnarray}
+	shows that $ \overline{B}(A,R) $ is bounded.\\ \\
+	Because closed and bounded, $ \overline{B}(A,R) $ is compact.
+\end{enumerate}
 
 \end{document}

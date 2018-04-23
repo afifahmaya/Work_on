@@ -1,0 +1,37 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[a4paper, hmargin={1.5cm,1.5cm}, vmargin={1.5cm,1.5cm}]{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage{graphicx}
+
+\newtheorem{remark}{Remark}
+\newtheorem{prop}{Properties}
+\newtheorem{theo}{Theorem}
+\newtheorem{defi}{Definition}
+\newtheorem{ex}{Example}
+
+\newcommand{\R}{\mathbb{R}}
+
+\begin{document}
+
+\section{20-04-2018}
+
+\subsection{Membranes}
+\begin{remark}
+	Consider the problem below with $ \phi : \Omega \rightarrow \R $ unknown and given $ f : \Omega \rightarrow \R $
+	\begin{equation}\label{2.2}
+			\begin{cases}
+			-\bigtriangleup \phi = f &, \text{ in } \Omega \\
+			\dfrac{\partial \phi}{\partial n} = 0 &,\text{ on } \Gamma \equiv \partial \Omega 
+			\end{cases}
+	\end{equation}
+	\begin{enumerate}
+		\item If $ \phi $ is the solution of (\ref{2.2}), then $ \phi + c $ will be also a solution for $ c \in \R $. So, there is no uniqueness of (\ref{2.2}).
+		\item Condition for $ f $
+		\[ \int_{\Omega} f \ dx = \int_{\Omega} - \bigtriangleup \phi \ dx = \int_{\Omega} \nabla \cdot (-\nabla \phi) \ dx =  \]
+	\end{enumerate}
+\end{remark}
+
+\end{document}

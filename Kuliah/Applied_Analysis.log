@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  20 APR 2018 19:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  20 APR 2018 14:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Seminar.tex
-(./Seminar.tex
+**Applied_Analysis.tex
+(./Applied_Analysis.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
 (/opt/local/share/texmf-texlive/tex/latex/base/article.cls
@@ -166,21 +166,27 @@ Package graphics Info: Driver file: pdftex.def on input line 99.
 \Gin@req@height=\dimen120
 \Gin@req@width=\dimen121
 )
-(./Seminar.aux)
-\openout1 = `Seminar.aux'.
+\c@remark=\count103
+\c@prop=\count104
+\c@theo=\count105
+\c@defi=\count106
+\c@ex=\count107
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
+(./Applied_Analysis.aux)
+\openout1 = `Applied_Analysis.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -190,14 +196,14 @@ LaTeX Font Info:    ... okay on input line 11.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(56.9055pt, 483.69687pt, 56.9055pt)
+* h-part:(L,W,R)=(42.67912pt, 512.14963pt, 42.67912pt)
 * v-part:(T,H,B)=(42.67912pt, 759.6886pt, 42.67912pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=483.69687pt
+* \textwidth=512.14963pt
 * \textheight=759.6886pt
-* \oddsidemargin=-15.36449pt
-* \evensidemargin=-15.36449pt
+* \oddsidemargin=-29.59087pt
+* \evensidemargin=-29.59087pt
 * \topmargin=-66.59087pt
 * \headheight=12.0pt
 * \headsep=25.0pt
@@ -218,16 +224,16 @@ LaTeX Font Info:    ... okay on input line 11.
 
 (/opt/local/share/texmf-texlive/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count103
+\scratchcounter=\count108
 \scratchdimen=\dimen122
 \scratchbox=\box28
-\nofMPsegments=\count104
-\nofMParguments=\count105
+\nofMPsegments=\count109
+\nofMParguments=\count110
 \everyMPshowfont=\toks27
-\MPscratchCnt=\count106
+\MPscratchCnt=\count111
 \MPscratchDim=\dimen123
-\MPnumerator=\count107
-\makeMPintoPDFobject=\count108
+\MPnumerator=\count112
+\makeMPintoPDFobject=\count113
 \everyMPtoPDFconversion=\toks28
 ) (/opt/local/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
@@ -275,52 +281,40 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 20.
+LaTeX Font Info:    Try loading font information for U+msa on input line 23.
 
 (/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 20.
+LaTeX Font Info:    Try loading font information for U+msb on input line 23.
 
 (/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Underfull \hbox (badness 10000) in paragraph at lines 31--33
+) [1
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 47--50
-
- []
-
-[1
-
-{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-(./Seminar.aux) ) 
+{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Applied_Analys
+is.aux) ) 
 Here is how much of TeX's memory you used:
- 2752 strings out of 492995
- 37831 string characters out of 6134533
- 114162 words of memory out of 5000000
- 6269 multiletter control sequences out of 15000+600000
- 7203 words of font info for 28 fonts, out of 8000000 for 9000
+ 2785 strings out of 492995
+ 38120 string characters out of 6134533
+ 107348 words of memory out of 5000000
+ 6301 multiletter control sequences out of 15000+600000
+ 7901 words of font info for 30 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,12n,31p,490b,137s stack positions out of 5000i,500n,10000p,200000b,80000s
-</opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm
-/cmbx10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx
-12.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pf
-b></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></o
-pt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></opt/loc
-al/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/local/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/local/share/texm
-f-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/texmf-tex
-live/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/local/share/texmf-texlive/f
-onts/type1/public/amsfonts/cm/cmti10.pfb></opt/local/share/texmf-texlive/fonts/
-type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Seminar.pdf (2 pages, 123145 bytes).
+ 39i,9n,31p,242b,237s stack positions out of 5000i,500n,10000p,200000b,80000s
+</opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.
+pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
+/opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/
+local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/local
+/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/local/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/local/share/texmf-
+texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/texmf-texli
+ve/fonts/type1/public/amsfonts/cm/cmti10.pfb></opt/local/share/texmf-texlive/fo
+nts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Applied_Analysis.pdf (1 page, 80632 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
- 39 compressed objects within 1 object stream
+ 44 PDF objects out of 1000 (max. 8388607)
+ 31 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

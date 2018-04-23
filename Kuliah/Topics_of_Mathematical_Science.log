@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  20 APR 2018 05:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  23 APR 2018 10:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -304,7 +304,36 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-(./Topics_of_Mathematical_Science.aux) ) 
+Underfull \hbox (badness 10000) in paragraph at lines 204--207
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--224
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--224
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--224
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 232--237
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 240--243
+
+ []
+
+[4] (./Topics_of_Mathematical_Science.aux) ) 
 Here is how much of TeX's memory you used:
  3025 strings out of 492995
  40675 string characters out of 6134533
@@ -312,26 +341,26 @@ Here is how much of TeX's memory you used:
  6532 multiletter control sequences out of 15000+600000
  8879 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,8n,31p,386b,269s stack positions out of 5000i,500n,10000p,200000b,80000s
-</opt/local/share/texmf-texlive/fonts/t
-ype1/public/amsfonts/cm/cmbx10.pfb></opt/local/share/texmf-texlive/fonts/type1/
-public/amsfonts/cm/cmbx12.pfb></opt/local/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmbxti10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/a
-msfonts/cm/cmex10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfon
-ts/cm/cmmi10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm
-/cmmi5.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7
-.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-/opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb></opt/lo
-cal/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/local/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/te
-xmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/local/share/texmf-te
-xlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></opt/local/share/texmf-texlive
-/fonts/type1/public/amsfonts/symbols/msam10.pfb></opt/local/share/texmf-texlive
-/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Topics_of_Mathematical_Science.pdf (3 pages, 174582 bytes).
+ 39i,8n,31p,387b,205s stack positions out of 5000i,500n,10000p,200000b,80000s
+</opt/local/share/texmf-texlive/fon
+ts/type1/public/amsfonts/cm/cmbx10.pfb></opt/local/share/texmf-texlive/fonts/ty
+pe1/public/amsfonts/cm/cmbx12.pfb></opt/local/share/texmf-texlive/fonts/type1/p
+ublic/amsfonts/cm/cmbxti10.pfb></opt/local/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cm/cmex10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/am
+sfonts/cm/cmmi10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfont
+s/cm/cmmi5.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
+mmi7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.p
+fb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb></op
+t/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/local
+/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/shar
+e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/local/share/texm
+f-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></opt/local/share/texmf-tex
+live/fonts/type1/public/amsfonts/symbols/msam10.pfb></opt/local/share/texmf-tex
+live/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Topics_of_Mathematical_Science.pdf (4 pages, 180099 bytes).
 PDF statistics:
- 74 PDF objects out of 1000 (max. 8388607)
- 53 compressed objects within 1 object stream
+ 77 PDF objects out of 1000 (max. 8388607)
+ 55 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
