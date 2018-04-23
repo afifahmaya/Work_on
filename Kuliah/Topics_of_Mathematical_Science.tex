@@ -24,7 +24,7 @@
 
 \begin{document}
 
-\section{09-04-2018}
+\section{09-04-18}
 We will learn about : Basics of functions of several variables.
 In this lecture:
 
@@ -73,10 +73,19 @@ Using these notation :
 \end{remark}
 
 \begin{theo}
-	$ (x_{n})_{n=1}^{\infty} $ a sequence. If $ (x_{n})_{n=1}^{\infty} $ converges to $ \alpha \in \R $, any subsequence of $ (x_{n}) $
+	$ (x_{n})_{n=1}^{\infty} $ a sequence. If $ (x_{n})_{n=1}^{\infty} $ converges to $ \alpha \in \R $, any subsequence of $ (x_{n})_{n=1}^{\infty} $ converges to $ \alpha \in \R $.\\
+	$ \because $ Let $ (x_{n})_{n=1}^{\infty} $ be a subsequence. Because $ x_{n} \rightarrow \alpha (n\rightarrow \infty), \forall\epsilon>0, \exists N \in \mathbb{N} $. Take $ J_{0} \in \mathbb{N} $ such that $ n_{j}>N_{\theta} $ for all $ y > J_{0} $. Then $ |x_{n_{j>N_{\theta}}}-\alpha|<\epsilon $ for $ j>J_{0} $. $ x_{n_{j}} \rightarrow \alpha (j \rightarrow \infty), (n_{j})_{j=1}^{\infty} $ also a sequence, $ n_{j} \in \mathbb{N}, n_{j}<n_{j+1} $.
 \end{theo}
 
-\section{16-04-2018}
+\textbf{Completeness Axiom.} Let $ (x_{n})_{n=1}^{\infty} $ be a monotonically increasing (decreasing) sequence (i.e. $ x_{n} \leq x_{n+1}, n\in \mathbb{N} $). Suppose that there is an $ M \in \R $ such that $ x_{n} \leq M (n \in \mathbb{N}) $ ($ x_{n} \geq M $). Then, $ (x_{n})_{n=1}^{\infty} $ converges ($ \exists \alpha\in\R $ such that $ x_{n}\rightarrow \alpha $)
+
+\begin{theo}
+	\textbf{Bolzano-Weirstrass.} $ (x_{n})_{n=1}^{\infty} $ a sequence in $ \R $. Suppose $ (x_{n})_{n=1}^{\infty} $ is bounded in the sense that $ |x_{n}|\leq M, \forall n \in \mathbb{N} $. Then $ (x_{n})_{n=1}^{\infty} $ contains a convergent subsequence.\\
+	$ x_{n} $ is a peak of $ (x_{n})_{n=1}^{\infty} $ if $ x_{n} > x_{m} $ for $ m>n $.
+\end{theo}
+
+\newpage
+\section{16-04-18}
 
 \subsection{n-dimensional space}
 $ \R^2 = \R \times \R \times \dots \times \R  = \{ (x_{1}, \dots, x_{n}) | x_{i}\in \R \} $.\\
@@ -128,7 +137,7 @@ For $ n=3 $, we have $ P(a,b,c) $.
 	\textbf{Cauchy-Schwarz inequality}. For any $ \bx, \by \in \R^n $,
 	\[ \mid \bx \cdot \by \mid \leq \| x \| \| y \| \]
 	"$ = $" $ \Rightarrow  a\by = b\bx$ for some $ a,b \in \R $.\\
-	$ \therefore $ We may assume $ \bx \neq \emptyset , \ \forall t \in \R $.
+	$ \because $ We may assume $ \bx \neq \emptyset , \ \forall t \in \R $.
 	\[ 0 \leq \| t\bx+\by \| = (t\bx+\by) (t\bx+\by) =  t^2 \|\bx\|^2 + 2t(\bx\cdot\by)+\|\by\|^2 \]
 	\[D/4 \leq 0\]
 \end{theo}
@@ -197,7 +206,7 @@ $ E $ : a set in $ \R^n $ and $ f $ : is a function of $ E $ (real valued functi
 \end{theo}
 
 \begin{theo}
-	\textbf{Extreme value theorem}. $ f $ is a continuous function
+	\textbf{Extreme value theorem}. $ f $ is a continuous function on a closed interval $ [a,b] $. Then, $ f $ attains a maximum and a minimum on $ [a,b] $.
 \end{theo}
 
 \newpage
@@ -241,5 +250,62 @@ $ E $ : a set in $ \R^n $ and $ f $ : is a function of $ E $ (real valued functi
 	shows that $ \overline{B}(A,R) $ is bounded.\\ \\
 	Because closed and bounded, $ \overline{B}(A,R) $ is compact.
 \end{enumerate}
+
+\newpage
+\section{23-04-18}
+
+$ f $ is \underline{continuous function} on $ [a,b] = \{x\in\R | a \leq x \leq b \} $
+
+\begin{theo}
+	\textbf{Intermediate Value Theorem}. Suppose $ f(a) \leq f(b) $ then $ \forall \gamma \in \R $ with $ f(a) \leq \gamma \leq f(b), \ \exists c\ in [a,b] $ such that $ f(c) = \gamma $.\hspace{3cm}
+\end{theo}
+
+\begin{theo}
+	\textbf{Extreme value theorem}. $ f $ attains a maximum and a minimum on $ [a,b] $. \hspace{3cm}
+\end{theo}
+
+\subsection{Differentiable function on intervals}
+
+$ f : $ function defined around $ x=a\in \R $.\\
+$ f $ is \underline{differentiable at $ x=a $} if the limit $ f \prime (a) = \lim\limits_{h\rightarrow 0} \dfrac{f(a+h)-f(a)}{h}$ exist.\\ \\
+$ f : $ function on $ (a,b)=\{ x\in\R | a<x<b \} $\\
+$ f $ is \underline{differentiable on $ (a,b) $} if $ f $ is differentiable at any point of $ (a,b) $.\\ \\
+\textbf{Properties :} if $ f $ is differentiable at $ x=a $ then $ f $ is continuous at $ x=a $.\\
+$ \because f(a+h)=f(a) +h \dfrac{f(a+h)-f(a)}{h} = f(a)+hf\prime(a) $. Because $ h \rightarrow 0 $ then $ f(a+h)\rightarrow f(a) $.\\
+
+\begin{theo}
+	\textbf{Rolle's theorem}. $ f :$ continue on $ [a,b] $ and differentiable on $ (a,b) $. If $ f(a)=f(b) $ then $ \exists c \in (a,b) $ such that $ f\prime (c)=0 $.\\
+	$ \because $ if $ f $is a constant function, $ f\prime(x)=0, \forall x\in (a,b) $. Suppose that $ f $ is not a constant function, by \underline{extreme value theorem}, $ f $ attain $ max $ at $ x=c_{1} $ and $ min $ at $ x=c_{2} $ with $ c_{1} \neq c_{2} $. \\
+	(Otherwise $ max=f(c_{1}) = f(c_{2}) = min $)\\ \\
+	$ \forall x\in [a,b], f(c_{2}) \leq min \leq f(x) \leq max \leq f(a) $. We may assume $ c_{1} \in (a,b) $.\\
+	(Otherwise, consider $ -f $ instead $ f $; $ (-f)\prime(a) =\lim\limits_{h\rightarrow 0} \dfrac{-f(a+h)-(-f(a))}{h} = -f\prime(a) $ )\\ \\
+	\begin{eqnarray}\nonumber
+	\dfrac{f(c_{1}+h)-f(c_{1})}{h} \leq 0, h<0. & \text{ for } h \rightarrow 0 ,& f\prime(c_{1}) \leq 0 \\ \nonumber
+	\dfrac{f(c_{1}+h)-f(c_{1})}{h} \geq 0, h>0. & \text{ for } h \rightarrow 0 ,& f\prime(c_{1}) \geq 0
+	\end{eqnarray}
+	Then, we can conclude that $ f\prime(c_{1}) = 0 $
+\end{theo}
+
+\begin{theo}
+	\textbf{Meanvalue theorem}. $ f : $ continuous on $ [a,b] $ and differntiable on $ (a,b) $.\\
+	$ \exists c \in (a,b) $ such that $ \dfrac{f(b)-f(a)}{b-a} = f\prime (c) $.\\
+	$ \because $ consider $ F(x) = f(x) - f(a) - \dfrac{f(b)-f(a)}{b-a}(x-a) $ and apply \underline{the Rolle's theorem}.
+\end{theo}
+
+\subsection{Basic of function of several variables}
+$ D \subset \R^n $ is a domain $ \Leftrightarrow D $ is open. Any two points of $ D $ are connected by a polygonal arc in $ D $. We can consider a ball $ \textbf{B}(P,R) $.\\
+\textbf{Note :} From now on, we discuss with $ \R^2 $ for simplicity.
+
+\subsubsection{The partial derivative at $ P(a,b) $}
+1D : $ f\prime(a) = \lim\limits_{h\rightarrow 0} \dfrac{f(a+h)-f(a)}{h} $.\\
+2D : $ f_{x}(a,b) = \dfrac{\partial f}{\partial x} (a,b) = \lim\limits_{h\rightarrow 0} \dfrac{f(a+h,b)-f(a,b)}{h} $.\\
+$ f_{y}(a,b) = \dfrac{\partial f}{\partial y} (a,b) = \lim\limits_{h\rightarrow 0} \dfrac{f(a,b+h)-f(a,b)}{h} $
+
+\begin{defi}
+	$ f $ is \underline{partially differentiable at $ P(a,b) $} if $ f_{x}(a,b), f_{y}(a,b) $ exist. And $ f $ is \underline{partially differentiable on $ D $} if $ f $ is partially differentiable at any point on $ D $.
+\end{defi}
+
+\subsubsection{Landau symbol}
+$ O : $ big $ o $ and $ o : $ small $ o $ describe the behavior of function.
 
 \end{document}
