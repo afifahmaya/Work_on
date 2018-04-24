@@ -1,0 +1,135 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[a4paper, hmargin={1.5cm,1.5cm}, vmargin={1.5cm,1.5cm}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage{graphicx}
+
+\newtheorem{remark}{Remark}
+\newtheorem{prop}{Proposition}
+\newtheorem{theo}{Theorem}
+\newtheorem{defi}{Definition}
+\newtheorem{ex}{Example}
+\newtheorem{note}{Notes}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+
+\begin{document}
+
+\section{10-04-18}
+
+\subsection{Algebraic axioms for real numbers}
+Two binary operations, $ + $ addition and $ \cdot $ multiplication on $ \R $ are defined and have the following propoerties for all $ x,y,z \in \R $:
+\begin{enumerate}
+	\item $ x+(y+z)=(x+y)+z $. Associative law for addition.
+	\item $ \exists 0 $ such that $ x+0=0+x=x $. Existence of additive identity.
+	\item There exist an element $ -x\in\R $ such that $ x+ (-x) = (-x) + x = 0 $. Existence of additive inverse.
+	\item $ x+y = y+x $. Commutative law for addition.
+	\item $ x\cdot(y\cdot z)=(x\cdot y)\cdot z $. Associative law for multiplication.
+	\item $ \exists 1 \neq 0 $ such that $ x \cdot 1 = 1 \cdot x = x $. Existence of multiplicative identity.
+	\item If $ x \neq 0 $, then there exist an element $ x^{-1}\in\R $ such that $ x\cdot x^{-1} = x^{-1} \cdot x = 1 $. Existence of multiplicative inverse.
+	\item $ x\cdot y = y\cdot x $. Commutative law for multiplication.
+	\item $ x \cdot (y+z) = x \cdot y + x \cdot z $. Distributive law.
+\end{enumerate}
+In the language of algebra, axioms above state that $ \R $ with addition and multiplication is a \textbf{field}.
+
+\subsection{The order axioms for real number}
+A binary relation $ \leq $ on $ \R $ is defined and satisfies the following properties for all $ x,y,z \in \R $.
+\begin{enumerate}
+	\item $ x \leq x $. Reflexivity.
+	\item If $ x \leq y, \ y \leq x $ then $ x=y $. Antisymmetry.
+	\item If $ x\leq y, \ y \leq z $ then $ x \leq z $. Transitivity.
+	\item Either $ x\leq y $ or $ y \leq x $. Totality.
+	\item If $ x \leq y $, then $ x+y \leq y+z $
+	\item If $ 0 \leq x $ and $ 0 \leq y $, then $ 0 \leq x \cdot y $.
+\end{enumerate} 
+
+\newpage
+\section{17-04-18}
+
+\subsection{Real Number}
+$ \Q = \{ \dfrac{n}{m} | n,m \in \Z, m \neq 0 \} $. We have $ p,q \in \Q $, then
+\[ p+q = \dfrac{n}{m} +\dfrac{k}{l} = \dfrac{kn + ml}{mk}; \ pq= \dfrac{nl}{mk}; \ p \geq q \Leftrightarrow p-q \geq 0 \]
+For $ +, \times, \geq $ satisfy A1-A15.
+
+\begin{remark}
+	$ \Q $ is incomplete in the following sense. There is no $ r \in \Q$ such that $ r^2=2 $. Remember Phytagoras theorem, $ a^2+b^2=c^2 $. Pict : \vspace{2cm}
+	$ \because $ if $ c \in \Q $, then $ c=\dfrac{n}{m} \ (n,m \in \Z, m \neq 0) $. We may assume that either $ m $ or $ n $ is odd.
+	\[ c^2=2 \rightarrow \big(\dfrac{n}{m}\big)^2 =2 \rightarrow n^2=2m^2 \]
+	\textbf{case 1 :} $ n $ is odd $ \Rightarrow $ odd = even (impossible)\\
+	\textbf{case 2 :} $ n $  is even $ \Rightarrow m $ is odd (from assumtion) $ \Rightarrow n^2 $ can be devided by $ 4 $ but $ 2m^2 $ can not devided by $ 4 $ (contradiction)
+\end{remark}
+
+\textbf{Question :} How to fill the gap of $ \Q $ ?\\
+Answer : Idea of Weirstrass (supreme axioms)
+
+\begin{defi}
+	$ A \subset \R $.
+	\begin{itemize}
+		\item $ A $ is \underline{bounded from above} $ \Leftrightarrow \exists b\in\R $ such that $ a \leq b \ (\forall a\in A) $. such $ b $ is called \underline{upper bound of $ A $}.
+		\item $ A $ is \underline{bounded from below} $ \Rightarrow \exists b\prime \in\R $ such that $ a \geq b\prime \ (\forall a \in A) $. Such $ b\prime $ is called \underline{lower bound of $ A $}
+		\item $ \alpha = sup A $\\
+		$ \Leftrightarrow $ the minimum of the set of upper bound\\
+		$ \Leftrightarrow $ 1. $ \alpha $ is an upper bound of $ A $ ; 2. if $ b $ is an upper bound of $ A $, then $ \alpha \leq b $.
+		\item $ \beta = inf A \Leftrightarrow $ the maximum of the set of lower bounds of $ A $.
+	\end{itemize}
+\end{defi}
+
+\begin{remark}
+	$ sup A (inf A) $ is uniquely determined if it exist.\\
+	For example, $ sup \Q (inf \Q) $ does not exist. $ \because \Q $ is not bounded from above (below) 
+\end{remark}
+
+\begin{remark}
+	Every nonempty subset of $ \R $ which is bounded from above (below) has a supremum (infimum) in $ \R $
+\end{remark}
+
+\subsection{Real sequence}
+\begin{defi}
+	For $ x\in \R, \ |x| = \begin{cases}
+	x &, x \geq 0 \\ -x &, x \leq 0
+	\end{cases} $
+\end{defi}
+
+\begin{remark}
+	\begin{itemize}
+		\item $ |x| \geq 0, \ |x|=0 \Leftrightarrow x=0 $
+		\item $ |xy| = |x| |y| $
+		\item $ |x+y| \leq |x| + |y| $ (triangle inequality)
+	\end{itemize}
+\end{remark}
+
+An infinite sequence of $ \R \Leftrightarrow a: \N \rightarrow \R $ usually we write $ a_{n}=a(n) , \ n \in \N $ or $ \{ a_{n} \}_{n\in \N} $ or $ a_{1}, a_{2}, \dots $.\\
+\textbf{Question :} Limiting behavior of $ a_{n} $ as $ n $ increases ?\\ 
+Answer : $ a_{n} \rightarrow l, \ n \rightarrow \infty \Leftrightarrow $ as $ n $ become larger and larger, the value $ a_{n} $ become arbitrarily close to $ l $.
+
+\begin{defi}
+	\textbf{$ \epsilon-N $ definition of the limit}. $ \{ a_{n} \} $ converges to $ l \in \R \Leftrightarrow \forall \epsilon>0, \exists N \in \N $ such that $ |a_{n}-l| < \epsilon, \forall n \geq N $. We write $ \lim\limits_{n \rightarrow \infty} a_{n} = l $.
+\end{defi}
+
+\begin{defi}
+	\begin{itemize}
+		\item $ a_{n} \rightarrow +\infty \Leftrightarrow \forall M>0. \ \exists N \in \N $ such that $ a_{n}>M \ (\forall n\geq N)$
+		\item $ a_{n} \rightarrow -\infty \Leftrightarrow \forall M>0. \ \exists N \in \N $ such that $ a_{n}<-M \ (\forall n\geq N)$
+	\end{itemize}
+\end{defi}
+
+\begin{remark}
+	A convergent sequence has a unique limit.\\
+	\begin{eqnarray} \nonumber
+	\because & \epsilon = \dfrac{1}{2}|l-l\prime|>0 \\ \nonumber
+	& \exists N\in\N \text{ such that } |a_{n}-l| < \epsilon, \ (\forall n \geq N) \\ \nonumber
+	& \exists N\prime\in\N \text{ such that } |a_{n}-l\prime| < \epsilon, \ (\forall n \geq N\prime)
+	\end{eqnarray}
+	Set $ \tilde{N} = max \{ N,N\prime \} \in \N $. For $ n\geq \tilde{N} \Rightarrow |a_{n}-l|<\epsilon, \ |a_{n}-l\prime|<\epsilon $ is impossible.
+\end{remark}
+
+\end{document}
