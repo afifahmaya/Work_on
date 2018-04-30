@@ -1,0 +1,50 @@
+load "iovtk"
+
+real nu = 1;
+real dt = 0.01;
+
+int n=4;
+real  x0=0.0,y0=0.0,Lx=1.0,Ly=1.0;
+border  a1(t=0,1){x=x0+Lx*t; y=y0;}
+border  a2(t=0,1){x=x0+Lx; y=y0+Ly*t;}
+border  a3(t=1,0){x=x0+Lx*t; y=y0+Ly;}
+border  a4(t=1,0){x=x0; y=y0+Ly*t;}
+mesh Th=buildmesh(a1(n)+a2(n)+a3(n)+a4(n));
+
+plot ( Th, wait = 1, ps = "NS_mesh.ps" );
+
+fespace Vh ( Th, P1 );
+
+Vh uh, uold, vh, qh, ph, f, theta;
+theta = 2*sin(pi*x)*(pi*y); //value at t=0
+uh = theta;
+uold = theta;
+
+problem NS ( uh, vh, ph, qh ) = 
+    int2d ( Th ) ( uh * vh / dt )
+  - int2d ( Th ) ( uold * vh / dt )
+  + int2d ( Th ) ( uold * dx ( uh ) * vh + uold * dy ( uh ) * vh ) //scheme_0
+  + int2d ( Th ) ( nu * dx ( uh ) * dx ( vh ) + nu * dy ( uh ) * dy ( vh ) )
+  - int2d ( Th ) ( dx ( vh ) * ph + dy ( vh ) * ph )
+  - int2d ( Th ) ( dx ( uh ) * qh + dy ( uh ) * qh )
+  - int2d ( Th ) ( f * vh )
+  + on (a1,a2,a3,a4, uh = 0 );
+
+real t;
+for ( int it = 1; it <= 1./dt; it++ )
+  {
+    t=it*dt;
+    f = 0 ; //value of f
+    ph = 0 ; //belum tau caranya cari p
+    NS;
+    plot ( uh, nbiso = 25, fill = 1, value = 1, wait = 1, 
+      ps = "heat_uh_" + it + ".ps" );
+    uold = uh;
+    //savevtk("heat_plot"+it+".vtk",Th,uh,dataname="heat"); //saves vtk file for each iteration
+  }
+
+
+cout << "\n";
+cout << "Nav_Stokes2D:\n";
+cout << "  Normal end of execution.\n";
+
