@@ -38,13 +38,15 @@ problem navierstokes ( [u,v,p], [uh,vh,ph], solver = sparsesolver ) =
  - int2d(Th) (f2*vh)
  + on ( c1, c2, c3, c4, u=0, v=0);
 
-real t;
+real t; int i,j;
+ofstream ff("error.dat");
 for ( int it = 1; it <= 20; it++ )
   {
     t=it*dt;
     f1 = -exp(-4*t)*sin(2*x);
     f2 = -exp(-4*t)*sin(2*y);
     navierstokes;
+    ff << t << "\t" << abs(uold-u) << "\t" << abs(vold-v) << "\n";
     plot ( Th, [u,v], nbiso = 60, fill = 0, value = 1, wait = 1, ps = "ns_" + it + ".ps" );
     savevtk("ns_plot"+it+".vtk",Th,[u,v],p,dataname="NS");
     uold = u;
