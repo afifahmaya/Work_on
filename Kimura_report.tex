@@ -25,13 +25,51 @@
 \maketitle
 
 \section{Introduction}
-Partial Differential Equation is \dots . For example is Heat Equations, Wave Equations, Elasticity Equations, Maxwell Equations, Navier-Stokes Equations, etc.
+Partial Differential Equation (PDE) is an equation with two or more variables and its partial derivative. For integer $ k \geq 1 $ and $ U $ is open subset of $ \R^n $, Evans, L.C.(2010) define PDE as an expression of the form
+\[ F(D^k u(x), D^{k-1} u(x), \dots , Du(x), u(x), x)=0, \]
+that is called a \textit{k\textsuperscript{th}-order} partial differential equation, where
+\[ F : \R^{n^{k}} \times \R^{n^{k-1}} \times \dots \times \R^{n} \times \R \times U \rightarrow \R \]
+is given and
+\[ u : U \rightarrow \R \]
+is the unknown. Some example of PDE is Heat Equations, Wave Equations, Elasticity Equations, Maxwell Equations, Navier-Stokes Equations, etc.
 
-Because there are some PDEs that the analytical solution is not easy to get, we usually approach the solution by numerical method. For example is Boundary (Integral) Element Method, Particle Method, Spectral Method, Finite Difference Method (FDM) and Finite Element Method (FEM), etc. In this report, we will discuss about the comparison of FDM and FEM.
+In the study of these equations, there are some PDEs that the analytical solution is not easy to get. To solve it, usually the solution is approached by numerical method. Such as Boundary (Integral) Element Method, Particle Method, Spectral Method, Finite Difference Method (FDM) and Finite Element Method (FEM), etc. In this report, we will discuss about the comparison of FDM and FEM.
+
+To understand the FDM and FEM, we would like to show how these method can be used to solve Poisson Equation for bounded domain $ \Omega \subset \R^2 $,
+\begin{equation} \label{Poisson}
+\begin{cases}
+- \bigtriangleup u = f(x) &, x\in\Omega\\
+u = g(x) &, x \in \partial \Omega
+\end{cases}
+\end{equation}
+with $ x=(x_{1},x_{2}) $, $ u=u(x)=u(x_{1},x_{2}) $, and Laplacian $ \bigtriangleup = \dfrac{\partial^2}{\partial x_{1}^2} + \dfrac{\partial^2}{\partial x_{2}^2} $.
 
 \section{Finite Difference Method}
+We consider mesh as shown below with mesh size $ h>0 $.
+\vspace{3cm}
+\\The solution of PDE $ u(\xi_{ij}) $ is approximated by solution of FDM $ u_{ij} $ for each point $ \xi_{ij} = (ih,jh) \in \R^2 $. Using one of FDM, \underline{central difference scheme}, the solution of Poisson equation in (\ref{Poisson}) can be obtained. 
+
+Let $ \Omega = (0,1) \times (0,1) $ and $ h=\dfrac{1}{N} $ where $ N $ is number of devider of domain. We define $ w_{h} := \{ \xi_{ij} | \ \xi_{ij} \in \Omega \} $ and $ \gamma_{h} := \{ \xi_{ij} | \ \xi_{ij} \in \partial \Omega \} $. Then (\ref{Poisson}) can be approximated by
+\begin{equation}\label{poisson_discrete}
+\begin{cases}
+- \dfrac{u_{i+1,j}+u_{i-1,j}+u_{i,j+1}+u_{i,j-1}-4 \ u_{ij}}{h^2} = f_{ij} &, (\xi_{ij}\in w_{h}) \\
+u_{ij} = g_{ij} &,(\xi_{ij}\in\gamma_{h})
+\end{cases}
+\end{equation}
+where we assume $ f \in C(\bar{\Omega}) $ and $ g \in C(\partial \Omega) $,
+\[ \begin{cases}
+f_{ij} := f(\xi_{ij}) \\ g_{ij} := g(\xi_{ij}) 
+\end{cases} \]
 
 \section{Finite Element Method}
+Consider Poisson equation in (\ref{Poisson}), by variational principle, there exist a unique solution $ u = argmin \ E(v) $, for $ v \in H_{0}^{1}(\Omega) $, $ v=0 $ at boundary, where
+\[ E(v) := \dfrac{1}{2} \int_{\Omega} |\nabla v|^2 \ dx - \int_{\Omega} f \ v \ dx \]
+with $ \nabla v = \Big[ \dfrac{\partial v}{\partial x_{1}} \ , \ \dfrac{\partial v}{\partial x_{2}} \Big] $. There exist weak solution for equation (\ref{Poisson}) if and only if exist $ u = argmin \ E(v) $. 
+
+Let $ \Omega $ be a polygon. We define $ \bar{\Omega} = \bigcup\limits_{K \in T_{h}} K $
+\vspace{3cm}
+\\ with $ K $ is closed triangle and $ T_{h} $ is triangular division. First, we define the space
+\[ V_{h} :=  \]
 
 \section{Comparison}
 %buat table
@@ -42,7 +80,6 @@ FDM
 	\item The function is approximated in grid points.
 	\item Difficult to apply for not rectangular domain.
 \end{enumerate}
-
 FEM
 \begin{enumerate}
 	\item The domain is approximated by triangular mesh.
