@@ -130,4 +130,61 @@ Answer : $ a_{n} \rightarrow l, \ n \rightarrow \infty \Leftrightarrow $ as $ n 
 	Set $ \tilde{N} = max \{ N,N\prime \} \in \N $. For $ n\geq \tilde{N} \Rightarrow |a_{n}-l|<\epsilon, \ |a_{n}-l\prime|<\epsilon $ is impossible.
 \end{remark}
 
+\newpage 
+\textbf{REPORT 1}
+
+\textbf{Afifah Maya Iknaningrum (1715011053)}
+
+\begin{enumerate}
+	\item \underline{Problem :} Let $ \{a_{n}\}, \{b_{n}\}, \{c_{n}\} $ be a real sequence. Suppose that for every $ n \in \N $, we have
+	\[ b_{n} \leq a_{n} \leq c_{n} \]
+	and also suppose that
+	\[ \lim\limits_{n \rightarrow \infty} b_{n} = l = \lim\limits_{n \rightarrow \infty} c_{n} \]
+	for some $ l \in \R $. Then \[ \lim\limits_{n \rightarrow \infty} a_{n} = l. \]\\
+	\underline{Answer :} By definition of limit, $ \forall \epsilon>0 , \ \exists N_{1}, N_{2} \in \N $ such that for $ l \in \R $
+	\[ |b_{n}-l| < \epsilon, \ \forall n \geq N_{1}, \]
+	\[ |c_{n}-l| < \epsilon, \ \forall n \geq N_{2}. \]
+	Then we can obtain
+	\[ |b_{n}-l| < \epsilon \Leftrightarrow -\epsilon < b_{n}-l < \epsilon \Leftrightarrow l-\epsilon < b_{n} < l + \epsilon,\]
+	\[ |c_{n}-l| < \epsilon \Leftrightarrow -\epsilon < c_{n}-l < \epsilon \Leftrightarrow l-\epsilon < c_{n} < l + \epsilon.\]
+	Take $ N = max \{N_{1},N_{2}\} $, then $ \forall n > N $
+	\begin{eqnarray}\nonumber
+	 && b_{n} \leq a_{n} \leq c_{n} \\ \nonumber
+	 & \Leftrightarrow & l-\epsilon < b_{n} \leq a_{n} \leq c_{n} < l + \epsilon \\ \nonumber
+	 & \Leftrightarrow & l-\epsilon < a_{n} < l + \epsilon\\ \nonumber
+	 & \Leftrightarrow & -\epsilon < a_{n}-l < \epsilon \\ \nonumber
+	 & \Leftrightarrow & |a_{n}-l| < \epsilon.
+	\end{eqnarray}
+	It is proved that $ \forall \epsilon>0 , \ \exists N \in \N $ such that for $ l \in \R $
+	\[ |a_{n}-l| < \epsilon, \ \forall n \geq N \]
+	or we can write
+	\[ \lim\limits_{n \rightarrow \infty} a_{n} = l. \] \qed
+	\newpage \item 
+	\begin{enumerate}
+		\item \underline{Problem :} If a sequence of real numbers converges, then it is bounded.\\
+		\underline{Answer :} Let $ \{x_{n}\} $ be a sequence in real number. Suppose $ \{x_{n}\} $ is converge to $ a \in \R $ as $ n \rightarrow \infty $. Then $ \forall \epsilon > 0, \ \exists N\in \N $ such that $ \forall n > N $, \[|x_{n}-a|<\epsilon.\]
+		From triangle inequality we obtain
+		\begin{eqnarray} \nonumber
+		|x_{n}-a|&<&\epsilon \\ \nonumber
+		|x_{n}|-|a| &<& \epsilon \\ \nonumber
+		|x_{n}| &<& \epsilon + |a|.
+		\end{eqnarray}
+		Takes $ M = max\{ \epsilon + |a|, x_{1}, x_{2}, \dots, x_{N} \} $, we obtain
+		\[ |x_{n}| \leq M. \]
+		It shows that $ \forall \epsilon>0, \exists M>0 $ such that $ |x_{n}| \leq M, \ \forall n $ or it is proved that $ \{x_{n}\} $ is bounded. \qed
+		\item \underline{Problem :} If a sequence of real numbers converge, then it is a Cauchy sequence.\\
+		\underline{Answer :} Let $ \{x_{n}\}, \{x_{m}\} $ be a sequence in real number. Suppose $ \{x_{n}\}, \{x_{m}\} $ is converge to $ a \in \R $ as $ n \rightarrow \infty $. Then $ \forall \epsilon > 0, \ \exists N_{1},N_{2}\in \N $ such that $ \forall n > N_{1} $, \[|x_{n}-a|<\dfrac{\epsilon}{2}\]
+		and  $ \forall m > N_{2} $, \[|x_{m}-a|<\dfrac{\epsilon}{2}.\]
+		Takes $ N=max\{N_{1},N_{2}\} $ then $ \forall n, m > N $
+		\begin{eqnarray}\nonumber
+		|x_{n}-x_{m}| & \leq & |x_{n}-a+a-x_{m}| \\ \nonumber
+		& \leq & |x_{n}-a|+|x_{m}-a| \\ \nonumber
+		& < & \dfrac{\epsilon}{2}+\dfrac{\epsilon}{2} \\ \nonumber
+		& < & \epsilon.		
+		\end{eqnarray}
+		Then, it is proved that $ \forall \epsilon>0, \ \exists N \in \N $ such that for $ n,m > N $ \[ |x_{n}-x_{m}|<\epsilon \] or it is Cauchy sequence. \qed
+	\end{enumerate}
+	
+\end{enumerate}
+
 \end{document}
