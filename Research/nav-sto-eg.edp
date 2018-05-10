@@ -39,6 +39,8 @@ for(int n=32; n>=8; n=n-8 )
   problem navierstokes ( [u,v,p], [uh,vh,ph], solver = sparsesolver ) =
     int2d(Th) (u*uh/dt) - int2d(Th) (uold*uh/dt)
   + int2d(Th) (v*vh/dt) - int2d(Th) (vold*vh/dt)
+  + int2d(Th) (uold*dx(u)*uh + vold*dy(u)*uh)
+  + int2d(Th) (uold*dx(v)*vh + vold*dy(v)*vh)
   + int2d(Th) (nu*dx(u)*dx(uh) + nu*dy(u)*dy(uh) )
   + int2d(Th) (nu*dx(v)*dx(vh) + nu*dy(v)*dy(vh) )
   - int2d(Th) (p*dx(uh)+ p*dy(vh))
@@ -62,7 +64,7 @@ for(int n=32; n>=8; n=n-8 )
     //savevtk("ns_plot"+n+"_"+it+".vtk",Th,[u,v],p,dataname="NS");
     uold = u;
     vold = v;
-    plot (p, nbiso=60, fill =0, value =1, wait =1, ps = "ns-p_"+n+"_"+it+".ps" );
+    //plot (p, nbiso=60, fill =0, value =1, wait =1, ps = "ns-p_"+n+"_"+it+".ps" );
   }
   ff << dt << "\t" << errormax << "\n" ;
   cout << ">>>>>MESH>>>>> " << n << " executed \n" ;

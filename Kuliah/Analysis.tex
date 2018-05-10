@@ -184,7 +184,46 @@ Answer : $ a_{n} \rightarrow l, \ n \rightarrow \infty \Leftrightarrow $ as $ n 
 		\end{eqnarray}
 		Then, it is proved that $ \forall \epsilon>0, \ \exists N \in \N $ such that for $ n,m > N $ \[ |x_{n}-x_{m}|<\epsilon \] or it is Cauchy sequence. \qed
 	\end{enumerate}
-	
 \end{enumerate}
+
+\newpage
+\section{07-05-2018}
+
+\subsection{Landau Symbol}
+Symbol for representing the behavior of functions. $ O $ : big o and $ o $ : small o.\\
+Let $ f,g $ be function around $ x=a \in \R $ (or $ x>M $ for some $ M \in \R $)
+\begin{itemize}
+	\item $ f(x) = O(g(x)) $ as $ x \rightarrow a $ if $ \exists \delta>0, \exists A>0 $ such that $ |f(x)| \leq A \ g(x) $ for $ 0 < |x-a| < \delta $.\\ Means : eventually the graph $ f(x) $ is below of $ y=A \ g(x) $.
+	\item $ f(x) = O(g(x)) $ as $ x \rightarrow a $ if $ \exists m > M, \exists A>0 $ such that $ |f(x)| \leq A \ g(x) $ for $ x>m $. \\ Means : $ |f(x) $ is eventually \textit{dominated} by linear function as $ x \rightarrow \infty $
+\end{itemize}
+
+\underline{Example :} \\$ f(x) = O(x^2), \ (x\rightarrow \infty) $ then $ f(x) $ is eventually dominated by a quadratic function as $ x \rightarrow \infty $.\\
+$ f(x) = O(1) $ as $ x \rightarrow \infty $ then $ f(x) $ is a bounded function around $ \infty $
+
+\underline{Explanation behavior :} $ f(x) $ is a polynomial time behaviour as $ x \rightarrow \infty $. $ f(x) = O(e^{ax}), \ f(x) = o(x^n) $ for some $ n \in \N $.
+\begin{itemize}
+	\item $ f(x) = o(g(x)), \ (x \rightarrow \infty) $ if $ \forall\epsilon>0, \exists \delta >0 $ such that $ |f(x)| \leq \epsilon g(x), 0 < |x-a| < \delta $ \\ (or equivalently, if $ g(x)\neq 0, \ \lim\limits_{x\rightarrow a} \dfrac{f(x)}{g(x)} =0 $)
+	\item $ f(x) = o(g(x)), \ (x \rightarrow \infty) $ if $ \forall\epsilon>0, \exists m >0 $ such that $ x>m \Rightarrow |f(x)| \leq \epsilon g(x) $ \\ (or equivalently, if $ g(x)\neq 0, \ \lim\limits_{x\rightarrow \infty} \dfrac{f(x)}{g(x)} =0 $)
+	\item $ f(x) = o(x) $ as $ x \rightarrow \infty \Leftrightarrow \lim\limits_{x\rightarrow \infty} \dfrac{f(x)}{x} =0$
+	\item $ f(x) = o(x) $ as $ x \rightarrow 0 \Leftrightarrow \lim\limits_{x\rightarrow 0} \dfrac{f(x)}{x} =0$
+	\item $ f(x) = o(1) $ as $ x \rightarrow \infty \Leftrightarrow \lim\limits_{x \rightarrow \infty} \dfrac{f(x)}{1} =0 \Leftrightarrow \lim\limits_{x \rightarrow \infty} f(x) =0 $ 
+	\item $ f(x) = o(1) $ as $ x \rightarrow a \ (a \in \R)  \Leftrightarrow \lim\limits_{x \rightarrow a} f(x) =0 $ 	
+\end{itemize}
+
+\begin{remark}
+	\begin{enumerate}
+		\item $ f(x) $ is continuous at $ x=a \Leftrightarrow \lim\limits_{x \rightarrow \infty} f(x) =f(a) $ iff $ \Leftrightarrow \lim\limits_{x \rightarrow a} (f(x)-f(a)) =0 $\\
+		by previous, $ \Leftrightarrow f(x) - f(a) = o(1) $ as $ x \rightarrow a \Leftrightarrow f(x) = f(a) +o(1) $ as $ x \rightarrow a $ 
+		\item $ f(x) $ is differentiable as $ x=a \Leftrightarrow \lim\limits_{h\rightarrow 0}\dfrac{f(a+h)-f(a)}{h} = f'(a) $ iff $ \Leftrightarrow \dfrac{f(a+h)-f(a)}{h} = f'(a) + o(1) $ as $ h \rightarrow 0 $\\
+		$ \Leftrightarrow f(a+h)=f(a)+f'(a) \ h + o(h) $ as $ h\rightarrow 0 $\\
+		note : $ o(h) \Leftrightarrow \dfrac{o(h)}{h}=0 \Rightarrow o(1) \ h \Rightarrow \dfrac{o(1) \ h}{h} = o(1) \rightarrow 0 $ as $ h\rightarrow 0 $
+	\end{enumerate}
+\end{remark}
+
+$ D : $ domain in $ \R^2 $ and $ f : $ function on $ D $
+\[ f_{x}(a,b) = \dfrac{\partial f}{\partial x} (a,b) = \lim\limits_{h\rightarrow 0} \dfrac{f(a+h,b)-f(a,b)}{h} \]
+\[ f_{y}(a,b) = \dfrac{\partial f}{\partial y} (a,b) = \lim\limits_{k\rightarrow 0} \dfrac{f(a,b+k)-f(a,b)}{k} \]
+\[ f(a+h,b) = f(a,b) +f_{x}(a,b)h + o(h) \text{ as } h\rightarrow 0 \]
+\[ f(a,b+k) = f(a,b) +f_{y}(a,b)k + o(k) \text{ as } k\rightarrow 0 \]
 
 \end{document}
