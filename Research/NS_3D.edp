@@ -1,0 +1,79 @@
+load "iovtk"
+load "msh3"
+
+// Variable declaration
+real nu = 1.0;
+real Lx = 1.0;
+real Ly = 1.0;
+real Lz = 1.0;
+real error;
+real errormax = 0.;
+real t;
+
+//  Set the border
+border c1 (t=0,1)    {x=t*Lx; y=0;}
+border c2 (t=0,1)    {x=Lx; y=t*Ly;}
+border c3 (t=1,0)    {x=t*Lx; y=Ly;}
+border c4 (t=1,0)    {x=0; y=t*Ly;}
+
+ofstream ff("error.dat");
+
+//iteration for each mesh devider
+for(int n=32; n>=8; n=n-8 )
+{
+  //int n=32;
+  real dt = 1./n; //take dt=h
+
+  //  Create the mesh
+  mesh Th = buildmesh ( c1(n)+c2(n)+c3(n)+c4(n) );
+  plot ( Th, ps = "navierstokes_mesh.ps" );
+
+  //  Define the finite element spaces for velocity and pressure
+  fespace Uh(Th, P2);
+  fespace Vh(Th, P1);
+  Uh u, v, uh, vh, uold, vold, f1, f2, exactu, exactv;
+  Vh p, ph;
+  
+  //  Set up the Navier−Stokes equationss
+  uold = -cos(x)*sin(y) ;
+  vold = sin(x)*cos(y) ;
+
+  problem navierstokes ( [u,v,p], [uh,vh,ph], solver = sparsesolver ) =
+    int2d(Th) (u*uh/dt) - int2d(Th) (uold*uh/dt)
+  + int2d(Th) (v*vh/dt) - int2d(Th) (vold*vh/dt)
+  + int2d(Th) (uold*dx(u)*uh + vold*dy(u)*uh)
+  + int2d(Th) (uold*dx(v)*vh + vold*dy(v)*vh)
+  + int2d(Th) (nu*dx(u)*dx(uh) + nu*dy(u)*dy(uh) )
+  + int2d(Th) (nu*dx(v)*dx(vh) + nu*dy(v)*dy(vh) )
+  - int2d(Th) (p*dx(uh)+ p*dy(vh))
+  + int2d(Th) (dx(u)*ph + dy(v)*ph)
+  - int2d(Th) (f1*uh)
+  - int2d(Th) (f2*vh)
+  + on ( c1, c2, c3, c4, u=0, v=0);
+  
+  for ( int it = 1; it <= n; it++ )
+  {
+    t=it*dt;
+    exactu = -cos(x)*sin(y)*exp(-2*t);
+    exactv = sin(x)*cos(y)*exp(-2*t);
+    f1 = -exp(-4*t)*sin(2*x);
+    f2 = -exp(-4*t)*sin(2*y);
+    navierstokes;
+    error = sqrt( int2d(Th)((u-exactu)*(u-exactu)) + int2d(Th)((v-exactv)*(v-exactv)) );
+    if (error > errormax) errormax = error ;
+    cout << "error at " << t << "is " << errormax << "\n" ;
+    plot ( Th, [u,v], nbiso = 60, fill = 0, value = 1, wait = 0, ps = "ns_"+n+"_"+it+".ps" );
+    //savevtk("ns_plot"+n+"_"+it+".vtk",Th,[u,v],p,dataname="NS");
+    uold = u;
+    vold = v;
+    //plot (p, nbiso=60, fill =0, value =1, wait =1, ps = "ns-p_"+n+"_"+it+".ps" );
+  }
+  ff << dt << "\t" << errormax << "\n" ;
+  cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
+  errormax = 0;
+}
+//  Terminate.
+//
+cout << "\n";
+cout << "NAVIERSTOKES:\n";
+cout << "Normal end of execution.\n";
