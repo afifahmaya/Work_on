@@ -24,6 +24,7 @@ for(int n=32; n>=8; n=n-8 )
 
   //  Create the mesh
   mesh Th = buildmesh ( c1(n)+c2(n)+c3(n)+c4(n) );
+  //mesh Th = square(Lx,Ly);
   plot ( Th, ps = "navierstokes_mesh.ps" );
 
   //  Define the finite element spaces for velocity and pressure
@@ -62,11 +63,11 @@ for(int n=32; n>=8; n=n-8 )
     error = sqrt( int2d(Th)((u-exactu)*(u-exactu)) + int2d(Th)((v-exactv)*(v-exactv)) );
     if (error > errormax) errormax = error ;
     cout << "error at " << t << "is " << error << "\n" ;
-    //plot ( Th, [u,v], nbiso = 60, fill = 0, value = 1, wait = 0, ps = "ns_"+n+"_"+it+".ps" );
+    plot ( Th, [u,v], nbiso = 60, fill = 0, value = 1, wait = 0, ps = "ns_"+n+"_"+it+".ps" );
     //savevtk("ns_plot"+n+"_"+it+".vtk",Th,[u,v],p,dataname="NS");
     uold = u;
     vold = v;
-    plot (p, nbiso=60, fill =0, value =1, wait =0, ps = "ns-p_"+n+"_"+it+".ps" );
+    //plot (p, nbiso=60, fill =0, value =1, wait =0, ps = "ns-p_"+n+"_"+it+".ps" );
   }
   ff << dt << "\t" << errormax << "\n" ;
   cout << ">>>>>MESH>>>>> " << n << " executed \n" ;

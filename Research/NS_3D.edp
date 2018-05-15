@@ -3,18 +3,9 @@ load "msh3"
 
 // Variable declaration
 real nu = 1.0;
-real Lx = 1.0;
-real Ly = 1.0;
-real Lz = 1.0;
 real error;
 real errormax = 0.;
 real t;
-
-//  Set the border
-border c1 (t=0,1)    {x=t*Lx; y=0;}
-border c2 (t=0,1)    {x=Lx; y=t*Ly;}
-border c3 (t=1,0)    {x=t*Lx; y=Ly;}
-border c4 (t=1,0)    {x=0; y=t*Ly;}
 
 ofstream ff("error.dat");
 
@@ -25,7 +16,7 @@ for(int n=32; n>=8; n=n-8 )
   real dt = 1./n; //take dt=h
 
   //  Create the mesh
-  mesh Th = buildmesh ( c1(n)+c2(n)+c3(n)+c4(n) );
+  mesh3 Th = buildlayers(square(n,n),n);
   plot ( Th, ps = "navierstokes_mesh.ps" );
 
   //  Define the finite element spaces for velocity and pressure
