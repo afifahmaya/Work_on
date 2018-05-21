@@ -308,4 +308,148 @@ $ f_{y}(a,b) = \dfrac{\partial f}{\partial y} (a,b) = \lim\limits_{h\rightarrow 
 \subsubsection{Landau symbol}
 $ O : $ big $ o $ and $ o : $ small $ o $ describe the behavior of function.
 
+\newpage
+\textbf{REPORT (Afifah Maya Iknaningrum / 1715011053)}\\ \\
+
+Using chain rule, calculate the derivatives
+\begin{enumerate}
+	\item Let $ y = f(x) = x^2, \ z = g(y) = y^3 + 2y $. Calculate $ \dfrac{d(g \circ f)}{dx} $.
+	\begin{eqnarray} \nonumber
+	\dfrac{d(g \circ f)}{dx} &=& \dfrac{dg}{dy} \cdot \dfrac{df}{dx} \\ \nonumber
+	&=& \big(3(f(x))^2+2\big)(2x) \\ \nonumber
+	&=& \big(3(x^2)^2+2\big)(2x) \\ \nonumber
+	&=& \big(3x^4+2\big)(2x) \\ \nonumber
+	&=& 6x^5+4x
+	\end{eqnarray}
+	\item Let $ y = f(x) = x^3+2x, \ z = g(y) = y^2+3y $. Calculate $ \dfrac{d(g \circ f)}{dx} $.
+	\begin{eqnarray} \nonumber
+	\dfrac{d(g \circ f)}{dx} &=& \dfrac{dg}{dy} \cdot \dfrac{df}{dx} \\ \nonumber
+	&=& \big(2(f(x))+3\big)(3x^2+2) \\ \nonumber
+	&=& \big(2(x^3+2x)+3\big)(3x^2+2) \\ \nonumber
+	&=& \big(2x^3 + 4x + 3\big)(3x^2+2) \\ \nonumber
+	&=& 6x^5 + 4x^3 + 12x^3 + 8x + 9x^2 + 6 \\ \nonumber
+	&=& 6x^5 + 16x^3 + 9x^2 + 8x +6
+	\end{eqnarray}
+	\item Let $ \gamma(t) = (t^2, t^3+t), \ z = f(x,y) = x^3y $. Calculate $ \dfrac{d(f \circ \gamma)}{dt} $.
+	\begin{eqnarray} \nonumber
+	\dfrac{d(f \circ \gamma)}{dt} &=& \dfrac{\partial f}{\partial x}\dfrac{dx}{dt} +  \dfrac{\partial f}{\partial y}\dfrac{dy}{dt} \\ \nonumber
+	&=& (3x^2y)(2t) + (x^3)(3t^2+1) \\ \nonumber
+	&=& \big( 3(t^2)^2(t^3+t) \big) (2t) + ((t^2)^3)(3t^2+1) \\ \nonumber
+	&=& 6t^5 (t^3+t) + t^6 (3t+1) \\ \nonumber
+	&=& 6t^8 + 6t^6 + 3t^8 + t^6 \\ \nonumber
+	&=& 9t^8 + 7t^6
+	\end{eqnarray}
+	\item Let $ \gamma(t) = (t, t^2+t), \ z = f(x,y) = xe^y $. Calculate $ \dfrac{d(f \circ \gamma)}{dt} $.
+	\begin{eqnarray}\nonumber
+	\dfrac{d(f \circ \gamma)}{dt} &=& \dfrac{\partial f}{ \partial x}\dfrac{dx}{dt} +  \dfrac{\partial f}{\partial y}\dfrac{dy}{dt} \\ \nonumber
+	&=& (e^y)(1) + (xe^y)(2t+1) \\ \nonumber
+	&=& e^{t^2+t} + t e^{t^2+t} (2t+1) \\ \nonumber
+	&=& e^{t^2+t} + (2t^2+t)e^{t^2+t} \\ \nonumber
+	&=& (2t^2+t+1)e^{t^2+t} 
+	\end{eqnarray}
+	\item Let $ (u,v) = f(x,y) = (ax+by, cx+dy) , \ (z,w) = g(u,v) = (pu+qv , ru+sv) $. Calculate $ J(g \circ f) $ and $ Jac(f) $.
+	\begin{eqnarray}\nonumber
+	J(g \circ f) &=& J(g)(f) \ J(f) \\ \nonumber
+	&=& \left( \begin{array}{cc}
+	\dfrac{\partial z}{\partial u} & \dfrac{\partial z}{\partial v} \\
+	\dfrac{\partial w}{\partial u} & \dfrac{\partial w}{\partial v}
+	\end{array} \right)
+	\left( \begin{array}{cc}
+	\dfrac{\partial u}{\partial x} & \dfrac{\partial u}{\partial y} \\
+	\dfrac{\partial v}{\partial x} & \dfrac{\partial v}{\partial y}
+	\end{array} \right) \\ \nonumber
+	&=& \left( \begin{array}{cc}
+	p & q \\ r & s
+	\end{array} \right)
+	\left( \begin{array}{cc}
+	a & b \\ c & d
+	\end{array} \right) \\ \nonumber
+	&=& \left( \begin{array}{cc}
+	ap+cq & bp+dq \\
+	ar+cs & br+ds
+	\end{array} \right) \\ \nonumber
+	Jac(f) &=& det \left( \begin{array}{cc}
+	a & b \\
+	c & d
+	\end{array} \right) = ad-bc
+	\end{eqnarray}
+	\item Let $ (u,v) = f(x,y) = (x^y,x^5y^2) , \ (z,w) = g(u,v) = (u^2,v^3) $. Calculate $ J(g \circ f) $ and $ Jac(f) $.
+	\begin{eqnarray}\nonumber
+	J(g \circ f) &=& J(g)(f) \ J(f) \\ \nonumber
+	&=& \left( \begin{array}{cc}
+	\dfrac{\partial z}{\partial u} & \dfrac{\partial z}{\partial v} \\
+	\dfrac{\partial w}{\partial u} & \dfrac{\partial w}{\partial v}
+	\end{array} \right)
+	\left( \begin{array}{cc}
+	\dfrac{\partial u}{\partial x} & \dfrac{\partial u}{\partial y} \\
+	\dfrac{\partial v}{\partial x} & \dfrac{\partial v}{\partial y}
+	\end{array} \right) \\ \nonumber
+	&=& \left( \begin{array}{cc}
+	2u & 0 \\ 0 & 3v^2
+	\end{array} \right)
+	\left( \begin{array}{cc}
+	2xy & x^2 \\ 5x^4y^2 & x^5 2y
+	\end{array} \right) \\ \nonumber
+	&=& \left( \begin{array}{cc}
+	2(x^2y) & 0 \\ 0 & 3(x^5y^2)^2
+	\end{array} \right)
+	\left( \begin{array}{cc}
+	2xy & x^2 \\ 5x^4y^2 & 2x^5y
+	\end{array} \right) \\ \nonumber
+	&=& \left( \begin{array}{cc}
+	2x^2y & 0 \\ 0 & 3x^{10}y^4
+	\end{array} \right)
+	\left( \begin{array}{cc}
+	2xy & x^2 \\ 5x^4y^2 & 2x^5y
+	\end{array} \right) \\ \nonumber
+	&=& \left( \begin{array}{cc}
+	4x^3y^2 & 2x^4y \\
+	15x^{14}y^6 & 6x^{15}y^5
+	\end{array} \right) \\ \nonumber
+	Jac(f) &=& det \left( \begin{array}{cc}
+	2xy & x^2 \\ 5x^4y^2 & 2x^5y
+	\end{array} \right) \\ \nonumber
+	&=& (2xy)(2x^5y) - (5x^4y^2)(x^2) \\ \nonumber
+	&=& 4x^6y^2 - 5x^6y^2 \\ \nonumber
+	&=& -x^6y^2
+	\end{eqnarray}
+	\item Let $ (x,y) = f(r,\theta) = (r \cos \theta, r \sin \theta) , \ (z,w) = g(x,y) = (x^2,y) $. Calculate $ J(g \circ f) $ and $ Jac(f) $.
+	\begin{eqnarray}\nonumber
+	J(g \circ f) &=& J(g)(f) \ J(f) \\ \nonumber
+	&=& \left( \begin{array}{cc}
+	\dfrac{\partial z}{\partial u} & \dfrac{\partial z}{\partial v} \\
+	\dfrac{\partial w}{\partial u} & \dfrac{\partial w}{\partial v}
+	\end{array} \right)
+	\left( \begin{array}{cc}
+	\dfrac{\partial u}{\partial x} & \dfrac{\partial u}{\partial y} \\
+	\dfrac{\partial v}{\partial x} & \dfrac{\partial v}{\partial y}
+	\end{array} \right) \\ \nonumber
+	&=& \left( \begin{array}{cc}
+	2x & 0 \\ 0 & 1
+	\end{array} \right)
+	\left( \begin{array}{cc}
+	\cos \theta & -r \sin\theta \\ \sin \theta & r \cos \theta
+	\end{array} \right) \\ \nonumber
+	&=& \left( \begin{array}{cc}
+	2r \cos\theta & 0 \\ 0 & 1
+	\end{array} \right)	\left( \begin{array}{cc}
+	\cos \theta & -r \sin\theta \\ \sin \theta & r \cos \theta
+	\end{array} \right) \\ \nonumber
+	&=& \left( \begin{array}{cc}
+	2r \cos^2\theta & -2r^2 \cos\theta\sin\theta \\
+	\sin\theta & r \cos\theta
+	\end{array} \right) \\ \nonumber
+	&=& \left( \begin{array}{cc}
+	2r \cos^2\theta & -r^2 \sin2\theta \\
+	\sin\theta & r \cos\theta
+	\end{array} \right) \\ \nonumber
+	Jac(f) &=& det \left( \begin{array}{cc}
+	\cos \theta & -r \sin\theta \\ \sin \theta & r \cos \theta
+	\end{array} \right) \\ \nonumber
+	&=& r\cos^2\theta - (-r \sin^2\theta) \\ \nonumber
+	&=& r (\cos^2\theta + \sin^2\theta) \\ \nonumber
+	&=& r
+	\end{eqnarray}
+\end{enumerate}
+
 \end{document}

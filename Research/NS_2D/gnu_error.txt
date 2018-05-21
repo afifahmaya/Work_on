@@ -1,0 +1,13 @@
+reset
+
+#to save file :
+set term png
+set output "error_NS_2D.png"
+
+#figure properties :
+set title "Plot of error for 2D Navier-Stokes" 
+set logscale
+set xlabel "h"
+set ylabel "E(t,h)"
+
+plot "error2D.txt" w linespoint title "error 2D by scheme 0", "error2D-C.txt" w linespoint title "error 2D by convect", x/100, x*x/10

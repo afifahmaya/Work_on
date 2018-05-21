@@ -1,0 +1,12 @@
+reset
+
+#to save file :
+set term png
+set output "p.png"
+
+#figure properties :
+set title "Plot of p" 
+set xlabel "time"
+set ylabel "p"
+
+plot "p.txt" w l title "NS 2D", "p-C.txt" w l title "NS 2D with Convect"

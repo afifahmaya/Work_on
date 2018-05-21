@@ -1,0 +1,30 @@
+load "iovtk"
+load "msh3"
+
+// Variable declaration
+real nu = 1.0;
+real error;
+real errormax = 0.;
+real t;
+real theta=4.*pi/3.;
+
+ofstream ff("error.dat");
+
+//iteration for each mesh devider
+//for(int n=32; n>=8; n=n-8 )
+//{
+  int n=32;
+  real dt = 1./n; //take dt=h
+
+  //  Create the mesh
+  border Gamma1(t=0,theta)    { x = cos(t); y = sin(t); }
+  border Gamma2(t=theta,2*pi) { x = cos(t); y = sin(t); }
+  mesh Th1 = buildmesh(Gamma1(n)+Gamma2(n));   // construction of mesh
+  mesh3 Th = buildlayers(Th1,n);
+  plot ( Th, ps = "navierstokes_mesh.ps" );
+
+//  Terminate.
+//
+cout << "\n";
+cout << "NAVIERSTOKES:\n";
+cout << "Normal end of execution.\n";

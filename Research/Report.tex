@@ -39,6 +39,15 @@ V &=& H_{0}^{1}(\Omega, \R^d) = H_{0}^{1}(\Omega)^d \\ \nonumber
 Q &=& \{ q\in L^2(\Omega) ; \int_{\Omega} q \ dx=0 \}.
 \end{eqnarray}
 
+\subsection{Error estimate}
+To estimate the error, we use
+\begin{eqnarray}\nonumber
+E(h,dt) &=& max \ \| u_{h}^{n}-u^{n} \| \\ \nonumber
+&=& max \ \{ \| u_{h_{1}}^{n}-u_{1}^{n} \|_{L^2(\Omega)}^{2} + \| u_{h_{2}}^{n}-u_{2}^{n} \|_{L^2(\Omega)}^{2} \}^{1/2} \\ \nonumber
+&=& max \ \{ \int_{\Omega} (u_{h_{1}}^{n}-u_{1}^{n})^2 \ dx + \int_{\Omega} (u_{h_{2}}^{n}-u_{2}^{n})^2 \ dx \}^{1/2}
+\end{eqnarray}
+
+
 \subsection{Simulation}
 Below, is the exact solution to check if the program is working.
 \begin{eqnarray} \nonumber
@@ -47,5 +56,7 @@ u_{1} &=& -cos(x_{1}) sin(x_{2}) e^{-4t} \\\nonumber
 u_{2} &=& -sin(x_{1}) cos(x_{2}) e^{-4t} \\\nonumber
 p &=& \dfrac{1}{4} (cos(2x_{1}) + cos(2x_{2})) e^{-4t}
 \end{eqnarray}
+such that equation (\ref{Navier-Stokes}) is satisfied with $ f = (f_{1},f_{2}) $. \\With $ f_{1} = -e^{-4t}sin(2x_{1}) $ and $ f_{2} = -e^{-4t} sin(2x_{2}) $
+
 
 \end{document}

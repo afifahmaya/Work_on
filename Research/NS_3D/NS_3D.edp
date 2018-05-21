@@ -1,0 +1,84 @@
+load "iovtk"
+load "msh3"
+
+// Variable declaration
+real nu = 1.0;
+real error;
+real errormax = 0.;
+real t;
+func exactu = ;
+func exactv = ;
+func exactw = 0. ;
+func f1 = ;
+func f2 = ;
+func f3 = ;
+
+ofstream ff("error_3D.txt");
+ofstream pp("p.txt);
+
+//iteration for each mesh devider
+for(int n=32; n>=8; n=n-8 )
+{
+  real dt = 1./n; //take dt=h
+
+  //  Create the mesh
+  mesh3 Th = buildlayers(square(n,n),n);
+  plot ( Th, ps = "NS_3D_mesh.ps" );
+
+  //  Define the finite element spaces for velocity and pressure
+  fespace Uh(Th, P2);
+  fespace Vh(Th, P1);
+  Uh u, v, w, uh, vh, wh;
+  Uh uold, vold, wold;
+  Uh f1, f2, f3;
+  Uh exactu, exactv, exactw;
+  Vh p, ph;
+  
+  //  Set up the Navier−Stokes equationss
+  uold = -cos(x)*sin(y) ;
+  vold = sin(x)*cos(y) ;
+  wold = 0;
+
+  problem navierstokes ( [u,v,w,p], [uh,vh,wh,ph], solver = sparsesolver ) =
+    int3d(Th) (u*uh/dt) - int3d(Th) (convect([uold,vold,wold],(-dt),uold)*uh/dt)
+  + int3d(Th) (v*vh/dt) - int3d(Th) (convect([uold,vold,wold],(-dt),vold)*vh/dt)
+  + int3d(Th) (w*wh/dt) - int3d(Th) (convect([uold,vold,wold],(-dt),wold)*wh/dt)
+  + int3d(Th) (uold*dx(u)*uh + vold*dy(u)*uh + wold*dz(u)*uh)
+  + int3d(Th) (uold*dx(v)*vh + vold*dy(v)*vh + wold*dz(v)*vh)
+  + int3d(Th) (uold*dx(w)*wh + vold*dy(w)*wh + wold*dz(w)*wh)
+  + int3d(Th) (nu*dx(u)*dx(uh) + nu*dy(u)*dy(uh) + nu*dz(u)*dz(uh))
+  + int3d(Th) (nu*dx(v)*dx(vh) + nu*dy(v)*dy(vh) + nu*dz(v)*dz(vh))
+  + int3d(Th) (nu*dx(w)*dx(wh) + nu*dy(w)*dy(wh) + nu*dz(w)*dz(wh))
+  - int3d(Th) (p*dx(uh)+ p*dy(vh) + p*dz(wh))
+  + int3d(Th) (dx(u)*ph + dy(v)*ph + dz(w)*ph)
+  - int3d(Th) (f1*uh)
+  - int3d(Th) (f2*vh)
+  - int3d(Th) (f3*wh);
+  
+  for ( int it = 1; it <= n; it++ )
+  {
+    t=it*dt;
+    exactu = -cos(x)*sin(y)*exp(-2*t);
+    exactv = sin(x)*cos(y)*exp(-2*t);
+    exactw = 0;
+    f1 = -exp(-4*t)*sin(2*x);
+    f2 = -exp(-4*t)*sin(2*y);
+    navierstokes;
+    error = sqrt( int2d(Th)((u-exactu)*(u-exactu)) + int2d(Th)((v-exactv)*(v-exactv)) );
+    if (error > errormax) errormax = error ;
+    cout << "error at " << t << "is " << errormax << "\n" ;
+    plot ( Th, [u,v], nbiso = 60, fill = 0, value = 1, wait = 0, ps = "ns_"+n+"_"+it+".ps" );
+    //savevtk("ns_plot"+n+"_"+it+".vtk",Th,[u,v],p,dataname="NS");
+    uold = u;
+    vold = v;
+    //plot (p, nbiso=60, fill =0, value =1, wait =1, ps = "ns-p_"+n+"_"+it+".ps" );
+  }
+  ff << dt << "\t" << errormax << "\n" ;
+  cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
+  errormax = 0;
+//}
+//  Terminate.
+//
+cout << "\n";
+cout << "NAVIERSTOKES:\n";
+cout << "Normal end of execution.\n";
