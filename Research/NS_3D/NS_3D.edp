@@ -4,79 +4,75 @@ load "msh3"
 // Variable declaration
 real nu = 1.0;
 real error;
-real errormax = 0.;
-real t;
-func exactu = ;
-func exactv = ;
-func exactw = 0. ;
-func f1 = ;
-func f2 = ;
-func f3 = ;
+real errormax = 0;
+real t=0;
+func exactu1 = -cos(x)*sin(y)*cos(z)*exp(-2*t);
+func exactu2 = sin(x)*cos(y)*cos(z)*exp(-2*t);
+func exactu3 = 0;
+func f1 = -cos(x)*sin(y)*cos(z)*exp(-2*t);
+func f2 = sin(x)*cos(y)*cos(z)*exp(-2*t);
+func f3 = (-exp(-4*t)/4)*sin(2*z)*(2*cos(2*z)+1);
+
+int[int] rup=[0,1], rdown=[0,1], rmid=[1,1,2,1,3,1,4,1];
+real zmin=0,zmax=1;
 
 ofstream ff("error_3D.txt");
-ofstream pp("p.txt);
+ofstream pp("p.txt");
+
+
 
 //iteration for each mesh devider
-for(int n=32; n>=8; n=n-8 )
+for(int n=16; n>=8; n=n-8 )
 {
   real dt = 1./n; //take dt=h
 
-  //  Create the mesh
-  mesh3 Th = buildlayers(square(n,n),n);
+  // Create the mesh
+  mesh Th2=square(n,n);
+  mesh3 Th=buildlayers(Th2,n,
+    zbound=[zmin,zmax], labelmid=rmid, reffaceup = rup, reffacelow = rdown);
   plot ( Th, ps = "NS_3D_mesh.ps" );
 
-  //  Define the finite element spaces for velocity and pressure
-  fespace Uh(Th, P2);
-  fespace Vh(Th, P1);
-  Uh u, v, w, uh, vh, wh;
-  Uh uold, vold, wold;
-  Uh f1, f2, f3;
-  Uh exactu, exactv, exactw;
-  Vh p, ph;
-  
-  //  Set up the Navier−Stokes equationss
-  uold = -cos(x)*sin(y) ;
-  vold = sin(x)*cos(y) ;
-  wold = 0;
+  fespace Uh(Th,[P2,P2,P2,P1]);
+  fespace Vh(Th,P23d);
+  macro Grad(u) [dx(u),dy(u),dz(u)]// EOM
+  macro div(u1,u2,u3) (dx(u1)+dy(u2)+dz(u3)) //EOM
 
-  problem navierstokes ( [u,v,w,p], [uh,vh,wh,ph], solver = sparsesolver ) =
-    int3d(Th) (u*uh/dt) - int3d(Th) (convect([uold,vold,wold],(-dt),uold)*uh/dt)
-  + int3d(Th) (v*vh/dt) - int3d(Th) (convect([uold,vold,wold],(-dt),vold)*vh/dt)
-  + int3d(Th) (w*wh/dt) - int3d(Th) (convect([uold,vold,wold],(-dt),wold)*wh/dt)
-  + int3d(Th) (uold*dx(u)*uh + vold*dy(u)*uh + wold*dz(u)*uh)
-  + int3d(Th) (uold*dx(v)*vh + vold*dy(v)*vh + wold*dz(v)*vh)
-  + int3d(Th) (uold*dx(w)*wh + vold*dy(w)*wh + wold*dz(w)*wh)
-  + int3d(Th) (nu*dx(u)*dx(uh) + nu*dy(u)*dy(uh) + nu*dz(u)*dz(uh))
-  + int3d(Th) (nu*dx(v)*dx(vh) + nu*dy(v)*dy(vh) + nu*dz(v)*dz(vh))
-  + int3d(Th) (nu*dx(w)*dx(wh) + nu*dy(w)*dy(wh) + nu*dz(w)*dz(wh))
-  - int3d(Th) (p*dx(uh)+ p*dy(vh) + p*dz(wh))
-  + int3d(Th) (dx(u)*ph + dy(v)*ph + dz(w)*ph)
-  - int3d(Th) (f1*uh)
-  - int3d(Th) (f2*vh)
-  - int3d(Th) (f3*wh);
+  Uh [u1,u2,u3,p];
+  Uh [v1,v2,v3,q];
+  Vh u1old, u2old, u3old;
+
+  problem navierstokes ([u1,u2,u3,p],[v1,v2,v3,q]) = 
+    int3d(Th) (u1*v1/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u1old)*v1/dt)
+  + int3d(Th) (u2*v2/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u2old)*v2/dt)
+  + int3d(Th) (u3*v3/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u3old)*v3/dt)
+  + int3d(Th,qforder=3)( Grad(u1)'*Grad(v1) +  Grad(u2)'*Grad(v2) +  Grad(u3)'*Grad(v3) //)';
+		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p + 1e-10*q*p ) 
+  + on(1,u1=0,u2=0,u3=0) ;
   
+  u1old = -cos(x)*sin(y)*cos(z) ;
+  u2old = sin(x)*cos(y)*cos(z) ;
+  u3old = 0;
+
   for ( int it = 1; it <= n; it++ )
   {
     t=it*dt;
-    exactu = -cos(x)*sin(y)*exp(-2*t);
-    exactv = sin(x)*cos(y)*exp(-2*t);
-    exactw = 0;
-    f1 = -exp(-4*t)*sin(2*x);
-    f2 = -exp(-4*t)*sin(2*y);
+    cout << t << " " << u1old << u2old << u3old << "\n";
     navierstokes;
-    error = sqrt( int2d(Th)((u-exactu)*(u-exactu)) + int2d(Th)((v-exactv)*(v-exactv)) );
+    error = sqrt( int2d(Th)((u1-exactu1)*(u1-exactu1)) + int2d(Th)((u2-exactu2)*(u2-exactu2)) + int2d(Th)((u3-exactu3)*(u3-exactu3)));
     if (error > errormax) errormax = error ;
-    cout << "error at " << t << "is " << errormax << "\n" ;
-    plot ( Th, [u,v], nbiso = 60, fill = 0, value = 1, wait = 0, ps = "ns_"+n+"_"+it+".ps" );
-    //savevtk("ns_plot"+n+"_"+it+".vtk",Th,[u,v],p,dataname="NS");
-    uold = u;
-    vold = v;
-    //plot (p, nbiso=60, fill =0, value =1, wait =1, ps = "ns-p_"+n+"_"+it+".ps" );
+    cout << "error at " << t << "is " << error << "\n" ;
+    if(n==16){
+      plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
+      savevtk("NS_3D_plot"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="NS");
+      plot (p, nbiso=60, fill =0, value =1, wait =0 );
+      pp << t << "\t" << p << "\n" ;
+    }
+    u1old = u1; u2old=u2; u3old=u3;
   }
   ff << dt << "\t" << errormax << "\n" ;
   cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
   errormax = 0;
-//}
+}
 //  Terminate.
 //
 cout << "\n";
