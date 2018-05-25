@@ -22,7 +22,7 @@ ofstream pp("p.txt");
 
 
 //iteration for each mesh devider
-for(int n=16; n>=8; n=n-8 )
+for(int n=32; n>=8; n=n-8 )
 {
   real dt = 1./n; //take dt=h
 
@@ -61,12 +61,12 @@ for(int n=16; n>=8; n=n-8 )
     error = sqrt( int2d(Th)((u1-exactu1)*(u1-exactu1)) + int2d(Th)((u2-exactu2)*(u2-exactu2)) + int2d(Th)((u3-exactu3)*(u3-exactu3)));
     if (error > errormax) errormax = error ;
     cout << "error at " << t << "is " << error << "\n" ;
-    if(n==16){
-      plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
-      savevtk("NS_3D_plot"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="NS");
-      plot (p, nbiso=60, fill =0, value =1, wait =0 );
-      pp << t << "\t" << p << "\n" ;
-    }
+    //if(n==8){
+      //plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
+      //savevtk("NS_3D_plot"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="NS");
+      //plot (p, nbiso=60, fill =0, value =1, wait =0 );
+      //pp << t << "\t" << p << "\n" ;
+    //}
     u1old = u1; u2old=u2; u3old=u3;
   }
   ff << dt << "\t" << errormax << "\n" ;
