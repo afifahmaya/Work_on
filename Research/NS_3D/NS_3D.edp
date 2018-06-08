@@ -3,12 +3,16 @@ load "msh3"
 
 // Variable declaration
 real nu = 1.0;
-real error;
-real errormax = 0;
+real delta=1.0;
+real error,Herror;
+real errormax = 0, Herrormax = 0;
 real t=0;
 func exactu1 = -cos(x)*sin(y)*cos(z)*exp(-2*t);
 func exactu2 = sin(x)*cos(y)*cos(z)*exp(-2*t);
-func exactu3 = 0;
+func exactu3 = 0.;
+func dx1 = sin(x)*sin(y)*cos(z)*exp(-2*t);
+func dy2 = sin(x)*(-sin(y))*cos(z)*exp(-2*t);
+func dz3 = 0.;
 func f1 = -cos(x)*sin(y)*cos(z)*exp(-2*t);
 func f2 = sin(x)*cos(y)*cos(z)*exp(-2*t);
 func f3 = (-exp(-4*t)/4)*sin(2*z)*(2*cos(2*z)+1);
@@ -16,13 +20,11 @@ func f3 = (-exp(-4*t)/4)*sin(2*z)*(2*cos(2*z)+1);
 int[int] rup=[0,1], rdown=[0,1], rmid=[1,1,2,1,3,1,4,1];
 real zmin=0,zmax=1;
 
-ofstream ff("error_3D.txt");
-ofstream pp("p.txt");
-
-
+ofstream ff("1error_3D.txt");
+ofstream hh("1error_H.txt");
 
 //iteration for each mesh devider
-for(int n=32; n>=8; n=n-8 )
+for(int n=24; n>=4; n=n-4 )
 {
   real dt = 1./n; //take dt=h
 
@@ -30,12 +32,13 @@ for(int n=32; n>=8; n=n-8 )
   mesh Th2=square(n,n);
   mesh3 Th=buildlayers(Th2,n,
     zbound=[zmin,zmax], labelmid=rmid, reffaceup = rup, reffacelow = rdown);
-  plot ( Th, ps = "NS_3D_mesh.ps" );
+  plot ( Th, ps = "NS_3D_mesh_1.ps" );
 
-  fespace Uh(Th,[P2,P2,P2,P1]);
-  fespace Vh(Th,P23d);
+  fespace Uh(Th,[P1,P1,P1,P1]);
+  fespace Vh(Th,P13d);
   macro Grad(u) [dx(u),dy(u),dz(u)]// EOM
   macro div(u1,u2,u3) (dx(u1)+dy(u2)+dz(u3)) //EOM
+  macro L2norm(Th,u,exactu) (int3d(Th)(square(u-exactu))) //EOM
 
   Uh [u1,u2,u3,p];
   Uh [v1,v2,v3,q];
@@ -46,8 +49,10 @@ for(int n=32; n>=8; n=n-8 )
   + int3d(Th) (u2*v2/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u2old)*v2/dt)
   + int3d(Th) (u3*v3/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u3old)*v3/dt)
   + int3d(Th,qforder=3)( Grad(u1)'*Grad(v1) +  Grad(u2)'*Grad(v2) +  Grad(u3)'*Grad(v3) //)';
-		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p + 1e-10*q*p ) 
-  + on(1,u1=0,u2=0,u3=0) ;
+		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p)
+  - int3d(Th) ((f1*v1) + (f2*v2) + (f3*v3))
+  - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))
+  + on(1,u1=exactu1,u2=exactu2,u3=exactu3) ;
   
   u1old = -cos(x)*sin(y)*cos(z) ;
   u2old = sin(x)*cos(y)*cos(z) ;
@@ -56,20 +61,22 @@ for(int n=32; n>=8; n=n-8 )
   for ( int it = 1; it <= n; it++ )
   {
     t=it*dt;
-    cout << t << " " << u1old << u2old << u3old << "\n";
     navierstokes;
-    error = sqrt( int2d(Th)((u1-exactu1)*(u1-exactu1)) + int2d(Th)((u2-exactu2)*(u2-exactu2)) + int2d(Th)((u3-exactu3)*(u3-exactu3)));
+    error = sqrt( L2norm(Th,u1,exactu1) + L2norm(Th,u2,exactu2) + L2norm(Th,u3,exactu3));
+    Herror = sqrt( square(error) + L2norm(Th,dx(u1),dx1) + L2norm(Th,dy(u2),dy2) + L2norm(Th,dz(u3),dz3));
     if (error > errormax) errormax = error ;
-    cout << "error at " << t << "is " << error << "\n" ;
-    //if(n==8){
-      //plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
-      //savevtk("NS_3D_plot"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="NS");
-      //plot (p, nbiso=60, fill =0, value =1, wait =0 );
-      //pp << t << "\t" << p << "\n" ;
-    //}
+    if (Herror > Herrormax) Herrormax = Herror ;
+    cout << "L2-error at " << t << "is " << error << "max = " << errormax << "\n" ;
+    cout << "H1-error at " << t << "is " << Herror << "max = " << Herrormax << "\n"; 
+    if(n==24){
+      plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
+      savevtk("NS_3D_1_plot"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="NavSto");
+      plot (p, nbiso=60, fill =0, value =1, wait =0 );
+    }
     u1old = u1; u2old=u2; u3old=u3;
   }
   ff << dt << "\t" << errormax << "\n" ;
+  hh << dt << "\t" << Herrormax << "\n" ;
   cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
   errormax = 0;
 }

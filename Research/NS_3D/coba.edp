@@ -1,0 +1,84 @@
+load "iovtk"
+load "msh3"
+
+// Variable declaration
+real nu = 1.0;
+real error;
+real errormax = 0.;
+real t=0.;
+func exactu1 = sin(x)*cos(y)*cos(z)*cos(2*pi*t);
+func exactu2 = cos(x)*sin(y)*cos(z)*cos(2*pi*t);
+func exactu3 = -2*cos(x)*cos(y)*sin(z)*cos(2*pi*t);
+func f1 = sin(x)*cos(y)*cos(z)*(3*cos(2*pi*t)-2*pi*sin(2*pi*t))
+        + sin(x)*cos(x)*(cos(2*pi*t))^2*((cos(y)*cos(z))^2-(sin(y)*cos(z))^2+2*(cos(y)*sin(z))^2)
+        + cos(x)*sin(y)*cos(z)*cos(2*pi*t);
+func f2 = cos(x)*sin(y)*cos(z)*(3*cos(2*pi*t)-2*pi*sin(2*pi*t))
+        + sin(y)*cos(y)*(cos(2*pi*t))^2*((cos(x)*cos(z))^2-(sin(x)*cos(z))^2+2*(cos(x)*sin(z))^2)
+        + sin(x)*cos(y)*sin(z)*cos(2*pi*t);
+func f3 = 2*cos(x)*cos(y)*sin(z)*(2*pi*sin(2*pi*t)-3*cos(2*pi*t))
+        + 2*sin(z)*cos(z)*(cos(2*pi*t))^2*((sin(x)*cos(y))^2+(cos(x)*sin(y))^2+2*(cos(x)*cos(y))^2)
+        + sin(x)*sin(y)*cos(z)*cos(2*pi*t);
+
+int[int] rup=[0,1], rdown=[0,1], rmid=[1,1,2,1,3,1,4,1];
+real zmin=0,zmax=1;
+
+ofstream ff("coba_error_3D.txt");
+ofstream pp("coba_p.txt");
+
+//iteration for each mesh devider
+for(int n=12; n>=2; n=n-2 )
+{
+  real dt = 1./n; //take dt=h
+  // Create the mesh
+  mesh Th2=square(n,n);
+  mesh3 Th=buildlayers(Th2,n,
+    zbound=[zmin,zmax], labelmid=rmid, reffaceup = rup, reffacelow = rdown);
+  plot ( Th );
+
+  fespace Uh(Th,[P2,P2,P2,P1]);
+  fespace Vh(Th,P23d);
+  macro Grad(u) [dx(u),dy(u),dz(u)]// EOM
+  macro div(u1,u2,u3) (dx(u1)+dy(u2)+dz(u3)) //EOM
+
+  Uh [u1,u2,u3,p];
+  Uh [v1,v2,v3,q];
+  Vh u1old, u2old, u3old;
+
+  problem navierstokes ([u1,u2,u3,p],[v1,v2,v3,q]) = 
+    int3d(Th) (u1*v1/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u1old)*v1/dt)
+  + int3d(Th) (u2*v2/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u2old)*v2/dt)
+  + int3d(Th) (u3*v3/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u3old)*v3/dt)
+  + int3d(Th,qforder=3)( Grad(u1)'*Grad(v1) +  Grad(u2)'*Grad(v2) +  Grad(u3)'*Grad(v3) //)';
+		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p + 1e-10*q*p )
+  - int3d(Th) ((f1*v1) + (f2*v2) + (f3*v3)) 
+  + on(1,u1=0,u2=0,u3=0) ;
+  
+  u1old = sin(x)*cos(y)*cos(z) ;
+  u2old = cos(x)*sin(y)*cos(z) ;
+  u3old = -2*cos(x)*cos(y)*sin(z);
+
+  for ( int it = 1; it <= n; it++ )
+  {
+    t=it*dt;
+    cout << t << " " << u1old << u2old << u3old << "\n";
+    navierstokes;
+    error = sqrt( int2d(Th)((u1-exactu1)^2) + int2d(Th)((u2-exactu2)^2) + int2d(Th)((u3-exactu3)^2));
+    if (error > errormax) errormax = error ;
+    cout << "error at " << t << "is " << error << "max = " << errormax << "\n" ;
+    if(n==12){
+      plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
+      //savevtk("coba_plot"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="NS");
+      //plot (p, nbiso=60, fill =0, value =1, wait =0 );
+      //pp << t << "\t" << p << "\n" ;
+    }
+    u1old=u1; u2old=u2; u3old=u3;
+  }
+  ff << dt << "\t" << errormax << "\n" ;
+  cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
+  errormax = 0.;
+}
+//  Terminate.
+//
+cout << "\n";
+cout << "NAVIERSTOKES:\n";
+cout << "Normal end of execution.\n";

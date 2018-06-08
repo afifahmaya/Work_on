@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  16 MAY 2018 08:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  6 JUN 2018 08:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -166,21 +166,45 @@ Package graphics Info: Driver file: pdftex.def on input line 99.
 \Gin@req@height=\dimen120
 \Gin@req@width=\dimen121
 )
-(./Report.aux)
+(/opt/local/share/texmf-texlive/tex/latex/listings/listings.sty
+\lst@mode=\count103
+\lst@gtempboxa=\box28
+\lst@token=\toks27
+\lst@length=\count104
+\lst@currlwidth=\dimen122
+\lst@column=\count105
+\lst@pos=\count106
+\lst@lostspace=\dimen123
+\lst@width=\dimen124
+\lst@newlines=\count107
+\lst@lineno=\count108
+\lst@maxwidth=\dimen125
+
+(/opt/local/share/texmf-texlive/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count109
+\lst@skipnumbers=\count110
+\lst@framebox=\box29
+)
+(/opt/local/share/texmf-texlive/tex/latex/listings/listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+ (./Report.aux)
 \openout1 = `Report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -218,17 +242,17 @@ LaTeX Font Info:    ... okay on input line 11.
 
 (/opt/local/share/texmf-texlive/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count103
-\scratchdimen=\dimen122
-\scratchbox=\box28
-\nofMPsegments=\count104
-\nofMParguments=\count105
-\everyMPshowfont=\toks27
-\MPscratchCnt=\count106
-\MPscratchDim=\dimen123
-\MPnumerator=\count107
-\makeMPintoPDFobject=\count108
-\everyMPtoPDFconversion=\toks28
+\scratchcounter=\count111
+\scratchdimen=\dimen126
+\scratchbox=\box30
+\nofMPsegments=\count112
+\nofMParguments=\count113
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count114
+\MPscratchDim=\dimen127
+\MPnumerator=\count115
+\makeMPintoPDFobject=\count116
+\everyMPtoPDFconversion=\toks29
 ) (/opt/local/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -275,41 +299,208 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 16.
+\c@lstlisting=\count117
+LaTeX Font Info:    Try loading font information for U+msa on input line 17.
 
 (/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 16.
+LaTeX Font Info:    Try loading font information for U+msb on input line 17.
 
 (/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Report.aux) ) 
+{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+<NS_2D/error_NS_2D.png, id=16, 481.8pt x 361.35pt>
+File: NS_2D/error_NS_2D.png Graphic file (type png)
+ <use NS_2D/error_NS_2D.png>
+Package pdftex.def Info: NS_2D/error_NS_2D.png used on input line 76.
+(pdftex.def)             Requested size: 338.58632pt x 253.94678pt.
+
+[2 <./NS_2D/error_NS_2D.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 95.
+
+(/opt/local/share/texmf-texlive/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 95.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 110.
+
+
+(/opt/local/share/texmf-texlive/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 110.
+Missing character: There is no â in font cmr10!
+Missing character: There is no ˆ in font cmr10!
+Missing character: There is no ’ in font cmr10!
+
+Overfull \hbox (20.30826pt too wide) in paragraph at lines 145--146
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[3]
+Overfull \hbox (68.30875pt too wide) in paragraph at lines 149--150
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (8.30814pt too wide) in paragraph at lines 151--152
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][] 
+ []
+
+[4]
+Missing character: There is no â in font cmr10!
+Missing character: There is no ˆ in font cmr10!
+Missing character: There is no ’ in font cmr10!
+
+Overfull \hbox (20.30826pt too wide) in paragraph at lines 230--231
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (80.30887pt too wide) in paragraph at lines 234--235
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][] 
+ []
+
+[5]
+Overfull \hbox (8.30814pt too wide) in paragraph at lines 236--237
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][] 
+ []
+
+[6] <NS_3D/error_NS_3D.png, id=34, 481.8pt x 361.35pt>
+File: NS_3D/error_NS_3D.png Graphic file (type png)
+
+<use NS_3D/error_NS_3D.png>
+Package pdftex.def Info: NS_3D/error_NS_3D.png used on input line 268.
+(pdftex.def)             Requested size: 338.58632pt x 253.94678pt.
+ [7 <./NS_3D/error_NS_3D.png>]
+Overfull \hbox (2.30807pt too wide) in paragraph at lines 324--325
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+
+ []
+
+
+Overfull \hbox (14.3082pt too wide) in paragraph at lines 325--326
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+
+Overfull \hbox (14.3082pt too wide) in paragraph at lines 326--327
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+
+Overfull \hbox (62.30869pt too wide) in paragraph at lines 327--328
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][] 
+ []
+
+[8]
+Overfull \hbox (26.30832pt too wide) in paragraph at lines 341--342
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+
+ []
+
+
+Overfull \hbox (128.30936pt too wide) in paragraph at lines 342--343
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][] 
+ []
+
+[9]
+Overfull \hbox (2.30807pt too wide) in paragraph at lines 418--419
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+
+ []
+
+
+Overfull \hbox (14.3082pt too wide) in paragraph at lines 419--420
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+
+Overfull \hbox (14.3082pt too wide) in paragraph at lines 420--421
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+
+Overfull \hbox (62.30869pt too wide) in paragraph at lines 421--422
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][] 
+ []
+
+
+Overfull \hbox (44.3085pt too wide) in paragraph at lines 428--429
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+
+ []
+
+
+Overfull \hbox (56.30862pt too wide) in paragraph at lines 430--431
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+[10]
+Overfull \hbox (56.30862pt too wide) in paragraph at lines 432--433
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+
+Overfull \hbox (62.30869pt too wide) in paragraph at lines 434--435
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][] 
+ []
+
+
+Overfull \hbox (26.30832pt too wide) in paragraph at lines 450--451
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+
+ []
+
+
+Overfull \hbox (128.30936pt too wide) in paragraph at lines 451--452
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][] 
+ []
+
+[11] (./Report.aux) ) 
 Here is how much of TeX's memory you used:
- 2749 strings out of 492995
- 37789 string characters out of 6134533
- 112170 words of memory out of 5000000
- 6268 multiletter control sequences out of 15000+600000
+ 3988 strings out of 492995
+ 56224 string characters out of 6134533
+ 177135 words of memory out of 5000000
+ 7484 multiletter control sequences out of 15000+600000
  6549 words of font info for 26 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,11n,31p,232b,139s stack positions out of 5000i,500n,10000p,200000b,80000s
-<
-/opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/
-local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/local
-/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/local/shar
-e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></opt/local/share/texm
-f-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/local/share/texmf-texl
-ive/fonts/type1/public/amsfonts/cm/cmr5.pfb></opt/local/share/texmf-texlive/fon
-ts/type1/public/amsfonts/cm/cmr7.pfb></opt/local/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/texmf-texlive/fonts/type1/pub
-lic/amsfonts/cm/cmsy7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/am
-sfonts/symbols/msbm10.pfb>
-Output written on Report.pdf (1 page, 96837 bytes).
+ 39i,11n,32p,290b,1403s stack positions out of 5000i,500n,10000p,200000b,80000s
+</opt/local/share/texmf-texlive/fonts/type1/public/amsfont
+s/cm/cmbx12.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
+cmex10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi1
+0.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
+</opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/
+local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb></opt/local/s
+hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/local/share/te
+xmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmsy5.pfb></opt/local/share/texmf-texlive
+/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/local/share/texmf-texlive/fonts
+/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Report.pdf (11 pages, 152324 bytes).
 PDF statistics:
- 48 PDF objects out of 1000 (max. 8388607)
- 34 compressed objects within 1 object stream
+ 88 PDF objects out of 1000 (max. 8388607)
+ 59 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

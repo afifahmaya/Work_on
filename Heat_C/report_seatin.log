@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  15 MAY 2018 09:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  5 JUN 2018 10:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -396,27 +396,30 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[2 <./plot004.png>] [3 <./plot008.png> <./plot016.png>] [4 <./plot032.png> <./p
-lot064.png>] [5 <./plot128.png>] (./report_seatin.aux) ) 
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[2] [3 <./plot004.png> <./plot008.png>] [4 <./plot016.png> <./plot032.png>]
+[5 <./plot064.png> <./plot128.png>] (./report_seatin.aux) ) 
 Here is how much of TeX's memory you used:
- 4398 strings out of 492995
- 60756 string characters out of 6134533
- 197541 words of memory out of 5000000
- 7879 multiletter control sequences out of 15000+600000
+ 4406 strings out of 492995
+ 60838 string characters out of 6134533
+ 222541 words of memory out of 5000000
+ 7887 multiletter control sequences out of 15000+600000
  5993 words of font info for 24 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,7n,49p,408b,1478s stack positions out of 5000i,500n,10000p,200000b,80000s
-</opt/local/share/texmf
--texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/local/share/texmf-texl
-ive/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/local/share/texmf-texlive/f
-onts/type1/public/amsfonts/cm/cmmi10.pfb></opt/local/share/texmf-texlive/fonts/
-type1/public/amsfonts/cm/cmmi7.pfb></opt/local/share/texmf-texlive/fonts/type1/
-public/amsfonts/cm/cmr10.pfb></opt/local/share/texmf-texlive/fonts/type1/public
-/amsfonts/cm/cmr7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfon
-ts/cm/cmsy10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm
-/cmsy7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti1
-0.pfb>
-Output written on report_seatin.pdf (5 pages, 140069 bytes).
+</opt/local/share/te
+xmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/local/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/local/share/texmf-texliv
+e/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/local/share/texmf-texlive/fon
+ts/type1/public/amsfonts/cm/cmmi7.pfb></opt/local/share/texmf-texlive/fonts/typ
+e1/public/amsfonts/cm/cmr10.pfb></opt/local/share/texmf-texlive/fonts/type1/pub
+lic/amsfonts/cm/cmr7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts
+/cm/cmsy7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
+ti10.pfb>
+Output written on report_seatin.pdf (5 pages, 141611 bytes).
 PDF statistics:
  68 PDF objects out of 1000 (max. 8388607)
  39 compressed objects within 1 object stream

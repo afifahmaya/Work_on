@@ -49,7 +49,7 @@ for(int n=32; n>=8; n=n-8 )
   + int2d(Th) (nu*dx(u)*dx(uh) + nu*dy(u)*dy(uh) )
   + int2d(Th) (nu*dx(v)*dx(vh) + nu*dy(v)*dy(vh) )
   - int2d(Th) (p*dx(uh)+ p*dy(vh))
-  + int2d(Th) (dx(u)*ph + dy(v)*ph)
+  - int2d(Th) (dx(u)*ph + dy(v)*ph)
   - int2d(Th) (f1*uh)
   - int2d(Th) (f2*vh)
   + on ( c1, c2, c3, c4, u=exactu, v=exactv);

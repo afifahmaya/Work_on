@@ -226,4 +226,117 @@ $ D : $ domain in $ \R^2 $ and $ f : $ function on $ D $
 \[ f(a+h,b) = f(a,b) +f_{x}(a,b)h + o(h) \text{ as } h\rightarrow 0 \]
 \[ f(a,b+k) = f(a,b) +f_{y}(a,b)k + o(k) \text{ as } k\rightarrow 0 \]
 
+\newpage
+\textbf{REPORT 2 \\ Afifah Maya Iknaningrum (1715011053)}
+
+\underline{Problem 1 :} Let $ C([a,b]) $ be the set of all continuous functions $ f : [a,b] \rightarrow \R $ and define
+\[ d_{2}(f,g) := \Big[ \int_{a}^{b} \big( f(x)-g(x) \big)^{2} dx  \Big]^{1/2} \]
+for $ f,g \in C([a,b]) $. Show that $ (C([a,b]),d_{2}) $ is a metric space.\\ \\
+\underline{Answer :}\\
+To proof that $ (C([a,b]),d_{2}) $ is a metric space, we need to proof :
+\begin{enumerate}
+	\item $ d_{2}(f,g) \geq 0 $ and $ d_{2}(f,g)=0 \Leftrightarrow f=g $. \\ \\
+	\underline{Proof : } \\
+	By the definitions of $ d_{2}(f,g) $, it is obvious that the value of integral is always positive. So it is proved that $ d_{2}(f,g) \geq 0 $.\\
+	Then, \\
+	$ (\Rightarrow) $ We have 
+	\[d_{2}(f,g)= \Big[ \int_{a}^{b} \big( f(x)-g(x) \big)^{2} dx  \Big]^{1/2} =0\]
+	The only possible answer will be
+	\[ f(x)-g(x) =0 \text{ or } f(x)=g(x) \]
+	$ (\Leftarrow) $ We have $ f(x)=g(x) $, using the definition of $ d_{2}(f,g) $
+	\begin{eqnarray}\nonumber
+	d_{2}(f,g) &=& \Big[ \int_{a}^{b} \big( f(x)-g(x) \big)^{2} dx  \Big]^{1/2} \\ \nonumber
+	&=& \Big[ \int_{a}^{b} 0 \ dx  \Big]^{1/2} \\ \nonumber
+	&=& 0
+	\end{eqnarray} 
+	\item $ d_{2}(f,g) = d_{2}(g,f) $. \\ \\
+	\underline{Proof : } \\
+	\begin{eqnarray}\nonumber
+	d_{2}(f,g) &=& \Big[ \int_{a}^{b} \big( f(x)-g(x) \big)^{2} dx  \Big]^{1/2} \\ \nonumber
+	&=& \Big[ \int_{a}^{b} \big( g(x)-f(x) \big)^{2} dx  \Big]^{1/2} \\ \nonumber
+	&=& d_{2}(g,f)
+	\end{eqnarray}
+	\item $ d_{2}(f,g) \leq d_{2}(f,h) + d_{2}(h,g) $. \\ \\
+	\underline{Proof :} \\
+	Using fact that
+	\[\int\big(a+b\big)^2 = \int a^2 + \int b^2 + 2 \int ab \]
+	and via Schwartz inequality
+	\[ \int ab \leq \sqrt{\int a^2} \sqrt{\int b^2} \]
+	then
+	\[ \int (a+b)^2 \leq \int a^2 + \int b^2 + 2 \sqrt{\int a^2} \sqrt{\int b^2} = \Big(\sqrt{\int a^2} + \sqrt{\int b^2}\Big)^2 \]
+	Using these fact with $ a=f-h $ and $ b=h-g $,
+	\begin{eqnarray}\nonumber
+	d_{2}(f,g) &=& \Big[ \int_{a}^{b} \big( f(x)-g(x) \big)^{2} dx  \Big]^{1/2} \\ \nonumber
+	&=& \Big[ \int_{a}^{b} \big( f(x)-h(x)+h(x)-g(x) \big)^{2} dx  \Big]^{1/2} \\ \nonumber
+	&\leq& \Big(\Big[ \int_{a}^{b} \big( f(x)-h(x) \big)^{2} dx  \Big]^{1/2} + \Big[ \int_{a}^{b} \big( h(x)-g(x) \big)^{2} dx  \Big]^{1/2}\Big)^{2(1/2)} \\ \nonumber
+	&\leq&  \Big[ \int_{a}^{b} \big( f(x)-h(x) \big)^{2} dx  \Big]^{1/2} + \Big[ \int_{a}^{b} \big( h(x)-g(x) \big)^{2} dx \Big]^{1/2} \\ \nonumber
+	&\leq& d_{2}(f,h) + d_{2}(h,g)
+	\end{eqnarray}
+\end{enumerate} \qed
+
+\underline{Problem 2 :} Let $ (X,d) $ be a metric space. Prove that the function
+\[ \tilde{d}(x,y) := \dfrac{d(x,y)}{1+d(x,y)} \ , \ \ (x,y\in X)   \]
+is also a metric on $ X $. \\ \\
+\underline{Answer :} \\
+It is known that $ (X,d) $ is metric space. Then for $ x,y,z \in X $ we have the following
+\begin{enumerate}
+	\item $ d(x,y) \geq 0 $ and $ d(x,y)=0 \Leftrightarrow x=y $
+	\item $ d(x,y) =d(y,x) $
+	\item $ d(x,z) \leq d(x,y) + d(y,z) $.
+\end{enumerate}
+We want to proof that $ \tilde{d}(x,y) := \dfrac{d(x,y)}{1+d(x,y)} $ is also a metric space. We need to proof :
+\begin{enumerate}
+	\item $ \tilde{d}(x,y) \geq 0 $ and $ \tilde{d}(x,y)=0 \Leftrightarrow x=y $. \\ \\
+	\underline{Proof : } \\
+	Using the fact that $ d(x,y) \geq 0 $, it is obvious that 
+	\[ \tilde{d}(x,y) = \dfrac{d(x,y)}{1+d(x,y)} \geq 0. \]
+	$ (\Rightarrow) $  \[\tilde{d} (x,y) = \dfrac{d(x,y)}{1+d(x,y)} =0\] only possible if $ \tilde{d}(x,y)=0 $. Using properties of $ (X,d) $,  \[d(x,y)=0 \Leftrightarrow x=y \], then it proved that $ \tilde{d}(x,y)=0 \Leftrightarrow x=y $. \\
+	$ (\Leftarrow) $ For $ x=y $, using the fact $ d(x,y)=0 \Leftrightarrow x=y $, we have
+	\[  \tilde{d}(x,y) = \dfrac{d(x,y)}{1+d(x,y)} =0 \]
+	\item $ \tilde{d}(x,y) = \tilde{d}(y,x) $. \\ \\
+	\underline{Proof : } \\
+	Because $ (X,d) $ is metric space, then $ d(x,y) =d(y,x) $ is hold. Such that
+	\begin{eqnarray}\nonumber
+	\tilde{d}(x,y) &=& \dfrac{d(x,y)}{1+d(x,y)} \\ \nonumber
+	&=& \dfrac{d(y,x)}{1+d(y,x)}\\ \nonumber
+	&=& \tilde{d}(y,x)
+	\end{eqnarray}
+	\item $ \tilde{d}(x,z) \leq \tilde{d}(x,y) + \tilde{d}(y,z) $. \\ \\
+	\underline{Proof :}\\
+	Using triangle inequality of $ (X,d) $,
+	\begin{eqnarray}\nonumber
+	\tilde{d}(x,z) &=& \dfrac{d(x,z)}{1+d(x,z)} \\ \nonumber
+	&\leq&  \dfrac{d(x,y)+d(y,z)}{1+d(x,y)+d(y,z)} \\ \nonumber
+	&\leq& \dfrac{d(x,y)}{1+d(x,y)+d(y,z)} +\dfrac{d(y,z)}{1+d(x,y)+d(y,z)} \\ \nonumber
+	&\leq& \dfrac{d(x,y)}{1+d(x,y)} +\dfrac{d(y,z)}{1+d(y,z)} \\ \nonumber
+	&\leq& \tilde{d}(x,y) + \tilde{d}(y,z)
+	\end{eqnarray}
+\end{enumerate}\qed
+
+\newpage
+\textbf{REPORT 3 \\ Afifah Maya Iknaningrum (1715011053)}\\ \\
+
+\underline{Problem 1 :} Prove that a subset of a metric space is open if and only if it is a union of open balls. \\ \\
+\underline{Answer :} \\ \\
+$ (\Rightarrow) $Suppose $ G $ in $ (X,d) $ is open. If $ G $ is empty, there no open balls contained in it. Thus union of an empty class, which is empty and therefore equal to $ G $. If $ G $ is nonempty, then $ G $ is open such that $ \forall x \in G , \exists r>0, B_{r}(x) \subset G $ then $ G = \bigcup \ B_{r}(x) $.\\ \\
+$ (\Leftarrow) $ In metric space, it is known that every open ball is open set. And, union of open set is open.\\
+Let $ G = \bigcup\limits_{\alpha \in \Lambda} B_{r}(\alpha) $ for $ \alpha \in G, \exists r>0 $. If $ G $ is empty, then it is open. So we assume $ G $ is nonempty. Consider $ y \in G $, then $ y \in B_{r}(\alpha) $ for some $ \alpha \in \Lambda $. Since $ B_{r}(\alpha) $ is open, $ \exists r > 0 $ such that $ B_{r}(y) \subseteq B_{r}(\alpha) \subseteq G $. \\
+Thus $ \forall y \in G , \exists r>0 $ such that $ B_{r}(y) \subseteq G $. Consequently, $ G $ is open. \\ \\ 
+
+\underline{Problem 2 :} Let $ C([0,1]) $ be the set of all continuous function $ f : [0,1] \rightarrow \R $ and define 
+\[ d_{1}(f,g) := \int_{0}^{1} |f(x)-g(x)| \ dx \]
+for $ f,g \in C([0,1]) $. Show that $ (C([0,1]),d_{1}) $ is not complete.\\
+Hint : Consider the sequence $ \{f_{n}\}_{n\geq 3} $ defined by
+\[ f_{n}(x) = \begin{cases}
+0 &, 0 \leq x < \frac{1}{2} - \frac{1}{n}, \\
+n(x+\frac{1}{n}-\frac{1}{2}) &,  \frac{1}{2} - \frac{1}{n} \leq x < \frac{1}{2} \\
+1 &, \frac{1}{2}\leq x \leq 1
+\end{cases} \]\\ \\
+\underline{Answer :} \\ \\
+Considering the sequence $ \{f_{n}\}_{n\geq 3} $ above, then
+\[ \|f_{n}-f_{m}\| = \Big(\int_{1/2-1/n}^{1/2} \| f_{n}(x)-f_{m}(x)\| \ dx\Big) \leq \big(\dfrac{-1}{n}\big) \rightarrow 0  \]
+so $ f_{n} $ is Cauchy. Suppose $ f_{n} $ has limit $ f \in C([0,1]) $. Then
+\[ \int_{1/2}^{1} |f(x)-f_{n}(x)| \ dx \leq \|f-f_{n}\| \rightarrow 0 \]
+so $ f(x) =1 $ on $ [1/2,1] $. Similarly we see $ f(x) = 0 $ on $ [0,1/2] $ which is contradiction.
+
 \end{document}

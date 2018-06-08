@@ -1,0 +1,117 @@
+load "iovtk"
+load "msh3"
+
+// Variable declaration
+real R=1.;
+real nu = 1.0;
+real delta=1.0;
+real T=1.0;
+real error, Herror;
+real errormax = 0, Herrormax = 0;
+real t=0, dt;
+real c=0.25*sqrt(2);
+int Nt;
+real uz,r,theta,rho,ur,utheta;
+real f1 = 0., f2 = 0., f3 = 0.;
+
+func real varphi(real a,real eps,real sigma){
+  return pow(a^2+eps,sigma);
+}
+
+func real sign(real z){
+    if(z>0) return (-1);
+    if(z==0) return (0);
+    else return (1);
+}
+
+int[int] rup=[0,1], rdown=[0,1], rmid=[1,1,2,1,3,1,4,1];
+real zmin=-1./8,zmax=1./2;
+
+ofstream ff("Cyl_error_3D.txt");
+
+//iteration for each mesh devider
+for(int n=24; n>=4; n=n-4 )
+{
+  dt = c*sqrt(1./n); //take dt=c*sqrt(h)
+  Nt = T/dt;
+  
+  // Create the mesh
+  border Gamma1(t=0,2*pi)    { x = R*cos(t); y = R*sin(t); }
+  border Gamma2(t=0,2*pi)    { x = R*0.3*cos(t); y = R*0.3*sin(t); }
+  border Gamma3(t=0,2*pi)    { x = R*0.1*cos(t); y = R*0.1*sin(t); }
+
+  mesh Th2 = buildmesh(Gamma1(n)+Gamma2(n)+Gamma3(n));   // construction of mesh
+  mesh3 Th=buildlayers(Th2,n,
+    zbound=[zmin,zmax], labelmid=rmid, reffaceup = rup, reffacelow = rdown);
+  plot ( Th, ps = "Cyl_NS_3D_mesh.ps" );
+
+  fespace Uh(Th,[P1,P1,P1,P1]);
+  fespace Vh(Th,P13d);
+  macro Grad(u) [dx(u),dy(u),dz(u)]// EOM
+  macro div(u1,u2,u3) (dx(u1)+dy(u2)+dz(u3)) //EOM
+  
+  Uh [u1,u2,u3,p];
+  Uh [v1,v2,v3,q];
+  Vh u1old, u2old, u3old;
+  Vh u1oldd, u2oldd, u3oldd;
+  Vh u1star,u2star,u3star;
+
+  problem navierstokesinit ([u1,u2,u3,p],[v1,v2,v3,q]) = 
+    int3d(Th) (u1*v1/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u1old)*v1/dt)
+  + int3d(Th) (u2*v2/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u2old)*v2/dt)
+  + int3d(Th) (u3*v3/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u3old)*v3/dt)
+  + int3d(Th,qforder=3)( Grad(u1)'*Grad(v1) +  Grad(u2)'*Grad(v2) +  Grad(u3)'*Grad(v3) //)';
+		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p)
+  - int3d(Th) ((f1*v1) + (f2*v2) + (f3*v3))
+  - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))
+  + on(1,u1=0,u2=0,u3=0) ;
+  
+  problem navierstokes ([u1,u2,u3,p],[v1,v2,v3,q]) = 
+    int3d(Th) (3*u1*v1/(2*dt)) - int3d(Th) (convect([u1star,u2star,u3star],(-dt),u1old)*4*v1/(2*dt)) 
+  + int3d(Th) (convect([u1star,u2star,u3star],(-2*dt),u1oldd)*v1/(2*dt))
+  + int3d(Th) (3*u2*v2/(2*dt)) - int3d(Th) (convect([u1star,u2star,u3star],(-dt),u2old)*4*v2/(2*dt)) 
+  + int3d(Th) (convect([u1star,u2star,u3star],(-2*dt),u2oldd)*v2/(2*dt))
+  + int3d(Th) (3*u3*v3/(2*dt)) - int3d(Th) (convect([u1star,u2star,u3star],(-dt),u3old)*4*v3/(2*dt)) 
+  + int3d(Th) (convect([u1star,u2star,u3star],(-2*dt),u3oldd)*v3/(2*dt))
+  + int3d(Th,qforder=3)( Grad(u1)'*Grad(v1) +  Grad(u2)'*Grad(v2) +  Grad(u3)'*Grad(v3) //)';
+		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p)
+  - int3d(Th) ((f1*v1) + (f2*v2) + (f3*v3))
+  - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))
+  + on(1,u1=0,u2=0,u3=0) ;
+
+  //initial at t=0
+  r = sqrt(x^2+y^2);
+  theta = atan2(x,y);
+  uz = varphi(r,1,-1)*varphi(z,1,-1);
+  rho = varphi(r,1,-1)*varphi(z,1,1);
+  ur = sign(z)*rho*u3;
+  utheta = varphi(r,1,-1)*varphi(z,1,-1);
+  //utheta = 0.;
+  u1old = ur*cos(theta)-utheta*sin(theta);
+  u2old = ur*sin(theta)-utheta*cos(theta);
+  u3old = uz;
+
+  for ( int it = 1; it <= Nt; it++ )
+  {
+    t=it*dt;
+    if (it==1) {navierstokesinit;}
+    else {navierstokes;}
+
+    if(n==8){
+      plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
+      savevtk("Tornado"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="NavSto");
+      plot (p, nbiso=60, fill =0, value =1, wait =0 );
+    }
+    u1oldd = u1old; u2oldd = u2old; u3oldd = u3old; 
+    u1old = u1; u2old=u2; u3old=u3;
+    u1star = 2*u1old-u1oldd; u2star = 2*u2old-u2oldd; u3star = 2*u3old-u3oldd;
+  }
+  ff << 1./n << "\t" << errormax << "\t" << Herrormax << "\n" ;
+  cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
+  errormax = 0;
+}
+//  Terminate.
+//
+cout << "\n";
+cout << "NAVIERSTOKES:\n";
+cout << "Normal end of execution.\n";
