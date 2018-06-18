@@ -452,4 +452,67 @@ Using chain rule, calculate the derivatives
 	\end{eqnarray}
 \end{enumerate}
 
+\newpage
+\textbf{REPORT (Afifah Maya Iknaningrum / 1715011053)}\\ \\
+
+
+\begin{enumerate}
+	\item Let $ D $ be a domain in $ \R^2 $ and $ F $ a $ C^2 $-function in $ D $. Let $ \gamma(t) = (x(t),y(t) $ be a smooth path in $ D $. Since $ F $ is of class $ C^2 $ around a point $ P(a,b ) $, we can use the fact that $ F_{xy}(a,b) = F_{yx}(a,b) $ such that it is shown
+	\begin{eqnarray}\nonumber
+	\dfrac{d^2}{dt^2}F(x(t),y(t)) &=& \dfrac{d}{dt}\big(\dfrac{d}{dt}F(x,y)\big)\\ \nonumber
+	&=& \dfrac{d}{dt} (\dfrac{dF}{dx} \dfrac{dx}{dt}+\dfrac{dF}{dy} \dfrac{dy}{dt}) \\ \nonumber
+	&=& \dfrac{d}{dt} (F_{x} \dfrac{dx}{dt}) + \dfrac{d}{dt}(F_{y} \dfrac{dy}{dt}) \\ \nonumber
+	&=& ( \dfrac{d}{dt}(F_{x}) \dfrac{dx}{dt} + F_{x} \dfrac{d}{dt} \dfrac{dx}{dt}  ) + ( \dfrac{d}{dt}(F_{y}) \dfrac{dy}{dt} + F_{y} \dfrac{d}{dt} \dfrac{dy}{dt}  ) \\ \nonumber
+	&=& \big( \dfrac{dF_{x}}{dx} \dfrac{dx}{dt} + \dfrac{dF_{x}}{dy} \dfrac{dy}{dt} \big) \dfrac{dx}{dt} + F_{x} \dfrac{d^2x}{dt^2} + \big( \dfrac{dF_{y}}{dx} \dfrac{dx}{dt} + \dfrac{dF_{y}}{dy} \dfrac{dy}{dt} \big) \dfrac{dy}{dt} + F_{y} \dfrac{d^2y}{dt^2} \\ \nonumber
+	&=& F_{xx}(\dfrac{dx}{dt})^2 + F_{xy} \dfrac{dy}{dt} \dfrac{dx}{dt} + F_{x} \dfrac{d^2x}{dt^2} + F_{yx}\dfrac{dx}{dt} \dfrac{dy}{dt}  + F_{yy}(\dfrac{dy}{dt})^2 + F_{y} \dfrac{d^2y}{dt^2} \\ \nonumber
+	&=& F_{xx}(\dfrac{dx}{dt})^2 + 2F_{xy} \dfrac{dy}{dt} \dfrac{dx}{dt} + F_{yy}(\dfrac{dy}{dt})^2 + F_{x} \dfrac{d^2x}{dt^2} + F_{y} \dfrac{d^2y}{dt^2}
+	\end{eqnarray}
+	\item Let $ F $ be a $ C^2 $-function around a point $ P(a,b) $ satisfying $ F_{y}(a,b)\neq 0 $. When a $ C^2 $-function $ y=\phi(x) $ around $ x=a $ satisfies $ b=\phi(a) $ and $ F(x,\phi(x)) = 0$ around $ x=a $. We can get
+	\begin{eqnarray}\nonumber
+	&F(x,y) &=0 \\
+	&\dfrac{d}{dx} F(x,y) &= F_{x} + F_{y}(y') = 0 \\ \nonumber
+	\Leftrightarrow & y' = -\dfrac{F_{x}}{F_{y}}
+	\end{eqnarray}
+	such that 
+	\begin{eqnarray}\nonumber
+	y'' &=& \dfrac{F_{xx}F_{y}-F_{x}F_{xy}y'}{F_{y}^2}
+	\end{eqnarray}
+	taking total derivative of equation (1), we get
+	\[ y'' = -[\dfrac{(F_{xx}+F_{xy}(y'))F_{y}-F_{x}(F_{yx}+F_{yy}(y'))}{F_{y}^2}] \]
+	substitusing $ y=\phi(x) $ at $ (a,b) $ we obtain
+	\[ \phi ''(x) = - \dfrac{F_{xx}(a,b)F_{y}^2(a,b)-2F_{xy}(a,b)F_{x}(a,b)F_{y}(a,b)+F_{yy}(a,b)F_{x}^2(a,b)}{F_{y}^3(a,b)}\]
+	\item Let
+	\[ D_{1} = \{ (x,y)\in\R^2 ; 0 \leq x\leq 1, 0 \leq y \leq2 \} \]
+	\[ D_{2} = \{ (x,y) \in \R^2 ; 1 \leq x \leq 2, 0 \leq y \leq1+x^2 \} \]
+	We can calculate the following integral
+	\begin{itemize}
+		\item \begin{eqnarray}\nonumber
+		\int\int_{D_{1}} xy^2 \ dxdy &=& \int_{0}^{2} \int_{0}^{1} xy^2 \ dxdy \\ \nonumber
+		&=& \int_{0}^{2} y^2 (\dfrac{1}{2}) [ x ]_{0}^{1} \ dy \\ \nonumber
+		&=& \int_{0}^{2} y^2( \dfrac{1}{2}) \ dy\\ \nonumber
+		&=& (\dfrac{1}{2}) (\dfrac{1}{3}) [y^3]_{0}^{2} \\ \nonumber
+		&=& \dfrac{1}{6}(2^3-0) = \dfrac{4}{3} 
+		\end{eqnarray}
+		\item \begin{eqnarray}\nonumber
+		\int\int_{D_{1}} (x+y)^2 \ dxdy &=& \int\int_{D_{1}} x^2 + 2xy +y^2 \ dx dy \\ \nonumber
+		&=& \int_{0}^{2} (\dfrac{1}{3}) [x^3]_{0}^{1} + (2)(\dfrac{1}{2}) [x^2]_{0}^{1} y + y^2[x]_{0}^{1} \ dy \\ \nonumber
+		&=& \int_{0}^{2} \dfrac{1}{3} + y + y^2 \ dy \\ \nonumber
+		&=& (\dfrac{1}{3}) [y]_{0}^{2} + (\dfrac{1}{2}) [y^2]_{0}^{2} + (\dfrac{1}{3}) [y^3]_{0}^{2} \\ \nonumber
+		&=& \dfrac{2}{3} + 2 + \dfrac{8}{3} = \dfrac{16}{3}
+		\end{eqnarray}
+		\item \begin{eqnarray} \nonumber
+		\int\int_{D_{2}} (x^2 +y)^2 \ dx dy &=&  \int_{1}^{2}\int_{0}^{1+x^2} x^4 +2x^2y+y^2 \ dy dx  \\ \nonumber	
+		&=&  \int_{1}^{2} x^4 [y]_{0}^{1+x^2} + 2x^2(\dfrac{1}{2})[y^2]_{0}^{1+x^2} + (\dfrac{1}{3}) [y^3]_{0}^{1+x^2} \ dx \\ \nonumber
+		&=& \int_{1}^{2} \dfrac{1}{3} + 2x^2 + 4x^4 +\dfrac{7}{3}x^6 \ dx \\ \nonumber
+		&=& \dfrac{1}{3} + \dfrac{14}{3} + \dfrac{124}{5} + \dfrac{127}{3} = \dfrac{309}{5}
+		\end{eqnarray}
+	\end{itemize}
+	\item Suppose $ D $ is a bounded domain with smooth boundary. Using Green theorem, the line integral 
+	\begin{eqnarray} \nonumber
+	\int_{\partial D} -y \ dx + x \ dy &=& \int_{D} \dfrac{dx}{dx} - \dfrac{-y}{dy} dA \\ \nonumber
+	&=& \int 2 \ dA
+	\end{eqnarray}
+	such that it is equal to two times of area $ D $.
+
+\end{enumerate}
 \end{document}

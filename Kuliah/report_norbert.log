@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  11 JUN 2018 10:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  12 JUN 2018 13:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Topics_of_Mathematical_Science.tex
-(./Topics_of_Mathematical_Science.tex
+**report_norbert.tex
+(./report_norbert.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
 (/opt/local/share/texmf-texlive/tex/latex/base/article.cls
@@ -133,6 +133,14 @@ Package: amsthm 2015/03/04 v2.20.2
 \thm@headsep=\skip48
 \dth@everypar=\toks26
 )
+(/opt/local/share/texmf-texlive/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2011/09/28 v3.5.2 Customized lists
+\labelindent=\skip49
+\enit@outerparindent=\dimen120
+\enit@toks=\toks27
+\enit@inbox=\box28
+\enitdp@description=\count102
+)
 (/opt/local/share/texmf-texlive/tex/latex/graphics/color.sty
 Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
 
@@ -150,7 +158,7 @@ Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 (/opt/local/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 )
-\Gread@gobject=\count102
+\Gread@gobject=\count103
 ))
 (/opt/local/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
@@ -166,31 +174,24 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
 )
-\Gin@req@height=\dimen120
-\Gin@req@width=\dimen121
+\Gin@req@height=\dimen121
+\Gin@req@width=\dimen122
 )
-\c@remark=\count103
-\c@prop=\count104
-\c@theo=\count105
-\c@defi=\count106
-\c@ex=\count107
-\c@note=\count108
+(./report_norbert.aux)
+\openout1 = `report_norbert.aux'.
 
-(./Topics_of_Mathematical_Science.aux)
-\openout1 = `Topics_of_Mathematical_Science.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -228,17 +229,17 @@ LaTeX Font Info:    ... okay on input line 25.
 
 (/opt/local/share/texmf-texlive/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count109
-\scratchdimen=\dimen122
-\scratchbox=\box28
-\nofMPsegments=\count110
-\nofMParguments=\count111
-\everyMPshowfont=\toks27
-\MPscratchCnt=\count112
-\MPscratchDim=\dimen123
-\MPnumerator=\count113
-\makeMPintoPDFobject=\count114
-\everyMPtoPDFconversion=\toks28
+\scratchcounter=\count104
+\scratchdimen=\dimen123
+\scratchbox=\box29
+\nofMPsegments=\count105
+\nofMParguments=\count106
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count107
+\MPscratchDim=\dimen124
+\MPnumerator=\count108
+\makeMPintoPDFobject=\count109
+\everyMPtoPDFconversion=\toks29
 ) (/opt/local/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -285,132 +286,55 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 34.
-
-(/opt/local/share/texmf-texlive/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 34.
-LaTeX Font Info:    Try loading font information for U+msa on input line 34.
+LaTeX Font Info:    Try loading font information for U+msa on input line 17.
 
 (/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 34.
+LaTeX Font Info:    Try loading font information for U+msb on input line 17.
 
 (/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 213--216
-
+Overfull \hbox (34.25444pt too wide) in alignment at lines 151--157
+ [][][] []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--233
-
+Overfull \hbox (2.34769pt too wide) in paragraph at lines 157--159
+\OT1/cmr/m/n/10 Then, we ob-tain the eigen-value $\OML/cmm/m/it/10 ^^U \OT1/cmr
+/m/n/10 = 4(1 \OMS/cmsy/m/n/10 ^^@ []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 m^^Yh\OT
+1/cmr/m/n/10 ))$ and eigen-vec-tor of the form $\OML/cmm/m/it/10 w[] \OT1/cmr/m
+/n/10 = \OML/cmm/m/it/10 v[][] \OT1/cmr/m/n/10 = [](\OML/cmm/m/it/10 m^^Yhi\OT1
+/cmr/m/n/10 ) [](\OML/cmm/m/it/10 m^^Yhj\OT1/cmr/m/n/10 )$. 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 224--233
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 224--233
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 241--246
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--252
-
- []
-
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 269--275
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 269--275
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 269--275
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 277--282
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 277--282
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 277--282
-
- []
-
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 312--313
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 312--313
-
- []
-
-[6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 456--457
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 456--457
-
- []
-
-[8] [9] (./Topics_of_Mathematical_Science.aux) ) 
+[4] (./report_norbert.aux) ) 
 Here is how much of TeX's memory you used:
- 3025 strings out of 492995
- 40675 string characters out of 6134533
- 127479 words of memory out of 5000000
- 6532 multiletter control sequences out of 15000+600000
- 8879 words of font info for 33 fonts, out of 8000000 for 9000
+ 3262 strings out of 492995
+ 44876 string characters out of 6134533
+ 123383 words of memory out of 5000000
+ 6765 multiletter control sequences out of 15000+600000
+ 10591 words of font info for 42 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,13n,31p,497b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
-</opt/local/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/local/share/texmf-texlive/font
-s/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/share/texmf-texlive/fonts/typ
-e1/public/amsfonts/cm/cmbxti10.pfb></opt/local/share/texmf-texlive/fonts/type1/
-public/amsfonts/cm/cmex10.pfb></opt/local/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmmi10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmmi5.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/
-cm/cmmi7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr
-10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb>
-</opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/l
-ocal/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/
-share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/local/share/
-texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></opt/local/share/texmf
--texlive/fonts/type1/public/amsfonts/symbols/msam10.pfb></opt/local/share/texmf
--texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Topics_of_Mathematical_Science.pdf (9 pages, 211046 bytes).
+ 39i,10n,31p,263b,258s stack positions out of 5000i,500n,10000p,200000b,80000s
+</opt/local/share/texmf-texlive/fonts/type1/public/
+amsfonts/cm/cmbx10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmex10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/c
+m/cmmi10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmm
+i7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb
+></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt
+/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local
+/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/local/share/
+texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/texmf
+-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/local/share/texmf-texli
+ve/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on report_norbert.pdf (4 pages, 127844 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 61 PDF objects out of 1000 (max. 8388607)
+ 43 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

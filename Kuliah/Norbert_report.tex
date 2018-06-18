@@ -1,0 +1,130 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[a4paper, hmargin={1.5cm,1.5cm}, vmargin={1.5cm,1.5cm}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage{graphicx}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\title{Report Topics in Computational Science}
+\author{Afifah Maya Iknaningrum \\ 1715011053}
+
+\begin{document}
+	\maketitle
+	
+\textbf{Problem 1 :} \\ Let $ m>1 $ and suppose that $ u $ is a twice continuously differentiable positive solution in the pressure porous medium equation
+\begin{equation}\label{porous_1}
+u_{t}- \Delta(u^{m}) =0 ,  \ x\in \R , t>0.
+\end{equation}
+Show that $ p(x,t):=\dfrac{m}{m-1}u^{m-1}(x,t) $ is a solution of the porous medium equation in the pressure form
+\begin{equation}\label{porous_2}
+p_{t}-(m-1)p\Delta p-|\nabla p|^2 = 0
+\end{equation}
+
+\textbf{Answer 1 :} \\ Substitute 
+\begin{equation}\label{p}
+p(x,t):=\dfrac{m}{m-1}u^{m-1}(x,t)
+\end{equation} 
+, to equation (\ref{porous_2}), we obtain
+\begin{eqnarray}\nonumber
+&&p_{t}-(m-1)p\Delta p-|\nabla p|^2 \\ \nonumber
+&=&\Big( \dfrac{m}{m-1}(m-1)u^{m-2}u_{t} \Big) - \Big( (m-1)\dfrac{m}{m-1} u^{m-1}m(m-2)u^{m-3}u_{x}^{2}+m^{2}u^{m-2}u_{xx} \Big) - |mu^{m-2}u_{x}|^{2} \\ \label{eq1}
+&=& mu^{m-2}u_{t} - (m^{3}+m^{2}-2m)u^{2m-4}u_{x}^{2}-m^{3}u^{2m-3}u_{xx}
+\end{eqnarray}
+Remember we have
+\begin{equation}\label{eq2}
+u_{t}-\Delta(u^{m}) = u_{t}-(m^2-m)u^{m-2}u_{x}^{2}-m^{2}u^{m-1}u_{xx}= 0.
+\end{equation}
+
+Then the equation (\ref{eq1}) can be modified such that it is contain equation (\ref{eq2}) such that
+\begin{eqnarray}\nonumber
+&&mu^{m-2}u_{t} - (m^{3}+m^{2}-2m)u^{2m-4}u_{x}^{2}-m^{3}u^{2m-3}u_{xx}\\ \nonumber
+&=&mu^{m-2}\big( u_{t}-(m^2-m)u^{m-2}u_{x}^{2}-m^{2}u^{m-1}u_{xx} \big)+\big((m^3-m^2)-(m^3-2m^2)-m^2 \big)u^{2m-4}u_{x}^{2}+(m^3-m^3)u^{2m-3}u_{xx}\\ \nonumber
+&=& 0
+\end{eqnarray}
+It is shown that $ p(x,t) $ as defined above, is a solution of the porous medium equation in the pressure form (\ref{porous_2}).
+
+\newpage
+\textbf{Problem 2 :} \\ For dimension $ n\in \N $ and constant $ m>1,C>0,\alpha>0,\beta>0 $. Define the function $ u: \R^n \times (0,\infty) \rightarrow \R$ as
+\[ u(x,t) = t^{-\alpha}\Big( \max \big( C-\dfrac{\beta(m-1)}{2m} \dfrac{|x|^2}{t^{2\beta}} , 0 \big) \Big)^{\frac{1}{m-1}}, \ x\in \R^n, t>0 \]
+where $ |x|:=(\sum_{i=1}^{n} x_{i}^{2})^{1/2} $
+\begin{enumerate}
+	\item Find $ \alpha $ and $ \beta $ in terms of $ m $ and $ n $ so that $ u $ is a solution of (\ref{porous_1}) in the set
+	\[ \{ (x,t): x\in \R^n, t>0, u(x,t)>0\}. \]
+	
+	\textbf{Answer :}
+	We have $ p $ as defined in (\ref{p}). Because the set, we should take $ u(x,t)>0 $ such that
+	\begin{eqnarray}\nonumber
+	u(x,t) &=& t^{-\alpha}\big( C-\dfrac{\beta(m-1)}{2m} \dfrac{|x|^2}{t^{2\beta}} \big)^{\frac{1}{m-1}} \\ \nonumber
+	p(x,t) &=& \dfrac{m}{m-1} t^{-\alpha(m-1)}\big( C-\dfrac{\beta(m-1)}{2m} \dfrac{|x|^2}{t^{2\beta}} \big)\\ \nonumber
+	p_{t}(x,t) &=& -\alpha m t^{-\alpha(m-1)-1}\big( C-\dfrac{\beta(m-1)}{2m} \dfrac{|x|^2}{t^{2\beta}} \big)^{\frac{1}{m-1}} +  \beta^2 |x|^2 t^{-\alpha(m-1)-2\beta-1} \\ \nonumber
+	&=& -\dfrac{\alpha}{t} (m-1)p(x,t) +  \beta^2 |x|^2 t^{-\alpha(m-1)-2\beta-1}\\ \nonumber
+	\nabla p(x,t) &=& -\beta t^{-\alpha(m-1)-2\beta} x \\ \nonumber
+	\Delta p(x,t) &=& -\beta t^{-\alpha(m-1)-2\beta} n
+	\end{eqnarray}
+	From the information we had above, we can subtitute it to (\ref{porous_2}) such that
+	\begin{eqnarray}\nonumber
+	&& p_{t}-(m-1)p\Delta p-|\nabla p|^2 \\ \nonumber
+	&=& \Big(-\dfrac{\alpha}{t} (m-1)p(x,t) +  \beta^2 |x|^2 t^{-\alpha(m-1)-2\beta-1}\Big)-\Big((m-1)p(x,t)\big(-\beta t^{-\alpha(m-1)-2\beta} n\big)  \Big) - |\big(-\beta t^{-\alpha(m-1)-2\beta} x\big)|^{2} \\ \nonumber
+	&=& \Big( -\dfrac{\alpha}{t} + \beta n t^{-\alpha(m-1)-2\beta} \Big)(m-1)p(x,t) + \beta^2|x|^2\Big( t^{-\alpha(m-1)-2\beta-1}-t^{-2\alpha(m-1)-4\beta} \Big)\\ \nonumber
+	&=& 0
+	\end{eqnarray}
+	Because $ \alpha,\beta,t,C>0 \ , \ m>1$ and by $ u(x,t)>0 $, then $ p(x,t) >0 $. Then to make the equation above holds. We can let
+	\begin{eqnarray}\nonumber
+	&-\alpha t^{-1} + \beta n t^{-\alpha(m-1)-2\beta} &=0 \\ \nonumber
+	\Leftrightarrow & \alpha t^{-1} &= \beta n t^{-\alpha(m-1)-2\beta} \\ \nonumber
+	\Leftrightarrow & \alpha = \beta n &\text{ and } t^{-1} = t^{-\alpha(m-1)-2\beta}\\ \nonumber
+	\Leftrightarrow &\alpha = \beta n &\text{ and }  \beta = \dfrac{1}{n(m-1)+2}\\ \nonumber
+	\Leftrightarrow &\alpha = \dfrac{n}{n(m-1)+2} &\text{ and }  \beta = \dfrac{1}{n(m-1)+2}
+	\end{eqnarray}
+	Substitute $ \alpha $ and $ \beta $ we obtain into
+	\begin{eqnarray}\nonumber
+	&t^{-\alpha(m-1)-2\beta-1}-t^{-2\alpha(m-1)-4\beta} &= 0 \\ \nonumber
+	\Leftrightarrow& -\alpha(m-1)-2\beta-1 &= -2\alpha(m-1)-4\beta \\ \nonumber
+	\Leftrightarrow& -\dfrac{n}{n(m-1)+2}(m-1)-2\dfrac{1}{n(m-1)+2}-1 &= -2 \dfrac{n}{n(m-1)+2}(m-1)-4\dfrac{1}{n(m-1)+2} \\ \nonumber
+	\Leftrightarrow& -n(m-1)-2-(n(m-1)+2) &= -2n(m-1)-4 \\ \nonumber
+	\Leftrightarrow& -2nm+2n-4 &= -2nm+2n-4
+	\end{eqnarray}
+	So the $ \alpha = \dfrac{n}{n(m-1)+2} \text{ and }  \beta = \dfrac{1}{n(m-1)+2} $ we got is satisfy the $ u $ solution of (\ref{porous_1}).
+	\newpage
+	\item For given $ t>0 $, the set $ \Omega(t):=\{ x\in\R^n: u(x,t)>0 \} $ is an $ n $-dimensional ball. Find its radius $ r=r(t) $. Find $ \lim\limits_{t\rightarrow 0+}r(t) $ and $ \lim\limits_{t\rightarrow \infty} r(t) $.\\ \\
+	\textbf{Answer :}\\ 
+	Because of the definition of $ \Omega(t) $, then we take
+	\[ u(x,t) = t^{-\alpha}\big( C-\dfrac{\beta(m-1)}{2m} \dfrac{|x|^2}{t^{2\beta}} \big)^{\frac{1}{m-1}} \]
+	Then, $ u(x,t) $ should be positive for $ x\in \R^n $ such that
+	\[ u(-x,t) = u(x,t). \]
+	So we can see that the center of ball is $ 0 $ and the $ |x| = r $. To find the radius, we can use the fact that
+	\begin{eqnarray} \nonumber
+	&C-\dfrac{\beta(m-1)}{2m} \dfrac{r^2}{t^{2\beta}} &= 0 \\ \nonumber
+	\Leftrightarrow&\dfrac{r^2}{t^{2\beta}} &= \dfrac{2Cm}{\beta(m-1)} \\ \nonumber
+	\Leftrightarrow& r(t) &= \sqrt{\dfrac{2Cmt^{2\beta}}{\beta(m-1)}}	
+	\end{eqnarray}
+	We could find
+	\[ \lim\limits_{t\rightarrow 0+}r(t) = \lim\limits_{t\rightarrow 0+}\sqrt{\dfrac{2Cmt^{2\beta}}{\beta(m-1)}} = 0 \]
+	and
+	\[ \lim\limits_{t\rightarrow \infty}r(t) = \lim\limits_{t\rightarrow \infty}\sqrt{\dfrac{2Cmt^{2\beta}}{\beta(m-1)}} = \infty \]
+	\newpage
+	\item For $ n=2 $ and the constants $ \alpha $ and $ \beta $ from (1), compute the value of
+	\[ M(t) := \int_{\R^n} u(x,t) \ dx \]
+	for $ t>0 $. Does the solution conserve mass $ M(t) $ ?\\ \\
+	\textbf{Answer :} \\ 
+	\begin{eqnarray}\nonumber
+	M(t) &:=& \int_{\R^2} u(x,t) \ dx \\ \nonumber
+	&=& \int_{x_{1}} \int_{x_{2}} u(x,t) \ dx_{1}dx_{2} \\ \nonumber
+	&=& \int_{\theta} \int_{r}  r t^{-\alpha}\big( C-\dfrac{\beta(m-1)}{2m} \dfrac{r^2}{t^{2\beta}} \big)^{\frac{1}{m-1}} \ dr d\theta \\ \nonumber
+	&=& \int_{0}^{2\pi} \int_{0}^{r(t)}  t^{-\alpha}\big( Cr-\dfrac{\beta(m-1)}{2m} \dfrac{r^3}{t^{2\beta}} \big)^{\frac{1}{m-1}} \ dr d\theta \\ \nonumber
+	&=& t^{-\alpha}  \int_{0}^{2\pi} \Big[ \dfrac{Cr^2}{2} - \dfrac{\beta(m-1)r^4}{8mt^{2\beta}} \Big]_{0}^{r(t)} d\theta \\ \nonumber
+	&=& t^{-\alpha}  \int_{0}^{2\pi} \dfrac{C\big(\dfrac{2Cmt^{2\beta}}{\beta(m-1)}\big)}{2} - \dfrac{\beta(m-1)\big(\dfrac{2Cmt^{2\beta}}{\beta(m-1)}\big)^2}{8mt^{2\beta}}  d\theta \\ \nonumber
+	&=& t^{-\alpha} \int_{0}^{2\pi} \dfrac{C^2mt^{2\beta}}{2\beta(m-1)} d\theta \\ \nonumber
+	&=& t^{-\alpha} \pi \dfrac{C^2mt^{2\beta}}{\beta(m-1)} 
+	\end{eqnarray}
+	Substitute $ \alpha = \dfrac{n}{n(m-1)+2} \text{ and }  \beta = \dfrac{1}{n(m-1)+2} $ we got
+	\[ M(t) = \Big(t^{-\big(\dfrac{n}{n(m-1)+2}\big)} \pi\Big) \Big(\dfrac{C^2mt^{2\big(\dfrac{1}{n(m-1)+2}\big)}}{\big(\dfrac{1}{n(m-1)+2}\big)(m-1)}\Big) = \dfrac{2C^2m^2\pi}{m-1} \]
+	As we can see, $ M(t) $ is constant and independent of $ t $, so the solution is conserve mass $ M(t) $.
+\end{enumerate}
+
+\end{document}

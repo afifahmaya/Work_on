@@ -2,7 +2,11 @@ load "iovtk"
 load "msh3"
 
 // Variable declaration
+<<<<<<< HEAD
 real R=0.3;
+=======
+real R=0.5;
+>>>>>>> 9a04bf3b56e3c67f6a62e54d7f87ac10fa0c9735
 real nu = 1.0;
 real delta=1.0;
 real T=1.0;
@@ -27,10 +31,10 @@ func real sign(real z){
 int[int] rup=[0,1], rdown=[0,1], rmid=[1,1,2,1,3,1,4,1];
 real zmin=-1./8,zmax=1./2;
 
-ofstream ff("Cyl_error_3D.txt");
+int[int] ffordervel=[0]; // 0 save a cell value, 1 save point value
 
 //iteration for each mesh devider
-for(int n=24; n>=4; n=n-4 )
+for(int n=8; n>=4; n=n-4 )
 {
   dt = c*sqrt(1./n); //take dt=c*sqrt(h)
   Nt = T/dt;
@@ -99,13 +103,16 @@ for(int n=24; n>=4; n=n-4 )
 
     if(n==24){
       plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
+<<<<<<< HEAD
       savevtk("Tornado"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
+=======
+      savevtk("Tornado"+n+"_"+it+".vtk",Th,[u1,u2,u3],order=ffordervel,dataname="NavSto");
+>>>>>>> 9a04bf3b56e3c67f6a62e54d7f87ac10fa0c9735
     }
     u1oldd = u1old; u2oldd = u2old; u3oldd = u3old; 
     u1old = u1; u2old=u2; u3old=u3;
     u1star = 2*u1old-u1oldd; u2star = 2*u2old-u2oldd; u3star = 2*u3old-u3oldd;
   }
-  ff << 1./n << "\t" << errormax << "\t" << Herrormax << "\n" ;
   cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
   errormax = 0;
   Herrormax = 0;
