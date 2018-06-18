@@ -1,0 +1,174 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[a4paper, hmargin={1.5cm,1.5cm}, vmargin={1.5cm,1.5cm}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{color}
+\usepackage{graphicx}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\title{Report Basic of Applied Analysis}
+\author{Afifah Maya Iknaningrum \\ 1715011053}
+
+\begin{document}
+	\maketitle
+
+	\textbf{Problem 1 :} Let $ N \in \N, N\geq 2$ and $ \alpha>0 $ be a given and consider the $ (N-1) \times (N-1) $ matrix $ A=(a_{ij}) $ that is the finite difference discretization of the problem
+	\[ \begin{cases}
+	\alpha u - u'' = f &\text{ in } (0,1)\\
+	u(0) = u(1) = 0
+	\end{cases} \]
+	with entries
+	\[ a_{ij} = \begin{cases}
+	\alpha+\dfrac{2}{h^2} &,i=j \\
+	-\dfrac{1}{h^2} &, |i-j|=1 \\
+	0 &, \text{ otherwise}
+	\end{cases} \]
+	where $ h = \dfrac{1}{N} $
+	
+	\begin{enumerate}[label=(\alph*)]
+		\item Eigenvalue and eigenvector of A.\\
+		We have \[ Av = \lambda v \]
+		for $ \lambda\in\R, v\neq0 $. Let eigenvector $ v\in\R^{N-1} $ of the form $ v_{i} = \sin \dfrac{m\pi i}{N} $. Such that for every $ i $, we have
+		\begin{eqnarray}\nonumber
+		&\sum\limits_{j} a_{ij} v_{j} &= \lambda v_{i} \\ \nonumber
+		\Leftrightarrow & (\alpha + \dfrac{2}{h^2}) v_{i} - \dfrac{1}{h^2}v_{i-1}-\dfrac{1}{h^2}v_{i+1} &= \lambda v_{i}\\ \nonumber
+		\Leftrightarrow & (\alpha+\dfrac{2}{h^2}-\lambda) v_{i} -\dfrac{1}{h^2}(v_{i+1}+v_{i-1}) & =0 \\ \nonumber
+		\Leftrightarrow & (\alpha+\dfrac{2}{h^2}-\lambda) \sin(\dfrac{m\pi i }{N}) - \dfrac{1}{h^2}\Big(\sin(\dfrac{m \pi (i+1)}{N})+\sin(\dfrac{m \pi (i-1)}{N})\Big)& =0 \\ \nonumber
+		\Leftrightarrow & (\alpha+\dfrac{2}{h^2}-\lambda) \sin(\dfrac{m\pi i }{N}) - \dfrac{1}{h^2}\Big(2 \sin(\dfrac{m\pi i}{N})\cos(\dfrac{m\pi}{N})\Big)& =0 \\ \nonumber
+		\Leftrightarrow & \sin(\dfrac{m\pi i}{N}) \big(\alpha+\dfrac{2}{h^2}-\lambda-\dfrac{2}{h^2}\cos(\dfrac{m\pi}{N})\big) &=0 \\ \nonumber
+		\Leftrightarrow & \alpha+\dfrac{2}{h^2}-\lambda-\dfrac{2}{h^2}\cos(\dfrac{m\pi}{N}) &=0 \\ \nonumber
+		\Leftrightarrow & \lambda = \alpha + 2N^2(1-\cos(\dfrac{m\pi}{N}))
+		\end{eqnarray}
+		Then, we obtain the eigenvalue $  \lambda = \alpha + 2N^2(1-\cos(\dfrac{m\pi}{N})) = \alpha + \dfrac{2}{h^2}(1-\cos(m\pi h)) $ and eigenvector $ v\in\R^{N-1} $ of the form $ v_{i} = \sin \dfrac{m\pi i}{N} = \sin(m\pi h i) $
+		\item Spectral radius $ \sigma(A) $.\\
+		Because $  \lambda = \alpha + 2N^2(1-\cos(\dfrac{m\pi}{N})) $, using Taylor expansion, we obtain
+		\begin{eqnarray}\nonumber
+		\sigma(A) &=& max\{|\lambda|\} \\ \nonumber
+		&=& \alpha + 2N^2(1-(1-\dfrac{1}{2}\big(\dfrac{m\pi}{N}\big)^2)) \\ \nonumber
+		&=& \alpha + (m\pi)^2
+		\end{eqnarray}
+		\item Eigenvalue and eigenvector of the Jacobi iteration matrix $ R = -D^{-1}(L+U) $.\\
+		First, for eigenvector $ v $ and eigenvalue $ \lambda $ we have
+		\begin{eqnarray}\nonumber
+		&Rv &=\lambda v\\ \nonumber
+		&-D^{-1}(L+U)v &= \lambda v \\ \nonumber
+		&-(L+U)v &= \lambda D v 
+		\end{eqnarray}
+		Such that for each $ i $, with $ A=(a_{ij}) $ and $ v_{i} = \sin \dfrac{m\pi x}{N} $ we obtain
+		\begin{eqnarray} \nonumber
+		&\dfrac{1}{h^2}v_{i-1}+\dfrac{1}{h^2}v_{i+1} &= \lambda (\alpha+\dfrac{2}{h^2})v_{i}\\ \nonumber
+		\Leftrightarrow &\dfrac{1}{h^2} \Big( \sin(\dfrac{m\pi (i-1)}{N}) + \sin(\dfrac{m\pi (i+1)}{N}) \Big) &= \lambda (\alpha+\dfrac{2}{h^2})\sin \dfrac{m\pi i}{N}\\ \nonumber
+		\Leftrightarrow &\dfrac{1}{h^2} \Big( 2 \sin(\dfrac{m\pi i}{N}) \cos(\dfrac{m\pi}{N}) \Big) &= \lambda (\alpha+\dfrac{2}{h^2})\sin \dfrac{m\pi i}{N}\\ \nonumber
+		\Leftrightarrow & \lambda &= \dfrac{2N^2 }{\alpha + 2N^2}\cos(\dfrac{m\pi}{N})
+		\end{eqnarray}
+		Then, we obtain the eigenvalue $  \lambda = \dfrac{2N^2 }{\alpha + 2N^2} \cos(\dfrac{m\pi}{N}) = \dfrac{2}{\alpha h^2+ 2} \cos(m\pi h)$ and eigenvector $ v\in\R^{N-1} $ of the form $ v_{i} = \sin \dfrac{m\pi i}{N} =\sin(m\pi h i)$
+		\item The spectral radius $ \sigma(R) $\\
+		Because $  \lambda = \dfrac{2N^2 }{\alpha + 2N^2} \cos(\dfrac{m\pi}{N})$, using Taylor expansion, we obtain
+		\begin{eqnarray}\nonumber
+		\sigma(R) &=& max\{|\lambda|\} \\ \nonumber
+		&=& \dfrac{2N^2 }{\alpha + 2N^2}(1-\dfrac{1}{2}\big(\dfrac{m\pi}{N}\big)^2) \\ \nonumber
+		&=& \dfrac{2N^2 }{\alpha + 2N^2} - \dfrac{(m\pi)^2 }{\alpha + 2N^2}\\ \nonumber
+		&=& \dfrac{2N^2-(m\pi)^2 }{\alpha + 2N^2}\\ \nonumber
+		&=& \dfrac{2-(m\pi h)^2}{\alpha h^2+2}
+		\end{eqnarray}
+	\end{enumerate}
+	
+	\textbf{Problem 2 :}
+	Let $ N, h =\dfrac{1}{N}, \alpha $ and $ A $ as in the Problem 1
+	
+	\begin{enumerate}[label=(\alph*)]
+		\item Exact solution $ u : [0,1] \rightarrow \R $ of
+		\[ \begin{cases}
+		\alpha u - u'' = sin(\pi x) & \text{ in } (0,1)\\
+		u(0)=u(1)=0
+		\end{cases} \]
+		First, we look for the solution of homogeneous part, such that we obtain
+		\[ \lambda^2-\alpha=0 \Leftrightarrow \lambda_{1,2}=\pm \sqrt{\alpha} \]
+		Then, from the homogeneous part we get
+		\[ u = c_{1} e^{\sqrt{\alpha}x} + c_{2} e^{-\sqrt{\alpha}x} \]
+		Subtitute it into the boundary condition,
+		\[ u(0) = c_{1}+c_{2}=0 \Leftrightarrow c_{1}=-c_{2} \]
+		\[ u(1) = c_{1} e^{\sqrt{\alpha}} + c_{2} e^{-\sqrt{\alpha}} = -c_{2} e^{\sqrt{\alpha}} + c_{2} e^{-\sqrt{\alpha}} = c_{2} (e^{-\sqrt{\alpha}}-e^{\sqrt{\alpha}}) =0 \Leftrightarrow c_{2}=0 \Leftrightarrow c_{1} = -c_{2} =0 \]
+		we obtain $ u= c_{1} e^{\sqrt{\alpha}x} + c_{2} e^{-\sqrt{\alpha}x}=0 $.\\
+		After that, solving the nonhomogenous part by subtitute general solution in form $ u=A\sin(\pi x)+B\cos(\pi x) $ to the problem, such that
+		\begin{eqnarray}\nonumber
+		&\alpha A\sin(\pi x)+\alpha B\cos(\pi x)+ A\pi^2\sin(\pi x)+B\pi^2\cos(\pi x) & = \sin(\pi x)\\ \nonumber
+		\Leftrightarrow& (\alpha+\pi^2)(A\sin(\pi x)+B\cos(\pi x)) &= \sin(\pi x)
+		\end{eqnarray}
+		Set the coeffiient equal, we obtain 
+		\[ (\alpha+\pi^2)A = 1 \text{ and } (\alpha+\pi^2)B =0 \Leftrightarrow B=0 \text{ and } A = \dfrac{1}{\alpha+\pi^2}\]
+		Such that solution $ u=\dfrac{\sin(\pi x)}{\alpha+\pi^2} $. Adding the solution from the homogeneous and non-homogeneous, we get exact solution
+		\[ u(x)=\dfrac{\sin(\pi x)}{\alpha+\pi^2} \]
+		
+		\item Exact solution $ v \in R^{N-1} $ with $ b_{i}=sin(\pi h i) $, $ i = 1 ,\dots, N-1 $ of
+		\[ Av=b \]
+		or we want to solve
+		\[ (\alpha+\dfrac{2}{h^2})v_{i} -\dfrac{1}{h^2}(v_{i+1}+v_{i-1}) = \sin(\pi h i) \]
+		For the solution of homogeneous part, it is the same as the problem 2(a), that $ v=0 $.
+		For the nonhomogeneous part, we assume the solution has form $ v_{i} = A \sin(\pi h i) $ such that
+		\begin{eqnarray}\nonumber
+		&(\alpha+\dfrac{2}{h^2})A \sin(\pi h i) -\dfrac{1}{h^2}(A \sin(\pi h (i+1))+A \sin(\pi h (i-1))) &= \sin(\pi h i) \\ \nonumber
+		\Leftrightarrow& (\alpha+\dfrac{2}{h^2})A \sin(\pi h i) -\dfrac{2}{h^2}A\sin(\pi h i)\cos(\pi h) &= \sin(\pi h i) \\ \nonumber
+		\Leftrightarrow& (\alpha+\dfrac{2}{h^2}-\dfrac{2}{h^2}\cos(\pi h))A \sin(\pi h i)&= \sin(\pi h i) \\ \nonumber
+		\Leftrightarrow& A = \dfrac{1}{\alpha+2N^2(1-\cos(\dfrac{\pi}{N}))}\\ \nonumber
+		\Leftrightarrow& A = \dfrac{h^2}{\alpha h^2 + 2(1-\cos(\pi h))}
+		\end{eqnarray}
+		Then adding the solution of homogen and nonhomogen part, we obtain
+		\[ v_{i} = \dfrac{h^2}{\alpha h^2 + 2(1-\cos(\pi h))} \sin(\pi h i) \]
+		\item  Assuming $ N $ is even, the explicit formula for
+		\[ \epsilon(h) := \max\limits_{1\leq i \leq N-1} |u(hi)-vi| \]
+		as a function of $ h=\dfrac{1}{N} $ and the leading order term in the Taylor expansion of $ \epsilon(h) $ at $ h=0 $.\\
+		The explicit formula of
+		\begin{eqnarray}\nonumber
+		\epsilon(h) &:=& \max\limits_{1\leq i \leq N-1} |u(hi)-vi| \\ \nonumber
+		&=& \max\limits_{1\leq i \leq N-1} |\dfrac{\sin(\pi hi)}{\alpha+\pi^2}-\dfrac{h^2}{\alpha h^2 + 2(1-\cos(\pi h))} \sin(\pi h i)| \\ \nonumber
+		&=& \max\limits_{1\leq i \leq N-1} |(\dfrac{1}{\alpha+\pi^2}-\dfrac{h^2}{\alpha h^2 + 2(1-\cos(\pi h))})\sin(\pi h i)|\\ \nonumber
+		&=& \max\limits_{1\leq i \leq N-1}|(\dfrac{1}{\alpha+\pi^2}-\dfrac{h^2}{\alpha h^2 + 2(1-\cos(\pi h))})| \ \max\limits_{1\leq i \leq N-1}|\sin(\pi h i)|\\ \nonumber
+		&=& |(\dfrac{1}{\alpha+\pi^2}-\dfrac{h^2}{\alpha h^2 + 2(1-\cos(\pi h))})|
+		\end{eqnarray}
+		Taking Taylor expansion for $ cos(\pi h) = 1-\dfrac{(\pi h)^2}{2} + \sum_{n=2}^{\infty} (-1)^n \dfrac{(\pi h)^{2n}}{(2n)!} $. We obtain error estimate
+		\[  \epsilon(h) = |(\dfrac{1}{\alpha+\pi^2}-\dfrac{1}{\alpha + \pi -2\sum_{n=2}^{\infty} (-1)^n \dfrac{(\pi h)^{2n}}{(2n)!}})|\]
+		Only taking sum of $ n=2 $, we obtain
+		\[  \epsilon(h) = |(\dfrac{1}{\alpha+\pi^2}-\dfrac{1}{\alpha + \pi^2 -\dfrac{(\pi h)^{4}}{12}})|\]
+		With the leading order term in the Taylor expansion of $ \epsilon(h) $ at $ h=0 $ it is obvious that $ \epsilon(0)=0 $
+	\end{enumerate}
+
+	\textbf{Problem 3 :}
+	For given $ N $ and $ b_{i,j} \in \R, \ i,j = 1,2,\dots,N-1 $, consider the system of linear equation
+	\[ \begin{cases}
+	-v_{i-1,j}-v_{i,j-1}-v_{i+1,j}-v_{i,j+1}-4v_{i,j} = b_{i,j} &i,j = 1, \dots, N-1\\
+	v_{0,j} = v_{N,j} = v_{i,0} =v_{i,N} =0 &i,j = 1, \dots, N-1
+	\end{cases} \]
+	for unknown $ v_{i,j} $
+	
+	\begin{enumerate}[label=(\alph*)]
+		\item Eigenvalue and eigenvector of matrix $ A $ for the system above.\\
+		We will look for eigenvalue $ \lambda $ and eigenvector $ w $ in $ Aw=\lambda w $. Using the system with $ w=v_{i}\tilde{v}_{j} $ with $ v_{i} = \sin(m\pi h i) $,
+		\begin{eqnarray}\nonumber
+		&-v_{i-1}\tilde{v}_{j}-v_{i}\tilde{v}_{j-1}-v_{i+1}\tilde{v}_{j}-v_{i}\tilde{v}_{j+1}+4v_{i}\tilde{v}_{j} &= \lambda v_{i}\tilde{v}_{j} \\ \nonumber
+		\Leftrightarrow & -\sin(m\pi h (i-1))\sin(m\pi h j)-\sin(m\pi h i)\sin(m\pi h (j-1))-\sin(m\pi h (i+1))\sin(m\pi h j)\\ \nonumber
+		&-\sin(m\pi h i)\sin(m\pi h (j+1))+4\sin(m\pi h i)\sin(m\pi h j) &= \lambda\sin(m\pi h i)\sin(m\pi h j) \\ \nonumber
+		\Leftrightarrow & -4\sin(m\pi h i)\sin(m\pi h j)\cos(m\pi h) + (4-\lambda)\sin(m\pi h i)\sin(m\pi h j)&=0\\ \nonumber
+		\Leftrightarrow & \lambda = 4(1-\cos(m\pi h))
+		\end{eqnarray}
+		Then, we obtain the eigenvalue $  \lambda =4(1-\cos(m\pi h)) $ and eigenvector of the form $ w_{i} =v_{i}\tilde{v}_{j}=  \sin(m\pi h i)\sin(m\pi h j) $.
+		
+		\item Implement a program with initial guess $ v_{i,j}^{(0)} = 0 $ that solve using
+		\begin{enumerate}[label=(\roman*)]
+			\item the Jacobi method
+			\item  the Gauss-Seidel method
+			\item SOR method given $ \omega $
+		\end{enumerate}
+	
+	\item $ v^{(k)} $ is approximate solution after $ k $ iteration. Set the right hand side to
+	\[ b_{i,j} = \dfrac{\sin (\dfrac{\pi i}{N}) \sin(\dfrac{\pi j }{N})}{N^2} \, i=1,\dots,N-1 \]
+	for each method for $ N=10,20,50 $. (see the program)
+	
+	\item  The optimum $ \omega $ for SOR. (see the program)
+	\end{enumerate}
+	
+\end{document}
