@@ -2,7 +2,7 @@ load "iovtk"
 load "msh3"
 
 // Variable declaration
-real R=1.;
+real R=0.3;
 real nu = 1.0;
 real delta=1.0;
 real T=1.0;
@@ -40,7 +40,7 @@ for(int n=24; n>=4; n=n-4 )
   border Gamma2(t=0,2*pi)    { x = R*0.3*cos(t); y = R*0.3*sin(t); }
   border Gamma3(t=0,2*pi)    { x = R*0.1*cos(t); y = R*0.1*sin(t); }
 
-  mesh Th2 = buildmesh(Gamma1(n)+Gamma2(n)+Gamma3(n));   // construction of mesh
+  mesh Th2 = buildmesh(Gamma1(n/2)+Gamma2(n)+Gamma3(n));   // construction of mesh
   mesh3 Th=buildlayers(Th2,n,
     zbound=[zmin,zmax], labelmid=rmid, reffaceup = rup, reffacelow = rdown);
   plot ( Th, ps = "Cyl_NS_3D_mesh.ps" );
@@ -97,10 +97,9 @@ for(int n=24; n>=4; n=n-4 )
     if (it==1) {navierstokesinit;}
     else {navierstokes;}
 
-    if(n==8){
+    if(n==24){
       plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
-      savevtk("Tornado"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="NavSto");
-      plot (p, nbiso=60, fill =0, value =1, wait =0 );
+      savevtk("Tornado"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
     }
     u1oldd = u1old; u2oldd = u2old; u3oldd = u3old; 
     u1old = u1; u2old=u2; u3old=u3;
@@ -109,6 +108,7 @@ for(int n=24; n>=4; n=n-4 )
   ff << 1./n << "\t" << errormax << "\t" << Herrormax << "\n" ;
   cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
   errormax = 0;
+  Herrormax = 0;
 }
 //  Terminate.
 //

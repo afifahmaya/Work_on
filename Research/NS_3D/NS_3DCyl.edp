@@ -2,14 +2,13 @@ load "iovtk"
 load "msh3"
 
 // Variable declaration
-real r=1.;
+real R=0.3;
 real nu = 1.0;
 real delta=1.0;
 real T=1.0;
 real error, Herror;
 real errormax = 0, Herrormax = 0;
 real t=0, c=0.25*sqrt(2);
-
 
 real exactu1 = -cos(x)*sin(y)*cos(z)*exp(-2*t);
 real exactu2 = sin(x)*cos(y)*cos(z)*exp(-2*t);
@@ -38,9 +37,9 @@ for(int n=24; n>=4; n=n-4 )
   int Nt = T/dt;
   
   // Create the mesh
-  border Gamma1(t=0,2*pi)    { x = r*cos(t); y = r*sin(t); }
-  border Gamma2(t=0,2*pi)    { x = r*0.3*cos(t); y = r*0.3*sin(t); }
-  border Gamma3(t=0,2*pi)    { x = r*0.1*cos(t); y = r*0.1*sin(t); }
+  border Gamma1(t=0,2*pi)    { x = R*cos(t); y = R*sin(t); }
+  border Gamma2(t=0,2*pi)    { x = R*0.3*cos(t); y = R*0.3*sin(t); }
+  border Gamma3(t=0,2*pi)    { x = R*0.1*cos(t); y = R*0.1*sin(t); }
 
   mesh Th2 = buildmesh(Gamma1(n)+Gamma2(n)+Gamma3(n));   // construction of mesh
   mesh3 Th=buildlayers(Th2,n,
@@ -93,15 +92,17 @@ for(int n=24; n>=4; n=n-4 )
     else {
       navierstokes;
       error = sqrt( norm(Th,u1,exactu1) + norm(Th,u2,exactu2) + norm(Th,u3,exactu3));
-      Herror = sqrt( square(error) + norm(Th,dx(u1),dx1) + norm(Th,dy(u2),dy2) + norm(Th,dz(u3),dz3));
       if (error > errormax) errormax = error ;
-      if (Herror > Herrormax) Herrormax = Herror ;
       cout << "L2-error at " << t << "is " << error << "max = " << errormax << "\n" ;
-      cout << "H1-error at " << t << "is " << Herror << "max = " << Herrormax << "\n"; 
+      if (it>2){
+        Herror = sqrt( square(error) + norm(Th,dx(u1),dx1) + norm(Th,dy(u2),dy2) + norm(Th,dz(u3),dz3));
+        if (Herror > Herrormax) Herrormax = Herror ;
+        cout << "H1-error at " << t << "is " << Herror << "max = " << Herrormax << "\n"; 
+      } 
     }
     if(n==24){
       plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
-      savevtk("Cyl_NS_3D_plot"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="NavSto");
+      savevtk("Cyl_NS_3D_plot"+n+"_"+it+".vtk",Th,u1,u2,u3,p,dataname="Velocity");
       plot (p, nbiso=60, fill =0, value =1, wait =0 );
     }
     u1oldd = u1old; u2oldd = u2old; u3oldd = u3old; 
@@ -111,6 +112,7 @@ for(int n=24; n>=4; n=n-4 )
   ff << 1./n << "\t" << errormax << "\t" << Herrormax << "\n" ;
   cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
   errormax = 0;
+  Herrormax = 0;
 }
 //  Terminate.
 //

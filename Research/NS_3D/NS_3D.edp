@@ -21,10 +21,9 @@ int[int] rup=[0,1], rdown=[0,1], rmid=[1,1,2,1,3,1,4,1];
 real zmin=0,zmax=1;
 
 ofstream ff("1error_3D.txt");
-ofstream hh("1error_H.txt");
 
 //iteration for each mesh devider
-for(int n=24; n>=4; n=n-4 )
+for(int n=20; n>=4; n=n-4 )
 {
   real dt = 1./n; //take dt=h
 
@@ -68,17 +67,17 @@ for(int n=24; n>=4; n=n-4 )
     if (Herror > Herrormax) Herrormax = Herror ;
     cout << "L2-error at " << t << "is " << error << "max = " << errormax << "\n" ;
     cout << "H1-error at " << t << "is " << Herror << "max = " << Herrormax << "\n"; 
-    if(n==24){
+    if(n==20){
       plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
-      savevtk("NS_3D_1_plot"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="NavSto");
+      savevtk("NS_3D_1_plot"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
       plot (p, nbiso=60, fill =0, value =1, wait =0 );
     }
     u1old = u1; u2old=u2; u3old=u3;
   }
-  ff << dt << "\t" << errormax << "\n" ;
-  hh << dt << "\t" << Herrormax << "\n" ;
+  ff << dt << "\t" << errormax << "\t" << Herrormax << "\n" ;
   cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
   errormax = 0;
+  Herrormax =0;
 }
 //  Terminate.
 //
