@@ -1,0 +1,13 @@
+reset
+
+#to save file :
+set term png
+set output "magnitude_tornado.png"
+
+#figure properties :
+set title "Plot of tornado max magnitude"
+set yrange [-0.01:0.06]
+set xlabel "time"
+set ylabel "magnitude"
+
+plot "Max_mag_tornado.txt" w l lw 2 title "max magnitude with swirl", "Max_mag_tornadoo.txt" w l lw 2 title "max magnitude without swirl"

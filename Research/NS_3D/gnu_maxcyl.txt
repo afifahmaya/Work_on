@@ -1,0 +1,12 @@
+reset
+
+#to save file :
+set term png
+set output "magnitude_cyl.png"
+
+#figure properties :
+set title "Plot of cylindrical max magnitude" 
+set xlabel "time"
+set ylabel "magnitude"
+
+plot "Max_magnitude.txt" w l lw 2 title "max magnitude"
