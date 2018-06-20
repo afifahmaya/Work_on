@@ -2,7 +2,7 @@ load "iovtk"
 load "msh3"
 
 // Variable declaration
-real R=0.8;
+real R=1;
 real nu = 1.0;
 real delta=1.0;
 real T=1.0;
@@ -33,7 +33,7 @@ for(int n=24; n>=8; n=n-4 )
   int Nt = T/dt;
   
   // Create the mesh
-  border Gamma1(t=0,2*pi)    { x = R*cos(t); y = R*sin(t); }
+  border Gamma1(t=0,2*pi)    { x = R*0.8*cos(t); y = R*0.8*sin(t); }
   border Gamma2(t=0,2*pi)    { x = R*0.3*cos(t); y = R*0.3*sin(t); }
   border Gamma3(t=0,2*pi)    { x = R*0.1*cos(t); y = R*0.1*sin(t); }
 

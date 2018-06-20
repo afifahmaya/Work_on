@@ -14,8 +14,8 @@ real c=0.25*sqrt(2);
 int Nt;
 real f1 = 0., f2 = 0., f3 = 0.;
 
-//ofstream umag("Max_mag_tornado.txt");
-ofstream umag("Max_mag_tornadoo.txt");
+ofstream umag("Max_mag_tornado.txt");
+//ofstream umag("Max_mag_tornadoo.txt");
 
 func real varphi(real a,real eps,real sigma){
   return pow(a^2+eps,sigma);
@@ -44,7 +44,7 @@ for(int n=24; n>=24; n=n-4 )
   mesh Th2 = buildmesh(Gamma1(n)+Gamma2(n)+Gamma3(n));   // construction of mesh
   mesh3 Th=buildlayers(Th2,n,
     zbound=[zmin,zmax], labelmid=rmid, reffaceup = rup, reffacelow = rdown);
-  plot ( Th, ps = "Cyl_NS_3D_mesh.ps" );
+  plot ( Th );
 
   fespace Uh(Th,[P1,P1,P1,P1]);
   fespace Vh(Th,P13d);
@@ -86,8 +86,8 @@ for(int n=24; n>=24; n=n-4 )
   Vh uz = varphi(r,1,-1)*varphi(z,1,-1);
   Vh rho = varphi(r,1,-1)*varphi(z,1,1);
   Vh ur = sign(z)*rho*uz;
-  //Vh utheta = varphi(r,1,-1)*varphi(z,1,-1);
-  Vh utheta = 0.;
+  Vh utheta = varphi(r,1,-1)*varphi(z,1,-1);
+  //Vh utheta = 0.;
   u1old = ur*cos(theta)-utheta*sin(theta);
   u2old = ur*sin(theta)-utheta*cos(theta);
   u3old = uz;
@@ -103,8 +103,8 @@ for(int n=24; n>=24; n=n-4 )
 
     if(n==24){
       plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
-      //savevtk("Tornado"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
-      savevtk("Tornadoo"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
+      savevtk("Tornado"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
+      //savevtk("Tornadoo"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
 
       if (abs(u1)>abs(u2) && abs(u1)>abs(u3)) maxmag = abs(u1);
       else if (abs(u2)>abs(u1) && abs(u2)>abs(u3)) maxmag = abs(u2);
