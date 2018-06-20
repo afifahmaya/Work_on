@@ -13,7 +13,7 @@
 
 \section{Incompressible Navier Stokes Equation}
 
-\subsection{Problem}
+\subsection{Problem/Strong Form}
 We want to find \[(u,p) : \Omega \times (0,T) \rightarrow \R^d \times \R\] where $ u $ is unknown velocity and $ p $ is unknown pressure such that
 \begin{equation}\label{Navier-Stokes}
 \begin{cases}
@@ -39,6 +39,15 @@ b(v,q) &=& - \int_{\Omega} (\nabla \cdot v) q \ dx \\ \nonumber
 V &=& H_{0}^{1}(\Omega, \R^d) = H_{0}^{1}(\Omega)^d \\ \nonumber
 Q &=& \{ q\in L^2(\Omega) ; \int_{\Omega} q \ dx=0 \}.
 \end{eqnarray}
+
+\subsection{Discretization}
+Before applying to FreeFEM++, we need to discritize $ \dfrac{\partial u}{\partial t} + (u \cdot \nabla)u_{i} $ part, where $ dt $ as time increment
+\begin{itemize}
+	\item Using convect and first order time discretization, we obtain
+	\[ \dfrac{\partial u_{i}}{\partial t} + (u \cdot \nabla)u_{i} = \dfrac{u_{i}^{n} - u_{i}^{n-1}(X(u^{n-1},dt))}{dt}\]
+\end{itemize}
+
+
 
 \subsection{Error estimate}
 To estimate the error in 2D, we use $ L_{2} $-norm
@@ -80,175 +89,175 @@ with the error estimate :
 
 As we can see, the error using convect is slightly better than scheme $ 0 $. By the graphic, we have $ O(h) $.
 
-\newpage
-Below is the FreeFEM++ code used to solve the problem above with the discritization of time using scheme $ 0 $ :
-\begin{lstlisting}
-load "iovtk"
-
-// Variable declaration
-real nu = 1.0;
-real Lx = 1.0;
-real Ly = 1.0;
-real error;
-real errormax = 0.;
-real t=0;
-func exactu = -cos(x)*sin(y)*exp(-2*t);
-func exactv = sin(x)*cos(y)*exp(-2*t);
-func f1 = -exp(-4*t)*sin(2*x);
-func f2 = -exp(-4*t)*sin(2*y);
-
-//  Set the border
-border c1 (t=0,1)    {x=t*Lx; y=0;}
-border c2 (t=0,1)    {x=Lx; y=t*Ly;}
-border c3 (t=1,0)    {x=t*Lx; y=Ly;}
-border c4 (t=1,0)    {x=0; y=t*Ly;}
-
-ofstream ff("error2D.txt");
-ofstream pp("p.txt");
-
-//iteration for each mesh devider
-for(int n=32; n>=8; n=n-8 )
-{
-real dt = 1./n; //take dt=h
-
-//  Create the mesh
-mesh Th = buildmesh ( c1(n)+c2(n)+c3(n)+c4(n) );
-plot ( Th, ps = "NS_2D_mesh.ps" );
-
-//  Define the finite element spaces for velocity and pressure
-fespace Uh(Th, P2);
-fespace Vh(Th, P1);
-Uh u, v, uh, vh, uold, vold;
-Vh p, ph;
-
-//  Set up the Navier−Stokes equationss
-uold = -cos(x)*sin(y) ;
-vold = sin(x)*cos(y) ;
-
-problem navierstokes ( [u,v,p], [uh,vh,ph] ) =
-int2d(Th) (u*uh/dt) - int2d(Th) (uold*uh/dt)
-+ int2d(Th) (v*vh/dt) - int2d(Th) (vold*vh/dt)
-+ int2d(Th) (uold*dx(u)*uh + vold*dy(u)*uh)
-+ int2d(Th) (uold*dx(v)*vh + vold*dy(v)*vh)
-+ int2d(Th) (nu*dx(u)*dx(uh) + nu*dy(u)*dy(uh) )
-+ int2d(Th) (nu*dx(v)*dx(vh) + nu*dy(v)*dy(vh) )
-- int2d(Th) (p*dx(uh)+ p*dy(vh))
-- int2d(Th) (dx(u)*ph + dy(v)*ph)
-- int2d(Th) (f1*uh)
-- int2d(Th) (f2*vh)
-+ on ( c1, c2, c3, c4, u=exactu, v=exactv);
-
-for ( int it = 1; it <= n; it++ )
-{
-t=it*dt;
-navierstokes;
-error = sqrt( int2d(Th)((u-exactu)*(u-exactu)) + int2d(Th)((v-exactv)*(v-exactv)) );
-if (error > errormax) errormax = error ;
-//cout << "error at " << t << "is " << error << "\n" ;
-if(n==32){
-plot ( Th, [u,v], nbiso = 60, fill = 0, value = 1, wait = 0, ps = "NS_2D_"+n+"_"+it+".ps" );
-savevtk("NS_2D_plot"+n+"_"+it+".vtk",Th,[u,v],p,dataname="NS");
-plot (p, nbiso=60, fill =0, value =1, wait =0, ps = "NS_2D-C-p_"+n+"_"+it+".ps" );
-pp << t << "\t" << p << "\n" ;
-}
-uold = u;
-vold = v;
-}
-ff << dt << "\t" << errormax << "\n" ;
-cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
-errormax = 0;
-}
-//  Terminate.
-//
-cout << "\n";
-cout << "NAVIERSTOKES_2D:\n";
-cout << "Normal end of execution.\n";
-
-\end{lstlisting}
-
-\newpage
-We also try to use convect function instead, the code is :
-\begin{lstlisting}
-load "iovtk"
-
-// Variable declaration
-real nu = 1.0;
-real Lx = 1.0;
-real Ly = 1.0;
-real error;
-real errormax = 0.;
-real t=0;
-func exactu = -cos(x)*sin(y)*exp(-2*t);
-func exactv = sin(x)*cos(y)*exp(-2*t);
-func f1 = -exp(-4*t)*sin(2*x);
-func f2 = -exp(-4*t)*sin(2*y);
-
-
-//  Set the border
-border c1 (t=0,1)    {x=t*Lx; y=0;}
-border c2 (t=0,1)    {x=Lx; y=t*Ly;}
-border c3 (t=1,0)    {x=t*Lx; y=Ly;}
-border c4 (t=1,0)    {x=0; y=t*Ly;}
-
-ofstream ff("error2D-C.txt");
-ofstream pp("p-C.txt");
-
-//iteration for each mesh devider
-for(int n=32; n>=8; n=n-8 )
-{
-real dt = 1./n; //take dt=h
-
-//  Create the mesh
-mesh Th = buildmesh ( c1(n)+c2(n)+c3(n)+c4(n) );
-plot ( Th, ps = "NS_2D-C_mesh.ps" );
-
-//  Define the finite element spaces for velocity and pressure
-fespace Uh(Th, P2);
-fespace Vh(Th, P1);
-Uh u, v, uh, vh, uold, vold;
-Vh p, ph;
-
-//  Set up the Navier−Stokes equationss
-uold = -cos(x)*sin(y) ;
-vold = sin(x)*cos(y) ;
-
-problem navierstokes ( [u,v,p], [uh,vh,ph] ) =
-int2d(Th) (u*uh/dt) - int2d(Th) (convect([uold,vold],(-dt),uold)*uh/dt)
-+ int2d(Th) (v*vh/dt) - int2d(Th) (convect([uold,vold],(-dt),vold)*vh/dt)
-+ int2d(Th) (nu*dx(u)*dx(uh) + nu*dy(u)*dy(uh) )
-+ int2d(Th) (nu*dx(v)*dx(vh) + nu*dy(v)*dy(vh) )
-- int2d(Th) (p*dx(uh)+ p*dy(vh))
-- int2d(Th) (dx(u)*ph + dy(v)*ph)
-- int2d(Th) (f1*uh)
-- int2d(Th) (f2*vh)
-+ on ( c1, c2, c3, c4, u=exactu, v=exactv);
-
-for ( int it = 1; it <= n; it++ )
-{
-t=it*dt;
-navierstokes;
-error = sqrt( int2d(Th)((u-exactu)*(u-exactu)) + int2d(Th)((v-exactv)*(v-exactv)) );
-if (error > errormax) errormax = error ;
-//cout << "error at " << t << "is " << error << "\n" ;
-if(n==32){
-plot ( Th, [u,v], nbiso = 60, fill = 0, value = 1, wait = 0, ps = "NS_2D-C_"+n+"_"+it+".ps" );
-savevtk("NS_2D-C_plot"+n+"_"+it+".vtk",Th,[u,v],p,dataname="NS");
-plot (p, nbiso=60, fill =0, value =1, wait =0, ps = "NS_2D-C-p_"+n+"_"+it+".ps" );
-pp << t << "\t" << p << "\n" ;
-}
-uold = u;
-vold = v;
-}
-ff << dt << "\t" << errormax << "\n" ;
-cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
-errormax = 0;
-}
-//  Terminate.
-//
-cout << "\n";
-cout << "NAVIERSTOKES_2D_withConvect:\n";
-cout << "Normal end of execution.\n";
-\end{lstlisting}
+%\newpage
+%Below is the FreeFEM++ code used to solve the problem above with the discritization of time using scheme $ 0 $ :
+%\begin{lstlisting}
+%load "iovtk"
+%
+%// Variable declaration
+%real nu = 1.0;
+%real Lx = 1.0;
+%real Ly = 1.0;
+%real error;
+%real errormax = 0.;
+%real t=0;
+%func exactu = -cos(x)*sin(y)*exp(-2*t);
+%func exactv = sin(x)*cos(y)*exp(-2*t);
+%func f1 = -exp(-4*t)*sin(2*x);
+%func f2 = -exp(-4*t)*sin(2*y);
+%
+%//  Set the border
+%border c1 (t=0,1)    {x=t*Lx; y=0;}
+%border c2 (t=0,1)    {x=Lx; y=t*Ly;}
+%border c3 (t=1,0)    {x=t*Lx; y=Ly;}
+%border c4 (t=1,0)    {x=0; y=t*Ly;}
+%
+%ofstream ff("error2D.txt");
+%ofstream pp("p.txt");
+%
+%//iteration for each mesh devider
+%for(int n=32; n>=8; n=n-8 )
+%{
+%real dt = 1./n; //take dt=h
+%
+%//  Create the mesh
+%mesh Th = buildmesh ( c1(n)+c2(n)+c3(n)+c4(n) );
+%plot ( Th, ps = "NS_2D_mesh.ps" );
+%
+%//  Define the finite element spaces for velocity and pressure
+%fespace Uh(Th, P2);
+%fespace Vh(Th, P1);
+%Uh u, v, uh, vh, uold, vold;
+%Vh p, ph;
+%
+%//  Set up the Navier−Stokes equationss
+%uold = -cos(x)*sin(y) ;
+%vold = sin(x)*cos(y) ;
+%
+%problem navierstokes ( [u,v,p], [uh,vh,ph] ) =
+%int2d(Th) (u*uh/dt) - int2d(Th) (uold*uh/dt)
+%+ int2d(Th) (v*vh/dt) - int2d(Th) (vold*vh/dt)
+%+ int2d(Th) (uold*dx(u)*uh + vold*dy(u)*uh)
+%+ int2d(Th) (uold*dx(v)*vh + vold*dy(v)*vh)
+%+ int2d(Th) (nu*dx(u)*dx(uh) + nu*dy(u)*dy(uh) )
+%+ int2d(Th) (nu*dx(v)*dx(vh) + nu*dy(v)*dy(vh) )
+%- int2d(Th) (p*dx(uh)+ p*dy(vh))
+%- int2d(Th) (dx(u)*ph + dy(v)*ph)
+%- int2d(Th) (f1*uh)
+%- int2d(Th) (f2*vh)
+%+ on ( c1, c2, c3, c4, u=exactu, v=exactv);
+%
+%for ( int it = 1; it <= n; it++ )
+%{
+%t=it*dt;
+%navierstokes;
+%error = sqrt( int2d(Th)((u-exactu)*(u-exactu)) + int2d(Th)((v-exactv)*(v-exactv)) );
+%if (error > errormax) errormax = error ;
+%//cout << "error at " << t << "is " << error << "\n" ;
+%if(n==32){
+%plot ( Th, [u,v], nbiso = 60, fill = 0, value = 1, wait = 0, ps = "NS_2D_"+n+"_"+it+".ps" );
+%savevtk("NS_2D_plot"+n+"_"+it+".vtk",Th,[u,v],p,dataname="NS");
+%plot (p, nbiso=60, fill =0, value =1, wait =0, ps = "NS_2D-C-p_"+n+"_"+it+".ps" );
+%pp << t << "\t" << p << "\n" ;
+%}
+%uold = u;
+%vold = v;
+%}
+%ff << dt << "\t" << errormax << "\n" ;
+%cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
+%errormax = 0;
+%}
+%//  Terminate.
+%//
+%cout << "\n";
+%cout << "NAVIERSTOKES_2D:\n";
+%cout << "Normal end of execution.\n";
+%
+%\end{lstlisting}
+%
+%\newpage
+%We also try to use convect function instead, the code is :
+%\begin{lstlisting}
+%load "iovtk"
+%
+%// Variable declaration
+%real nu = 1.0;
+%real Lx = 1.0;
+%real Ly = 1.0;
+%real error;
+%real errormax = 0.;
+%real t=0;
+%func exactu = -cos(x)*sin(y)*exp(-2*t);
+%func exactv = sin(x)*cos(y)*exp(-2*t);
+%func f1 = -exp(-4*t)*sin(2*x);
+%func f2 = -exp(-4*t)*sin(2*y);
+%
+%
+%//  Set the border
+%border c1 (t=0,1)    {x=t*Lx; y=0;}
+%border c2 (t=0,1)    {x=Lx; y=t*Ly;}
+%border c3 (t=1,0)    {x=t*Lx; y=Ly;}
+%border c4 (t=1,0)    {x=0; y=t*Ly;}
+%
+%ofstream ff("error2D-C.txt");
+%ofstream pp("p-C.txt");
+%
+%//iteration for each mesh devider
+%for(int n=32; n>=8; n=n-8 )
+%{
+%real dt = 1./n; //take dt=h
+%
+%//  Create the mesh
+%mesh Th = buildmesh ( c1(n)+c2(n)+c3(n)+c4(n) );
+%plot ( Th, ps = "NS_2D-C_mesh.ps" );
+%
+%//  Define the finite element spaces for velocity and pressure
+%fespace Uh(Th, P2);
+%fespace Vh(Th, P1);
+%Uh u, v, uh, vh, uold, vold;
+%Vh p, ph;
+%
+%//  Set up the Navier−Stokes equationss
+%uold = -cos(x)*sin(y) ;
+%vold = sin(x)*cos(y) ;
+%
+%problem navierstokes ( [u,v,p], [uh,vh,ph] ) =
+%int2d(Th) (u*uh/dt) - int2d(Th) (convect([uold,vold],(-dt),uold)*uh/dt)
+%+ int2d(Th) (v*vh/dt) - int2d(Th) (convect([uold,vold],(-dt),vold)*vh/dt)
+%+ int2d(Th) (nu*dx(u)*dx(uh) + nu*dy(u)*dy(uh) )
+%+ int2d(Th) (nu*dx(v)*dx(vh) + nu*dy(v)*dy(vh) )
+%- int2d(Th) (p*dx(uh)+ p*dy(vh))
+%- int2d(Th) (dx(u)*ph + dy(v)*ph)
+%- int2d(Th) (f1*uh)
+%- int2d(Th) (f2*vh)
+%+ on ( c1, c2, c3, c4, u=exactu, v=exactv);
+%
+%for ( int it = 1; it <= n; it++ )
+%{
+%t=it*dt;
+%navierstokes;
+%error = sqrt( int2d(Th)((u-exactu)*(u-exactu)) + int2d(Th)((v-exactv)*(v-exactv)) );
+%if (error > errormax) errormax = error ;
+%//cout << "error at " << t << "is " << error << "\n" ;
+%if(n==32){
+%plot ( Th, [u,v], nbiso = 60, fill = 0, value = 1, wait = 0, ps = "NS_2D-C_"+n+"_"+it+".ps" );
+%savevtk("NS_2D-C_plot"+n+"_"+it+".vtk",Th,[u,v],p,dataname="NS");
+%plot (p, nbiso=60, fill =0, value =1, wait =0, ps = "NS_2D-C-p_"+n+"_"+it+".ps" );
+%pp << t << "\t" << p << "\n" ;
+%}
+%uold = u;
+%vold = v;
+%}
+%ff << dt << "\t" << errormax << "\n" ;
+%cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
+%errormax = 0;
+%}
+%//  Terminate.
+%//
+%cout << "\n";
+%cout << "NAVIERSTOKES_2D_withConvect:\n";
+%cout << "Normal end of execution.\n";
+%\end{lstlisting}
 
 \newpage
 \subsection{ 3D Simulation}
