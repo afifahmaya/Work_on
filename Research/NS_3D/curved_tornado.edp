@@ -50,7 +50,7 @@ for(int n=24; n>=24; n=n-4 )
   mesh Th2 = buildmesh(Gamma1(n)+Gamma2(n)+Gamma3(n));   // construction of mesh
   mesh3 Th1 = buildlayers(Th2,n,
     zbound=[zmin,zmax], labelmid=rmid, reffaceup = rup, reffacelow = rdown);
-  mesh3 Th = movemesh3(Th1,transfo=[Jx(r1),Jy,Jz(r1)],orientation=-1);
+  mesh3 Th = movemesh3(Th1,transfo=[Jx(5),Jy,Jz(5)],orientation=-1);
   plot ( Th, ps = "curved_mesh.ps" );
 
   fespace Uh(Th,[P1,P1,P1,P1]);
