@@ -20,7 +20,7 @@ func f1 = -cos(x)*sin(y)*cos(z)*exp(-2*t);
 func f2 = sin(x)*cos(y)*cos(z)*exp(-2*t);
 func f3 = (-exp(-4*t)/4)*sin(2*z)*(2*cos(2*z)+1);
 
-int[int] rup=[0,1], rdown=[0,1], rmid=[1,1];
+int[int] rup=[0,1], rdown=[0,1], rmid=[0,1,1,1,2,1,3,1];
 real zmin=-1./8,zmax=1./2;
 
 ofstream ff("Cyl_error_3D.txt");
