@@ -8,12 +8,23 @@ real r3 = 0.1;
 real nu = 1.0;
 real delta=1.0;
 real T=1.0;
-real maxmag;
+real error, Herror, maxmag;
+real errormax = 0, Herrormax = 0;
 real t=0, dt;
 real c=0.25*sqrt(2);
 int Nt;
-real f1 = 0., f2 = 0., f3 = 0.;
 
+func exactu1 = -cos(x)*sin(y)*cos(z)*exp(-2*t);
+func exactu2 = sin(x)*cos(y)*cos(z)*exp(-2*t);
+func exactu3 = 0.;
+func dx1 = sin(x)*sin(y)*cos(z)*exp(-2*t);
+func dy2 = sin(x)*(-sin(y))*cos(z)*exp(-2*t);
+func dz3 = 0.;
+func f1 = -cos(x)*sin(y)*cos(z)*exp(-2*t);
+func f2 = sin(x)*cos(y)*cos(z)*exp(-2*t);
+func f3 = (-exp(-4*t)/4)*sin(2*z)*(2*cos(2*z)+1);
+
+ofstream ff("Err_curved.txt");
 ofstream umag("Max_mag_curved.txt");
 //ofstream umag("Max_mag_curved0.txt");
 
@@ -52,6 +63,7 @@ for(int n=24; n>=24; n=n-4 )
     zbound=[zmin,zmax], labelmid=rmid, reffaceup = rup, reffacelow = rdown);
   mesh3 Th = movemesh3(Th1,transfo=[Jx(5),Jy,Jz(5)],orientation=-1);
   plot ( Th, ps = "curved_mesh.ps" );
+  if (n==8) savemesh(Th,"curved.mesh");
 
   fespace Uh(Th,[P1,P1,P1,P1]);
   fespace Vh(Th,P13d);
@@ -72,7 +84,7 @@ for(int n=24; n>=24; n=n-4 )
 		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p)
   - int3d(Th) ((f1*v1) + (f2*v2) + (f3*v3))
   - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))
-  + on(1,u1=0,u2=0,u3=0) ;
+  + on(1,u1=exactu1,u2=exactu2,u3=exactu3) ;
   
   problem navierstokes ([u1,u2,u3,p],[v1,v2,v3,q]) = 
     int3d(Th) (3*u1*v1/(2*dt)) - int3d(Th) (convect([u1star,u2star,u3star],(-dt),u1old)*4*v1/(2*dt)) 
@@ -85,7 +97,7 @@ for(int n=24; n>=24; n=n-4 )
 		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p)
   - int3d(Th) ((f1*v1) + (f2*v2) + (f3*v3))
   - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))
-  + on(1,u1=0,u2=0,u3=0) ;
+  + on(1,u1=exactu1,u2=exactu2,u3=exactu3) ;
 
   //initial at t=0
   Vh r = sqrt(x^2+y^2);
@@ -108,22 +120,36 @@ for(int n=24; n>=24; n=n-4 )
     if (it==1) {navierstokesinit;}
     else {navierstokes;}
 
-    plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
-    savevtk("Curve"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
+    error = sqrt( norm(Th,u1,exactu1) + norm(Th,u2,exactu2) + norm(Th,u3,exactu3));
+    if (error > errormax) errormax = error ;
+    cout << "L2-error at " << t << "is " << error << "max = " << errormax << "\n" ;
+    if (it>2){
+      Herror = sqrt( square(error) + norm(Th,dx(u1),dx1) + norm(Th,dy(u2),dy2) + norm(Th,dz(u3),dz3));
+      if (Herror > Herrormax) Herrormax = Herror ;
+      cout << "H1-error at " << t << "is " << Herror << "max = " << Herrormax << "\n"; 
+    }
+
+    if(n==24){
+      plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
+      savevtk("Curve"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
     //savevtk("Curve0"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
 
-    if (abs(u1)>abs(u2) && abs(u1)>abs(u3)) maxmag = abs(u1);
-    else if (abs(u2)>abs(u1) && abs(u2)>abs(u3)) maxmag = abs(u2);
-    else maxmag = abs(u3);
-    umag << t << "\t" << maxmag << "\n" ;
-    cout << u1 << "\t" << u2 << "\t" << u3 << "\t" << maxmag << "\n" ;
+      if (abs(u1)>abs(u2) && abs(u1)>abs(u3)) maxmag = abs(u1);
+      else if (abs(u2)>abs(u1) && abs(u2)>abs(u3)) maxmag = abs(u2);
+      else maxmag = abs(u3);
+      umag << t << "\t" << maxmag << "\n" ;
+      cout << u1 << "\t" << u2 << "\t" << u3 << "\t" << maxmag << "\n" ;
+    }
 
     u1oldd = u1old; u2oldd = u2old; u3oldd = u3old; 
     u1old = u1; u2old=u2; u3old=u3;
     u1star = 2*u1old-u1oldd; u2star = 2*u2old-u2oldd; u3star = 2*u3old-u3oldd;
   }
-
+  
+  ff << 1./n << "\t" << errormax << "\t" << Herrormax << "\n" ;
   cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
+  errormax = 0;
+  Herrormax = 0;
 }
 //  Terminate.
 //

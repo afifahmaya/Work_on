@@ -41,7 +41,7 @@ for(int n=24; n>=8; n=n-4 )
   mesh3 Th=buildlayers(Th2,n,
     zbound=[zmin,zmax], labelmid=rmid, reffaceup = rup, reffacelow = rdown);
   plot ( Th, ps = "Cyl_NS_3D_mesh.ps" );
-  savemesh(Th,"Cyl.mesh");
+  if (n==8) savemesh(Th,"Cyl.mesh");
 
   fespace Uh(Th,[P1,P1,P1,P1]);
   fespace Vh(Th,P13d);
