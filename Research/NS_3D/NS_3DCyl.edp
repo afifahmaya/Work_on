@@ -63,7 +63,8 @@ for(int n=24; n>=8; n=n-4 )
 		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p)
   - int3d(Th) ((f1*v1) + (f2*v2) + (f3*v3))
   - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))
-  + on(1,2,3,4,u1=exactu1,u2=exactu2,u3=exactu3) ;
+  //+ on(3,4,u1=exactu1,u2=exactu2,u3=exactu3)+ on(1,2,u1=0,u2=0,u3=0) ;
+  + on(1,2,3,4,u1=exactu1,u2=exactu2,u3=exactu3);
 
   problem navierstokes ([u1,u2,u3,p],[v1,v2,v3,q]) = 
     int3d(Th) (3*u1*v1/(2*dt)) - int3d(Th) (convect([u1star,u2star,u3star],(-dt),u1old)*4*v1/(2*dt)) 
@@ -76,8 +77,9 @@ for(int n=24; n>=8; n=n-4 )
 		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p)
   - int3d(Th) ((f1*v1) + (f2*v2) + (f3*v3))
   - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))
-  + on(1,2,3,4,u1=exactu1,u2=exactu2,u3=exactu3) ;
-  
+  //+ on(3,4,u1=exactu1,u2=exactu2,u3=exactu3) + on(1,2,u1=0,u2=0,u3=0) ;
+   + on(1,2,3,4,u1=exactu1,u2=exactu2,u3=exactu3);
+
   u1old = -cos(x)*sin(y)*cos(z) ;
   u2old = sin(x)*cos(y)*cos(z) ;
   u3old = 0;
@@ -111,7 +113,7 @@ for(int n=24; n>=8; n=n-4 )
       cout << u1 << "\t" << u2 << "\t" << u3 << "\t" << maxmag << "\n" ;
     }
   }
-  ff << 1./n << "\t" << errormax << "\t" << Herrormax << "\n" ;
+  ff << dt << "\t" << errormax << "\t" << Herrormax << "\n" ;
   cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
   errormax = 0;
   Herrormax = 0;

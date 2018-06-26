@@ -9,7 +9,7 @@ set output "error_NS_3D.png"
 set title "Plot of L2 and H1 error for 3D Navier-Stokes" 
 set logscale
 set yrange [0.0001:1]
-set xlabel "h"
+set xlabel "dt"
 set ylabel "Error"
 
 #plot "coba_error_3D.txt" w l title "error 3D", "2coba_error_3D.txt" w l, x, x*x

@@ -15,15 +15,15 @@ real c=0.25*sqrt(2);
 int Nt;
 real R=2;
 
-func exactu1 = -cos(x)*sin(y)*cos(z)*exp(-2*t);
-func exactu2 = sin(x)*cos(y)*cos(z)*exp(-2*t);
+func exactu1 = -cos(x)*sin(y)*exp(-2*t);
+func exactu2 = sin(x)*cos(y)*exp(-2*t);
 func exactu3 = 0.;
-func dx1 = sin(x)*sin(y)*cos(z)*exp(-2*t);
-func dy2 = sin(x)*(-sin(y))*cos(z)*exp(-2*t);
+func dx1 = sin(x)*sin(y)*exp(-2*t);
+func dy2 = sin(x)*(-sin(y))*exp(-2*t);
 func dz3 = 0.;
-func f1 = -cos(x)*sin(y)*cos(z)*exp(-2*t);
-func f2 = sin(x)*cos(y)*cos(z)*exp(-2*t);
-func f3 = (-exp(-4*t)/4)*sin(2*z)*(2*cos(2*z)+1);
+func f1 = 0.;
+func f2 = 0.;
+func f3 = 0.;
 
 ofstream ff("Err_curved.txt");
 ofstream umag("Max_mag_curved.txt");
@@ -145,8 +145,7 @@ for(int n=24; n>=8; n=n-4 )
       cout << u1 << "\t" << u2 << "\t" << u3 << "\t" << maxmag << "\n" ;
     }
   }
-  
-  ff << 1./n << "\t" << errormax << "\t" << Herrormax << "\n" ;
+  ff << dt << "\t" << errormax << "\t" << Herrormax << "\n" ;
   cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
   errormax = 0;
   Herrormax = 0;
