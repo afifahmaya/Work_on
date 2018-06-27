@@ -74,7 +74,7 @@ for(int n=24; n>=8; n=n-4 )
     int3d(Th) (u1*v1/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u1old)*v1/dt)
   + int3d(Th) (u2*v2/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u2old)*v2/dt)
   + int3d(Th) (u3*v3/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u3old)*v3/dt)
-  + int3d(Th,qforder=3)( Grad(u1)'*Grad(v1) +  Grad(u2)'*Grad(v2) +  Grad(u3)'*Grad(v3) //)';
+  + int3d(Th,qforder=3)( (2/3)*Grad(u1)'*Grad(v1) +  (2/3)*Grad(u2)'*Grad(v2) +  (2/3)*Grad(u3)'*Grad(v3) //)';
 		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p)
   - int3d(Th) ((f1*v1) + (f2*v2) + (f3*v3))
   - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))
@@ -87,7 +87,7 @@ for(int n=24; n>=8; n=n-4 )
   + int3d(Th) (convect([u1star,u2star,u3star],(-2*dt),u2oldd)*v2/(2*dt))
   + int3d(Th) (3*u3*v3/(2*dt)) - int3d(Th) (convect([u1star,u2star,u3star],(-dt),u3old)*4*v3/(2*dt)) 
   + int3d(Th) (convect([u1star,u2star,u3star],(-2*dt),u3oldd)*v3/(2*dt))
-  + int3d(Th,qforder=3)( Grad(u1)'*Grad(v1) +  Grad(u2)'*Grad(v2) +  Grad(u3)'*Grad(v3) //)';
+  + int3d(Th,qforder=3)( (2/3)*Grad(u1)'*Grad(v1) +  (2/3)*Grad(u2)'*Grad(v2) +  (2/3)*Grad(u3)'*Grad(v3) //)';
 		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p)
   - int3d(Th) ((f1*v1) + (f2*v2) + (f3*v3))
   - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))

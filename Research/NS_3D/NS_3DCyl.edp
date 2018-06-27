@@ -48,12 +48,13 @@ for(int n=24; n>=8; n=n-4 )
   macro Grad(u) [dx(u),dy(u),dz(u)]// EOM
   macro div(u1,u2,u3) (dx(u1)+dy(u2)+dz(u3)) //EOM
   macro norm(Th,u,exactu) (int3d(Th)(square(u-exactu))) //EOM
+  macro normH(Th,u,exactu) (int3d(Th)( square( dx(u)-dx(exactu) ) + square( dy(u)-dy(exactu) ) + square( dz(u)-dz(exactu) ) ) ) //EOM
 
   Uh [u1,u2,u3,p];
   Uh [v1,v2,v3,q];
   Vh u1old, u2old, u3old;
   Vh u1oldd, u2oldd, u3oldd;
-  Vh u1star,u2star,u3star;
+  Vh u1star,u2star,u3star, proju1e,proju2e,proju3e;
 
   problem navierstokesinit ([u1,u2,u3,p],[v1,v2,v3,q]) = 
     int3d(Th) (u1*v1/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u1old)*v1/dt)
@@ -91,7 +92,8 @@ for(int n=24; n>=8; n=n-4 )
     else {navierstokes;}
     
     error = sqrt( norm(Th,u1,exactu1) + norm(Th,u2,exactu2) + norm(Th,u3,exactu3));
-    Herror = sqrt( square(error) + norm(Th,dx(u1),dx1) + norm(Th,dy(u2),dy2) + norm(Th,dz(u3),dz3));
+    proju1e=exactu1; proju2e=exactu2; proju3e=exactu3;
+    Herror = sqrt( square(error) + normH(Th,u1,proju1e) + normH(Th,u2,proju2e) + normH(Th,u3,proju3e));
     if (error > errormax) errormax = error ;
     if (Herror > Herrormax) Herrormax = Herror ;
     cout << "L2-error at " << t << "is " << error << "max = " << errormax << "\n" ;

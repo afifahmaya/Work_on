@@ -1,7 +1,9 @@
 \beamer@slide {Navier-Stokes}{2}
 \beamer@slide {NS_Weak}{3}
-\beamer@slide {fig:errorcyl}{8}
-\beamer@slide {fig:magnitudecyl}{9}
-\beamer@slide {fig:magnitudetornado}{11}
-\beamer@slide {fig:1curved}{12}
-\beamer@slide {fig:curved}{13}
+\beamer@slide {fig:errorns3d}{9}
+\beamer@slide {fig:errorcyl}{10}
+\beamer@slide {fig:magnitudecyl}{11}
+\beamer@slide {fig:errortornado}{14}
+\beamer@slide {fig:magnitudetornado}{15}
+\beamer@slide {fig:curved}{16}
+\beamer@slide {fig:errorcurved}{17}
