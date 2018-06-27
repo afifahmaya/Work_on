@@ -8,9 +8,9 @@ set output "error_NS_3D.png"
 #figure properties :
 set title "Plot of L2 and H1 error for 3D Navier-Stokes" 
 set logscale
-set yrange [0.0001:1]
 set xlabel "dt"
 set ylabel "Error"
+set size ratio -1
 
 #plot "coba_error_3D.txt" w l title "error 3D", "2coba_error_3D.txt" w l, x, x*x
-plot "1error_3D.txt" u 1:2 w l lw 2 title "L2-norm 3D 1st order", "1error_3D.txt" u 1:3 w l lw 2 title "H-norm 3D 1st order", "2error_3D.txt" u 1:2 w l lw 2 title "L2-norm 3D 2nd order", "2error_3D.txt" u 1:3 w l lw 2 title "H-norm 3D 2nd order", x*0.008 t "O(h)", x*x*0.1 t "O(h^2)"
+plot "1error_3D.txt" u 1:2 w l lw 2 title "L2-norm 3D 1st order", "1error_3D.txt" u 1:3 w l lw 2 title "H-norm 3D 1st order", "2error_3D.txt" u 1:2 w l lw 2 title "L2-norm 3D 2nd order", "2error_3D.txt" u 1:3 w l lw 2 title "H-norm 3D 2nd order", x*0.008 lw 2 t "O(h)", x*x lw 2 t "O(h^2)"

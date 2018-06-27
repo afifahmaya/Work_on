@@ -2,20 +2,19 @@ load "iovtk"
 load "msh3"
 
 // Variable declaration
-real R=1;
+real r1 = 1;
+real r2 = 0.4;
+real r3 = 0.1;
 real nu = 1.0;
 real delta=1.0;
 real T=1.0;
 real error, Herror, maxmag;
 real errormax = 0, Herrormax = 0;
-real t=0, c=0.25*sqrt(2);
+real t=0, c=0.0625*sqrt(2);
 
 func exactu1 = -cos(x)*sin(y)*cos(z)*exp(-2*t);
 func exactu2 = sin(x)*cos(y)*cos(z)*exp(-2*t);
 func exactu3 = 0.;
-func dx1 = sin(x)*sin(y)*cos(z)*exp(-2*t);
-func dy2 = sin(x)*(-sin(y))*cos(z)*exp(-2*t);
-func dz3 = 0.;
 func f1 = -cos(x)*sin(y)*cos(z)*exp(-2*t);
 func f2 = sin(x)*cos(y)*cos(z)*exp(-2*t);
 func f3 = (-exp(-4*t)/4)*sin(2*z)*(2*cos(2*z)+1);
@@ -33,9 +32,9 @@ for(int n=24; n>=8; n=n-4 )
   int Nt = T/dt;
   
   // Create the mesh
-  border Gamma1(t=0,2*pi)    { x = R*0.8*cos(t); y = R*0.8*sin(t); }
-  border Gamma2(t=0,2*pi)    { x = R*0.3*cos(t); y = R*0.3*sin(t); }
-  border Gamma3(t=0,2*pi)    { x = R*0.1*cos(t); y = R*0.1*sin(t); }
+  border Gamma1(t=0,2*pi)    { x = r1*cos(t); y = r1*sin(t); }
+  border Gamma2(t=0,2*pi)    { x = r2*cos(t); y = r2*sin(t); }
+  border Gamma3(t=0,2*pi)    { x = r3*cos(t); y = r3*sin(t); }
 
   mesh Th2 = buildmesh(Gamma1(n)+Gamma2(n)+Gamma3(n));   // construction of mesh
   mesh3 Th=buildlayers(Th2,n,
@@ -45,26 +44,27 @@ for(int n=24; n>=8; n=n-4 )
 
   fespace Uh(Th,[P1,P1,P1,P1]);
   fespace Vh(Th,P13d);
+  
   macro Grad(u) [dx(u),dy(u),dz(u)]// EOM
   macro div(u1,u2,u3) (dx(u1)+dy(u2)+dz(u3)) //EOM
   macro norm(Th,u,exactu) (int3d(Th)(square(u-exactu))) //EOM
-  macro normH(Th,u,exactu) (int3d(Th)( square( dx(u)-dx(exactu) ) + square( dy(u)-dy(exactu) ) + square( dz(u)-dz(exactu) ) ) ) //EOM
+  macro normH(Th,u,exactu) (int3d(Th)(square(dx(u)-dx(exactu))+square(dy(u)-dy(exactu))+square(dz(u)-dz(exactu)))) //EOM
 
   Uh [u1,u2,u3,p];
   Uh [v1,v2,v3,q];
   Vh u1old, u2old, u3old;
   Vh u1oldd, u2oldd, u3oldd;
-  Vh u1star,u2star,u3star, proju1e,proju2e,proju3e;
+  Vh u1star,u2star,u3star;
+  Vh proju1,proju2,proju3;
 
   problem navierstokesinit ([u1,u2,u3,p],[v1,v2,v3,q]) = 
     int3d(Th) (u1*v1/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u1old)*v1/dt)
   + int3d(Th) (u2*v2/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u2old)*v2/dt)
   + int3d(Th) (u3*v3/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u3old)*v3/dt)
-  + int3d(Th,qforder=3)( Grad(u1)'*Grad(v1) +  Grad(u2)'*Grad(v2) +  Grad(u3)'*Grad(v3) //)';
+  + int3d(Th,qforder=3)( nu*Grad(u1)'*Grad(v1) +  nu*Grad(u2)'*Grad(v2) +  nu*Grad(u3)'*Grad(v3) //)';
 		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p)
   - int3d(Th) ((f1*v1) + (f2*v2) + (f3*v3))
   - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))
-  //+ on(3,4,u1=exactu1,u2=exactu2,u3=exactu3)+ on(1,2,u1=0,u2=0,u3=0) ;
   + on(1,2,3,4,u1=exactu1,u2=exactu2,u3=exactu3);
 
   problem navierstokes ([u1,u2,u3,p],[v1,v2,v3,q]) = 
@@ -74,11 +74,10 @@ for(int n=24; n>=8; n=n-4 )
   + int3d(Th) (convect([u1star,u2star,u3star],(-2*dt),u2oldd)*v2/(2*dt))
   + int3d(Th) (3*u3*v3/(2*dt)) - int3d(Th) (convect([u1star,u2star,u3star],(-dt),u3old)*4*v3/(2*dt)) 
   + int3d(Th) (convect([u1star,u2star,u3star],(-2*dt),u3oldd)*v3/(2*dt))
-  + int3d(Th,qforder=3)( Grad(u1)'*Grad(v1) +  Grad(u2)'*Grad(v2) +  Grad(u3)'*Grad(v3) //)';
+  + int3d(Th,qforder=3)( nu*Grad(u1)'*Grad(v1) +  nu*Grad(u2)'*Grad(v2) +  nu*Grad(u3)'*Grad(v3) //)';
 		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p)
   - int3d(Th) ((f1*v1) + (f2*v2) + (f3*v3))
   - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))
-  //+ on(3,4,u1=exactu1,u2=exactu2,u3=exactu3) + on(1,2,u1=0,u2=0,u3=0) ;
    + on(1,2,3,4,u1=exactu1,u2=exactu2,u3=exactu3);
 
   u1old = -cos(x)*sin(y)*cos(z) ;
@@ -90,10 +89,9 @@ for(int n=24; n>=8; n=n-4 )
     t=it*dt;
     if (it==1) {navierstokesinit;}
     else {navierstokes;}
-    
+    proju1 = exactu1 ; proju2 = exactu2 ; proju3 = exactu3 ;
     error = sqrt( norm(Th,u1,exactu1) + norm(Th,u2,exactu2) + norm(Th,u3,exactu3));
-    proju1e=exactu1; proju2e=exactu2; proju3e=exactu3;
-    Herror = sqrt( square(error) + normH(Th,u1,proju1e) + normH(Th,u2,proju2e) + normH(Th,u3,proju3e));
+    Herror = sqrt( square(error) + normH(Th,u1,proju1) + normH(Th,u2,proju2) + normH(Th,u3,proju3));
     if (error > errormax) errormax = error ;
     if (Herror > Herrormax) Herrormax = Herror ;
     cout << "L2-error at " << t << "is " << error << "max = " << errormax << "\n" ;
