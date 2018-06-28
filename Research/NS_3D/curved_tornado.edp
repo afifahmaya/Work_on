@@ -22,10 +22,10 @@ func f1 = 0.;
 func f2 = 0.;
 func f3 = 0.;
 
-//ofstream ff("Err_curved.txt");
-ofstream ff("Err_curved0.txt");
-//ofstream umag("Max_mag_curved.txt");
-ofstream umag("Max_mag_curved0.txt");
+ofstream ff("Err_curved.txt");
+//ofstream ff("Err_curved0.txt");
+ofstream umag("Max_mag_curved.txt");
+//ofstream umag("Max_mag_curved0.txt");
 
 func real varphi(real a,real eps,real sigma){
   return pow(a^2+eps,sigma);
@@ -61,8 +61,8 @@ for(int n=20; n>=4; n=n-4 )
   mesh3 Th1 = buildlayers(Th2,n,
     zbound=[zmin,zmax], labelmid=rmid, reffaceup = rup, reffacelow = rdown);
   mesh3 Th = movemesh3(Th1,transfo=[Jx(R),Jy,Jz(R)],orientation=-1);
-  plot ( Th, ps = "curved_mesh.ps" );
-  if (n==8) savemesh(Th,"curved.mesh");
+  //plot ( Th, ps = "curved_mesh.ps" );
+  //if (n==8) savemesh(Th,"curved.mesh");
 
   fespace Uh(Th,[P1,P1,P1,P1]);
   fespace Vh(Th,P13d);
@@ -108,14 +108,14 @@ for(int n=20; n>=4; n=n-4 )
   Vh uz = varphi(r,1,-1)*varphi(z,1,-1);
   Vh rho = varphi(r,1,-1)*varphi(z,1,1);
   Vh ur = sign(z)*rho*uz;
-  //Vh utheta = varphi(r,1,-1)*varphi(z,1,-1);
-  Vh utheta = 0.;
+  Vh utheta = varphi(r,1,-1)*varphi(z,1,-1);
+  //Vh utheta = 0.;
   u1old = ur*cos(theta)-utheta*sin(theta);
   u2old = ur*sin(theta)-utheta*cos(theta);
   u3old = uz;
 
-  //savevtk("Curve_init.vtk",Th,[u1old,u2old,u3old],p,dataname="init");
-  savevtk("Curve0_init.vtk",Th,[u1old,u2old,u3old],p,dataname="init");
+  savevtk("Curve_init.vtk",Th,[u1old,u2old,u3old],p,dataname="init");
+  //savevtk("Curve0_init.vtk",Th,[u1old,u2old,u3old],p,dataname="init");
 
   for ( int it = 1; it <= Nt; it++ )
   {
@@ -136,8 +136,8 @@ for(int n=20; n>=4; n=n-4 )
 
     if(n==20){
       plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
-      //savevtk("Curve"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
-      savevtk("Curve0"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
+      savevtk("Curve"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
+      //savevtk("Curve0"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
 
       if (abs(u1)>abs(u2) && abs(u1)>abs(u3)) maxmag = abs(u1);
       else if (abs(u2)>abs(u1) && abs(u2)>abs(u3)) maxmag = abs(u2);
