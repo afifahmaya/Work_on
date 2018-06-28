@@ -10,8 +10,9 @@ real delta=1.0;
 real T=3.0;
 real maxmag;
 real t=0, dt;
-real c=0.125*sqrt(2);
-int Nt;
+real c=0.0625*sqrt(2);
+int Nt,Re;
+int n=24;
 
 ofstream umag("R_Max_mag_tornado.txt");
 //ofstream umag("R_Max_mag_tornadoo.txt");
@@ -30,11 +31,18 @@ int[int] rup=[0,1], rdown=[0,1], rmid=[1,2,2,3,3,4];
 real zmin=-1./8,zmax=1./2;
 
 //iteration for each mesh devider
-for(int n=160; n>=160; n=n-4 )
+for(int i=1;i<=4;i++)
 {
   dt = c*sqrt(1./n); //take dt=c*sqrt(h)
   Nt = T/dt;
+  if (i==1) Re=50000;
+  if (i==2) Re=10000;
+  if (i==3) Re=5000;
+  if (i==4) Re=1000;
   
+  nu=1./Re;
+  umag << "\"Re = " << Re << "\"\n" ; 
+
   // Create the mesh
   border Gamma1(t=0,2*pi)    { x = r1*cos(t); y = r1*sin(t); }
   border Gamma2(t=0,2*pi)    { x = r2*cos(t); y = r2*sin(t); }
@@ -43,7 +51,7 @@ for(int n=160; n>=160; n=n-4 )
   mesh Th2 = buildmesh(Gamma1(n)+Gamma2(n)+Gamma3(n));   // construction of mesh
   mesh3 Th=buildlayers(Th2,n,
     zbound=[zmin,zmax], labelmid=rmid, reffaceup = rup, reffacelow = rdown);
-  plot ( Th );
+  //plot ( Th );
 
   fespace Uh(Th,[P1,P1,P1,P1]);
   fespace Vh(Th,P13d);
@@ -52,7 +60,6 @@ for(int n=160; n>=160; n=n-4 )
   h = hTriangle;
   cout << "Th " << h[].max << " and dt = " << dt << "\n" ;
   
-  /*
   macro Grad(u) [dx(u),dy(u),dz(u)]// EOM
   macro div(u1,u2,u3) (dx(u1)+dy(u2)+dz(u3)) //EOM
 
@@ -69,7 +76,7 @@ for(int n=160; n>=160; n=n-4 )
   + int3d(Th,qforder=3)( nu*Grad(u1)'*Grad(v1) +  nu*Grad(u2)'*Grad(v2) +  nu*Grad(u3)'*Grad(v3) //)';
 		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p)
   - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))
-  + on(1,2,3,4,u1=exactu1,u2=exactu2,u3=exactu3) ;
+  + on(1,2,u1=0,u2=0,u3=0) ;
   
   problem navierstokes ([u1,u2,u3,p],[v1,v2,v3,q]) = 
     int3d(Th) (3*u1*v1/(2*dt)) - int3d(Th) (convect([u1star,u2star,u3star],(-dt),u1old)*4*v1/(2*dt)) 
@@ -81,7 +88,7 @@ for(int n=160; n>=160; n=n-4 )
   + int3d(Th,qforder=3)( nu*Grad(u1)'*Grad(v1) +  nu*Grad(u2)'*Grad(v2) +  nu*Grad(u3)'*Grad(v3) //)';
 		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p)
   - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))
-  + on(1,2,3,4,u1=exactu1,u2=exactu2,u3=exactu3) ;
+  + on(1,2,3,4,u1=0,u2=0,u3=0) ;
 
   //initial at t=0
   Vh r = sqrt(x^2+y^2);
@@ -110,8 +117,8 @@ for(int n=160; n>=160; n=n-4 )
 
     if(n==24){
       plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
-      savevtk("R_Tornado"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
-      //savevtk("R_Tornadoo"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
+      savevtk("R_Tornado_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
+      //savevtk("R_Tornadoo_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
 
       if (abs(u1)>abs(u2) && abs(u1)>abs(u3)) maxmag = abs(u1);
       else if (abs(u2)>abs(u1) && abs(u2)>abs(u3)) maxmag = abs(u2);
@@ -119,9 +126,9 @@ for(int n=160; n>=160; n=n-4 )
       umag << t << "\t" << maxmag << "\n" ;
       cout << u1 << "\t" << u2 << "\t" << u3 << "\t" << maxmag << "\n" ;
     }
+    umag << "\n";
   }
   cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
-  */
 }
 //  Terminate.
 //
