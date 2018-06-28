@@ -22,10 +22,10 @@ func f1 = 0.;
 func f2 = 0.;
 func f3 = 0.;
 
-ofstream ff("Err_curved.txt");
-//ofstream ff("Err_curved0.txt");
-ofstream umag("Max_mag_curved.txt");
-//ofstream umag("Max_mag_curved0.txt");
+//ofstream ff("Err_curved.txt");
+ofstream ff("Err_curved0.txt");
+//ofstream umag("Max_mag_curved.txt");
+ofstream umag("Max_mag_curved0.txt");
 
 func real varphi(real a,real eps,real sigma){
   return pow(a^2+eps,sigma);
@@ -41,7 +41,7 @@ int[int] rup=[0,1], rdown=[0,1], rmid=[1,2,2,3,3,4];
 real zmin=-1./8,zmax=1./2;
 
 //iteration for each mesh devider
-for(int n=24; n>=8; n=n-4 )
+for(int n=20; n>=4; n=n-4 )
 {
   dt = c*sqrt(1./n); //take dt=c*sqrt(h)
   Nt = T/dt;
@@ -70,13 +70,14 @@ for(int n=24; n>=8; n=n-4 )
   macro Grad(u) [dx(u),dy(u),dz(u)]// EOM
   macro div(u1,u2,u3) (dx(u1)+dy(u2)+dz(u3)) //EOM
   macro norm(Th,u,exactu) (int3d(Th)(square(u-exactu))) //EOM
-  macro normH(Th,u,exactu) (int3d(Th)(square(dx(u)-dx(exactu))+square(dy(u)-dy(exactu))+square(dz(u)-dz(exactu)))) //EOM
+  macro normH(Th,u,exactu) (int3d(Th) ( (dx(u)-dx(exactu))^2 + (dy(u)-dy(exactu))^2 + (dz(u)-dz(exactu))^2 ) ) //EOM
 
   Uh [u1,u2,u3,p];
   Uh [v1,v2,v3,q];
   Vh u1old, u2old, u3old;
   Vh u1oldd, u2oldd, u3oldd;
   Vh u1star,u2star,u3star;
+  Vh proju1,proju2,proju3;
 
   problem navierstokesinit ([u1,u2,u3,p],[v1,v2,v3,q]) = 
     int3d(Th) (u1*v1/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u1old)*v1/dt)
@@ -107,14 +108,14 @@ for(int n=24; n>=8; n=n-4 )
   Vh uz = varphi(r,1,-1)*varphi(z,1,-1);
   Vh rho = varphi(r,1,-1)*varphi(z,1,1);
   Vh ur = sign(z)*rho*uz;
-  Vh utheta = varphi(r,1,-1)*varphi(z,1,-1);
-  //Vh utheta = 0.;
+  //Vh utheta = varphi(r,1,-1)*varphi(z,1,-1);
+  Vh utheta = 0.;
   u1old = ur*cos(theta)-utheta*sin(theta);
   u2old = ur*sin(theta)-utheta*cos(theta);
   u3old = uz;
 
-  savevtk("Curve_init.vtk",Th,[u1old,u2old,u3old],p,dataname="init");
-  //savevtk("Curve0_init.vtk",Th,[u1old,u2old,u3old],p,dataname="init");
+  //savevtk("Curve_init.vtk",Th,[u1old,u2old,u3old],p,dataname="init");
+  savevtk("Curve0_init.vtk",Th,[u1old,u2old,u3old],p,dataname="init");
 
   for ( int it = 1; it <= Nt; it++ )
   {
@@ -123,7 +124,7 @@ for(int n=24; n>=8; n=n-4 )
     else {navierstokes;}
     proju1 = exactu1 ; proju2 = exactu2 ; proju3 = exactu3 ;
     error = sqrt( norm(Th,u1,exactu1) + norm(Th,u2,exactu2) + norm(Th,u3,exactu3));
-    Herror = sqrt( square(error) + normH(Th,u1,proju1) + normH(Th,u2,proju2) + normH(Th,u3,proju3));
+    Herror = sqrt( error^2 + normH(Th,u1,proju1) + normH(Th,u2,proju2) + normH(Th,u3,proju3) );
     if (error > errormax) errormax = error ;
     if (Herror > Herrormax) Herrormax = Herror ;
     cout << "L2-error at " << t << "is " << error << "max = " << errormax << "\n" ;
@@ -133,10 +134,10 @@ for(int n=24; n>=8; n=n-4 )
     u1old = u1; u2old=u2; u3old=u3;
     u1star = 2*u1old-u1oldd; u2star = 2*u2old-u2oldd; u3star = 2*u3old-u3oldd;
 
-    if(n==24){
+    if(n==20){
       plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
-      savevtk("Curve"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
-    //savevtk("Curve0"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
+      //savevtk("Curve"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
+      savevtk("Curve0"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
 
       if (abs(u1)>abs(u2) && abs(u1)>abs(u3)) maxmag = abs(u1);
       else if (abs(u2)>abs(u1) && abs(u2)>abs(u3)) maxmag = abs(u2);

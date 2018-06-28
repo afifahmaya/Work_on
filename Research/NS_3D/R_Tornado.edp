@@ -1,0 +1,130 @@
+load "iovtk"
+load "msh3"
+
+// Variable declaration
+real r1 = 1;
+real r2 = 0.4;
+real r3 = 0.1;
+real nu ;
+real delta=1.0;
+real T=3.0;
+real maxmag;
+real t=0, dt;
+real c=0.125*sqrt(2);
+int Nt;
+
+ofstream umag("R_Max_mag_tornado.txt");
+//ofstream umag("R_Max_mag_tornadoo.txt");
+
+func real varphi(real a,real eps,real sigma){
+  return pow(a^2+eps,sigma);
+}
+
+func real sign(real z){
+    if(z>0) return (-1);
+    if(z==0) return (0);
+    else return (1);
+}
+
+int[int] rup=[0,1], rdown=[0,1], rmid=[1,2,2,3,3,4];
+real zmin=-1./8,zmax=1./2;
+
+//iteration for each mesh devider
+for(int n=160; n>=160; n=n-4 )
+{
+  dt = c*sqrt(1./n); //take dt=c*sqrt(h)
+  Nt = T/dt;
+  
+  // Create the mesh
+  border Gamma1(t=0,2*pi)    { x = r1*cos(t); y = r1*sin(t); }
+  border Gamma2(t=0,2*pi)    { x = r2*cos(t); y = r2*sin(t); }
+  border Gamma3(t=0,2*pi)    { x = r3*cos(t); y = r3*sin(t); }
+
+  mesh Th2 = buildmesh(Gamma1(n)+Gamma2(n)+Gamma3(n));   // construction of mesh
+  mesh3 Th=buildlayers(Th2,n,
+    zbound=[zmin,zmax], labelmid=rmid, reffaceup = rup, reffacelow = rdown);
+  plot ( Th );
+
+  fespace Uh(Th,[P1,P1,P1,P1]);
+  fespace Vh(Th,P13d);
+
+  Vh h;
+  h = hTriangle;
+  cout << "Th " << h[].max << " and dt = " << dt << "\n" ;
+  
+  /*
+  macro Grad(u) [dx(u),dy(u),dz(u)]// EOM
+  macro div(u1,u2,u3) (dx(u1)+dy(u2)+dz(u3)) //EOM
+
+  Uh [u1,u2,u3,p];
+  Uh [v1,v2,v3,q];
+  Vh u1old, u2old, u3old;
+  Vh u1oldd, u2oldd, u3oldd;
+  Vh u1star,u2star,u3star;
+
+  problem navierstokesinit ([u1,u2,u3,p],[v1,v2,v3,q]) = 
+    int3d(Th) (u1*v1/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u1old)*v1/dt)
+  + int3d(Th) (u2*v2/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u2old)*v2/dt)
+  + int3d(Th) (u3*v3/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u3old)*v3/dt)
+  + int3d(Th,qforder=3)( nu*Grad(u1)'*Grad(v1) +  nu*Grad(u2)'*Grad(v2) +  nu*Grad(u3)'*Grad(v3) //)';
+		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p)
+  - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))
+  + on(1,2,3,4,u1=exactu1,u2=exactu2,u3=exactu3) ;
+  
+  problem navierstokes ([u1,u2,u3,p],[v1,v2,v3,q]) = 
+    int3d(Th) (3*u1*v1/(2*dt)) - int3d(Th) (convect([u1star,u2star,u3star],(-dt),u1old)*4*v1/(2*dt)) 
+  + int3d(Th) (convect([u1star,u2star,u3star],(-2*dt),u1oldd)*v1/(2*dt))
+  + int3d(Th) (3*u2*v2/(2*dt)) - int3d(Th) (convect([u1star,u2star,u3star],(-dt),u2old)*4*v2/(2*dt)) 
+  + int3d(Th) (convect([u1star,u2star,u3star],(-2*dt),u2oldd)*v2/(2*dt))
+  + int3d(Th) (3*u3*v3/(2*dt)) - int3d(Th) (convect([u1star,u2star,u3star],(-dt),u3old)*4*v3/(2*dt)) 
+  + int3d(Th) (convect([u1star,u2star,u3star],(-2*dt),u3oldd)*v3/(2*dt))
+  + int3d(Th,qforder=3)( nu*Grad(u1)'*Grad(v1) +  nu*Grad(u2)'*Grad(v2) +  nu*Grad(u3)'*Grad(v3) //)';
+		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p)
+  - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))
+  + on(1,2,3,4,u1=exactu1,u2=exactu2,u3=exactu3) ;
+
+  //initial at t=0
+  Vh r = sqrt(x^2+y^2);
+  Vh theta = atan2(x,y);
+  Vh uz = varphi(r,1,-1)*varphi(z,1,-1);
+  Vh rho = varphi(r,1,-1)*varphi(z,1,1);
+  Vh ur = sign(z)*rho*uz;
+  Vh utheta = varphi(r,1,-1)*varphi(z,1,-1);
+  //Vh utheta = 0.;
+  u1old = ur*cos(theta)-utheta*sin(theta);
+  u2old = ur*sin(theta)-utheta*cos(theta);
+  u3old = uz;
+
+  savevtk("R_Tornado_init.vtk",Th,[u1old,u2old,u3old],p,dataname="init");
+  //savevtk("R_Tornadoo_init.vtk",Th,[u1old,u2old,u3old],p,dataname="init");
+
+  for ( int it = 1; it <= Nt; it++ )
+  {
+    t=it*dt;
+    if (it==1) {navierstokesinit;}
+    else {navierstokes;}
+
+    u1oldd = u1old; u2oldd = u2old; u3oldd = u3old; 
+    u1old = u1; u2old=u2; u3old=u3;
+    u1star = 2*u1old-u1oldd; u2star = 2*u2old-u2oldd; u3star = 2*u3old-u3oldd;
+
+    if(n==24){
+      plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
+      savevtk("R_Tornado"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
+      //savevtk("R_Tornadoo"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
+
+      if (abs(u1)>abs(u2) && abs(u1)>abs(u3)) maxmag = abs(u1);
+      else if (abs(u2)>abs(u1) && abs(u2)>abs(u3)) maxmag = abs(u2);
+      else maxmag = abs(u3);
+      umag << t << "\t" << maxmag << "\n" ;
+      cout << u1 << "\t" << u2 << "\t" << u3 << "\t" << maxmag << "\n" ;
+    }
+  }
+  cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
+  */
+}
+//  Terminate.
+//
+cout << "\n";
+cout << "NAVIERSTOKES:\n";
+cout << "Normal end of execution.\n";

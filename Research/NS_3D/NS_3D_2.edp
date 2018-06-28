@@ -35,12 +35,11 @@ for(int n=20; n>=4; n=n-4 )
 
   fespace Uh(Th,[P1,P1,P1,P1]);
   fespace Vh(Th,P13d);
-  fespace Hh(Th,P0);
   
   macro Grad(u) [dx(u),dy(u),dz(u)]// EOM
   macro div(u1,u2,u3) (dx(u1)+dy(u2)+dz(u3)) //EOM
-  macro norm(Th,u,exactu) (int3d(Th)(square(u-exactu))) //EOM
-  macro normH(Th,u,exactu) (int3d(Th)(square(dx(u)-dx(exactu))+square(dy(u)-dy(exactu))+square(dz(u)-dz(exactu)))) //EOM
+  macro norm(Th,u,exactu) (int3d(Th) ((u-exactu)^2) ) //EOM
+  macro normH(Th,u,exactu) (int3d(Th) ( (dx(u)-dx(exactu))^2 + (dy(u)-dy(exactu))^2 + (dz(u)-dz(exactu))^2 ) ) //EOM
 
   Uh [u1,u2,u3,p];
   Uh [v1,v2,v3,q];
@@ -84,7 +83,7 @@ for(int n=20; n>=4; n=n-4 )
       navierstokes;
       proju1 = exactu1 ; proju2 = exactu2 ; proju3 = exactu3 ;
       error = sqrt( norm(Th,u1,exactu1) + norm(Th,u2,exactu2) + norm(Th,u3,exactu3));
-      Herror = sqrt( square(error) + normH(Th,u1,proju1) + normH(Th,u2,proju2) + normH(Th,u3,proju3));
+      Herror = sqrt( error^2 + normH(Th,u1,proju1) + normH(Th,u2,proju2) + normH(Th,u3,proju3) );
       if (error > errormax) errormax = error ;
       if (Herror > Herrormax) Herrormax = Herror ;
       cout << "L2-error at " << t << "is " << error << "max = " << errormax << "\n" ;

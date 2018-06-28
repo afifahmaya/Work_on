@@ -26,7 +26,7 @@ ofstream ff("Cyl_error_3D.txt");
 ofstream umag("Max_magnitude.txt");
 
 //iteration for each mesh devider
-for(int n=24; n>=8; n=n-4 )
+for(int n=20; n>=4; n=n-4 )
 {
   real dt = c*sqrt(1./n); //take dt=c*sqrt(h)
   int Nt = T/dt;
@@ -48,7 +48,7 @@ for(int n=24; n>=8; n=n-4 )
   macro Grad(u) [dx(u),dy(u),dz(u)]// EOM
   macro div(u1,u2,u3) (dx(u1)+dy(u2)+dz(u3)) //EOM
   macro norm(Th,u,exactu) (int3d(Th)(square(u-exactu))) //EOM
-  macro normH(Th,u,exactu) (int3d(Th)(square(dx(u)-dx(exactu))+square(dy(u)-dy(exactu))+square(dz(u)-dz(exactu)))) //EOM
+  macro normH(Th,u,exactu) (int3d(Th) ( (dx(u)-dx(exactu))^2 + (dy(u)-dy(exactu))^2 + (dz(u)-dz(exactu))^2 ) ) //EOM
 
   Uh [u1,u2,u3,p];
   Uh [v1,v2,v3,q];
@@ -91,7 +91,7 @@ for(int n=24; n>=8; n=n-4 )
     else {navierstokes;}
     proju1 = exactu1 ; proju2 = exactu2 ; proju3 = exactu3 ;
     error = sqrt( norm(Th,u1,exactu1) + norm(Th,u2,exactu2) + norm(Th,u3,exactu3));
-    Herror = sqrt( square(error) + normH(Th,u1,proju1) + normH(Th,u2,proju2) + normH(Th,u3,proju3));
+    Herror = sqrt( error^2 + normH(Th,u1,proju1) + normH(Th,u2,proju2) + normH(Th,u3,proju3) );
     if (error > errormax) errormax = error ;
     if (Herror > Herrormax) Herrormax = Herror ;
     cout << "L2-error at " << t << "is " << error << "max = " << errormax << "\n" ;
@@ -101,7 +101,7 @@ for(int n=24; n>=8; n=n-4 )
     u1old = u1; u2old=u2; u3old=u3;
     u1star = 2*u1old-u1oldd; u2star = 2*u2old-u2oldd; u3star = 2*u3old-u3oldd;
     
-    if(n==24){
+    if(n==20){
       plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
       savevtk("Cyl_NS_3D_plot"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
       plot (p, nbiso=60, fill =0, value =1, wait =0 );
