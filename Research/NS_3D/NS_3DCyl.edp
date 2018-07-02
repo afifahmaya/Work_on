@@ -19,7 +19,7 @@ func f1 = -cos(x)*sin(y)*cos(z)*exp(-2*t);
 func f2 = sin(x)*cos(y)*cos(z)*exp(-2*t);
 func f3 = (-exp(-4*t)/4)*sin(2*z)*(2*cos(2*z)+1);
 
-int[int] rup=[0,1], rdown=[0,1], rmid=[1,2,2,3,3,4];
+int[int] rup=[0,1,1,1,2,1], rdown=[0,1,1,1,2,1], rmid=[1,4,2,3,3,3];
 real zmin=-1./8,zmax=1./2;
 
 ofstream ff("Cyl_error_3D.txt");
@@ -39,8 +39,8 @@ for(int n=20; n>=4; n=n-4 )
   mesh Th2 = buildmesh(Gamma1(n)+Gamma2(n)+Gamma3(n));   // construction of mesh
   mesh3 Th=buildlayers(Th2,n,
     zbound=[zmin,zmax], labelmid=rmid, reffaceup = rup, reffacelow = rdown);
-  plot ( Th, ps = "Cyl_NS_3D_mesh.ps" );
-  if (n==8) savemesh(Th,"Cyl.mesh");
+  //plot ( Th, ps = "Cyl_NS_3D_mesh.ps" );
+  //if (n==8) savemesh(Th,"Cyl.mesh");
 
   fespace Uh(Th,[P1,P1,P1,P1]);
   fespace Vh(Th,P13d);
@@ -89,6 +89,7 @@ for(int n=20; n>=4; n=n-4 )
     t=it*dt;
     if (it==1) {navierstokesinit;}
     else {navierstokes;}
+
     proju1 = exactu1 ; proju2 = exactu2 ; proju3 = exactu3 ;
     error = sqrt( norm(Th,u1,exactu1) + norm(Th,u2,exactu2) + norm(Th,u3,exactu3));
     Herror = sqrt( error^2 + normH(Th,u1,proju1) + normH(Th,u2,proju2) + normH(Th,u3,proju3) );
@@ -104,7 +105,7 @@ for(int n=20; n>=4; n=n-4 )
     if(n==20){
       plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
       savevtk("Cyl_NS_3D_plot"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
-      plot (p, nbiso=60, fill =0, value =1, wait =0 );
+      //plot (p, nbiso=60, fill =0, value =1, wait =0 );
 
       if (abs(u1)>abs(u2) && abs(u1)>abs(u3)) maxmag = abs(u1);
       else if (abs(u2)>abs(u1) && abs(u2)>abs(u3)) maxmag = abs(u2);
@@ -114,6 +115,7 @@ for(int n=20; n>=4; n=n-4 )
     }
   }
   ff << dt << "\t" << errormax << "\t" << Herrormax << "\n" ;
+  
   cout << ">>>>>MESH>>>>> " << n << " executed \n" ;
   errormax = 0;
   Herrormax = 0;
