@@ -37,7 +37,7 @@ func real sign(real z){
     else return (1);
 }
 
-int[int] rup=[0,1], rdown=[0,1], rmid=[1,2,2,3,3,4];
+int[int] rup=[0,1,1,1,2,1], rdown=[0,1,1,1,2,1], rmid=[1,4,2,3,3,3];
 real zmin=-1./8,zmax=1./2;
 
 //iteration for each mesh devider

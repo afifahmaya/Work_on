@@ -1,0 +1,27 @@
+load "iovtk"
+load "msh3"
+
+// Variable declaration
+real r1 = 1;
+real r2 = 0.4;
+real r3 = 0.1;
+int n=10;
+
+int[int] rup=[0,1,1,1,2,1], rdown=[0,1,1,1,2,1], rmid=[1,4,2,3,3,3];
+real zmin=-1./8,zmax=1./2;
+
+// Create the mesh
+border Gamma1(t=0,2*pi)    { x = r1*cos(t); y = r1*sin(t); }
+border Gamma2(t=0,2*pi)    { x = r2*cos(t); y = r2*sin(t); }
+border Gamma3(t=0,2*pi)    { x = r3*cos(t); y = r3*sin(t); }
+
+mesh Th2 = buildmesh(Gamma1(n)+Gamma2(n)+Gamma3(n));   // construction of mesh
+//mesh Th2 = square(n,n);
+mesh3 Th=buildlayers(Th2,n,
+zbound=[zmin,zmax], labelmid=rmid, reffaceup = rup, reffacelow = rdown);
+savevtk("Label_cyl.vtk",Th);
+//  Terminate.
+//
+cout << "\n";
+cout << "NAVIERSTOKES:\n";
+cout << "Normal end of execution.\n";
