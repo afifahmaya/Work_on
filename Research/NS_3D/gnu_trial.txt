@@ -1,0 +1,23 @@
+reset
+
+#to save file :
+set term png
+
+#figure properties :
+set title 'Convergence of exact solution problem 1'
+set yrange [-1:1]
+set xrange [-1:1]
+set zrange [-0.01:0.01]
+set xlabel 'u1'
+set ylabel 'u2'
+set zlabel 'u3'
+#set key off
+set view 15,30
+
+do for [Nt=1:100] {
+filename = sprintf ('convergence%03i.png',Nt)
+set output filename
+set title 'Convergence of exact solution problem 1'
+splot 'trial.txt' i Nt u 1:2:3 w l
+}
+

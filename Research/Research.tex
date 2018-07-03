@@ -14,6 +14,22 @@
 
 \begin{document}
 
+\lstset{
+	language=C,                % choose the language of the code
+	numbers=left,                   % where to put the line-numbers
+	stepnumber=1,                   % the step between two line-numbers.        
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+	showspaces=false,               % show spaces adding particular underscores
+	showstringspaces=false,         % underline spaces within strings
+	showtabs=false,                 % show tabs within strings adding particular underscores
+	tabsize=2,                      % sets default tabsize to 2 spaces
+	captionpos=b,                   % sets the caption-position to bottom
+	breaklines=true,                % sets automatic line breaking
+	breakatwhitespace=true,         % sets if automatic breaks should only happen at whitespace
+	title=\lstname,                 % show the filename of files included with \lstinputlisting;
+}
+
 \maketitle
 
 \begin{abstract}
@@ -118,7 +134,9 @@ is expected. The result from the computation is shown in Figure (\ref{fig:errorn
 From the plot, we can see that Adam-Bashforth method gives second order error. Other words, this method will provide better solution with smaller error increment. 
 
 \subsubsection{Cylindrical domain}
-Using cylinder with ratio 1, 0.4, and 0.1 domain, we look for $ L^{2} $ and $ H^{1} $ norm for second order in time. Such that $ L^{2} = O(h) $ and $ H^{1} = O(h) $ is expected for $ dt = \dfrac{\sqrt{h}}{16}. $
+Choosing $ a=1/8 $, $ \epsilon_{i}=1 $, $ \beta_{i}=1 $ for $ (i=1, \dots,6) $.
+\[ \Omega = \{ x=(x,y,z) \in \R^3 ; -a\leq z \leq 4a, \sqrt{x^2+y^2} < 1 \} \]
+and $ u=0 $ on the boundary, cylindrical domain with with ratio 1, 0.4, and 0.1 is build. We look for $ L^{2} $ and $ H^{1} $ norm for second order in time such that $ L^{2} = O(h) $ and $ H^{1} = O(h) $ is expected for $ dt = \dfrac{\sqrt{h}}{16}. $
 
 \begin{figure}[h!]
 	\centering
@@ -142,7 +160,7 @@ u_{0} &=& 0 \text{ \hspace{5cm}(no swirl) }\\ \nonumber
 u_{r} &=& sign(z)\rho u_{z}
 \end{eqnarray}
 \subsubsection{Cylindrical domain}
-The error shown in the Figure (\ref{fig:errortornado}) is still not correct. I expect it happened because the artificial solution is not fit with the condition for given initial condition.
+The error shown in the Figure (\ref{fig:errortornado}) is \textbf{still not correc}t. I expect it happened because the artificial solution is not fit with the condition for given initial condition.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\linewidth]{NS_3D/error_tornado}
@@ -157,7 +175,8 @@ The error shown in the Figure (\ref{fig:errortornado}) is still not correct. I e
 \end{figure}
 
 \subsubsection{Curved cylindrical domain}
-As the simulation in cylindrical domain, the error shown in the Figure (\ref{fig:errorcurved}) is still not correct. I expect it happened because the artificial solution is not fit with the condition for given initial condition.
+The curved domain is buid by the 
+As the simulation in cylindrical domain, the error shown in the Figure (\ref{fig:errorcurved}) is \textbf{still not correct}. I expect it happened because the artificial solution is not fit with the condition for given initial condition.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\linewidth]{NS_3D/error_curved}
@@ -171,24 +190,44 @@ As the simulation in cylindrical domain, the error shown in the Figure (\ref{fig
 	\label{fig:curved}
 \end{figure}
 
+Even through the simulation of artificial exact solution is done. There are still some doubts on the solution or the boundary conditioning. But in the movie, we could see the swirl is happening
+
 \newpage
 \section{Simulation of Tornadoes}
 
 \subsection{Cylindrical domain}
 \subsubsection{With swirl}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{../../july/Tornado_withswirl}
+	\caption{}
+	\label{fig:tornadowithswirl}
+\end{figure}
 \subsubsection{Without swirl}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{../../july/Tornado_noswirl}
+	\caption{}
+	\label{fig:tornadonoswirl}
+\end{figure}
+
 
 \subsection{Curved cylindrical domain}
 \subsubsection{With swirl}
-\subsubsection{Without swirl}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{../../july/Curved_withswirl}
+	\caption{}
+	\label{fig:curvedwithswirl}
+\end{figure}
 
-\subsection{FreeFEM++ code}
-\begin{enumerate}
-	\item First order of 3D NS in cubic domain
-	\item Second order of 3D NS in cubic domain
-	\item Second order of 3D NS in cylindrical domain
-	\item Second order of 3D NS with initial in cylindrical domain
-	\item Secong order of 3D NS with initial in curved cylindrical domain
-\end{enumerate}
+\subsubsection{Without swirl}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{../../july/Curved_noswirl}
+	\caption{}
+	\label{fig:curvednoswirl}
+\end{figure}
+
 
 \end{document}

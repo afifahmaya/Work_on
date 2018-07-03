@@ -339,4 +339,24 @@ so $ f_{n} $ is Cauchy. Suppose $ f_{n} $ has limit $ f \in C([0,1]) $. Then
 \[ \int_{1/2}^{1} |f(x)-f_{n}(x)| \ dx \leq \|f-f_{n}\| \rightarrow 0 \]
 so $ f(x) =1 $ on $ [1/2,1] $. Similarly we see $ f(x) = 0 $ on $ [0,1/2] $ which is contradiction.
 
+
+\newpage
+\textbf{REPORT 4 \\ Afifah Maya Iknaningrum (1715011053)}\\ \\
+
+\begin{enumerate}
+	\item Let $ (X,d) $ be a complete metrix space and let $ f :X \rightarrow X $ be a map. Suppose that the iterated map
+	\[ f^{k} = f \circ\dots\circ f \ \ \text{ (k times)} \]
+	is a contraction for some $ k\geq2 $. ($ f $ is not necessarily a contraction.) Prove that $ f $ has a  unique fixed point $ x\in X $.\\ \\
+	\textbf{Answer :}\\
+	Let $ x $ be a fixed point of $ f^{k} $ such that
+	\[ f^{k}(x) = x \ \text{ and } f^{k+1}(x) =  f(x) \]
+	so $ f^{k}(f(x)) =f(x) $.
+	Hence $ f(x) $ is also a fixed point. By uniqueness, $ f(x)=x $.
+	\item Complete the proof of Picard-Lindelof Theorem by showing that $ A : M\rightarrow M $ is a contraction if $ h $ is small.\\ \\
+	\textbf{Answer :}\\
+	By induction, we can show that $ | A(x_{n})-A(x_{n-1}) | \leq \dfrac{CA^{n-1}}{n!} |t-t_{0}|^{n} $. Because
+	\[ A(x_{n}) - A(x_{n-1}) = \int (f(t,x_{n-1})-f(t,x_{n-2}) \]
+	Next, we can see that $ A(x_{n}) $ is convergent uniformly for $ t_{0}-h \leq t \leq t_{0}+h $. Putting very small $ h $, we can see that $ A(x)=x $
+\end{enumerate}
+
 \end{document}

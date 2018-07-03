@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  11 JUN 2018 10:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  2 JUL 2018 09:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -383,7 +383,40 @@ Underfull \hbox (badness 10000) in paragraph at lines 456--457
 
  []
 
-[8] [9] (./Topics_of_Mathematical_Science.aux) ) 
+[8] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 520--521
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 520--521
+
+ []
+
+Missing character: There is no â in font cmr7!
+Missing character: There is no ˆ in font cmr7!
+Missing character: There is no ’ in font cmr7!
+
+Underfull \hbox (badness 10000) in paragraph at lines 552--556
+
+ []
+
+Missing character: There is no â in font cmr10!
+Missing character: There is no ˆ in font cmr10!
+Missing character: There is no ’ in font cmr10!
+Missing character: There is no â in font cmr10!
+Missing character: There is no ˆ in font cmr10!
+Missing character: There is no ’ in font cmr10!
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ² in font cmr10!
+Missing character: There is no â in font cmr10!
+Missing character: There is no ˆ in font cmr10!
+Missing character: There is no ’ in font cmr10!
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ² in font cmr10!
+[10] (./Topics_of_Mathematical_Science.aux) ) 
 Here is how much of TeX's memory you used:
  3025 strings out of 492995
  40675 string characters out of 6134533
@@ -392,25 +425,25 @@ Here is how much of TeX's memory you used:
  8879 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,13n,31p,497b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
-</opt/local/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/local/share/texmf-texlive/font
-s/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/share/texmf-texlive/fonts/typ
-e1/public/amsfonts/cm/cmbxti10.pfb></opt/local/share/texmf-texlive/fonts/type1/
-public/amsfonts/cm/cmex10.pfb></opt/local/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmmi10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmmi5.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/
-cm/cmmi7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr
-10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb>
-</opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/l
-ocal/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/
-share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/local/share/
-texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></opt/local/share/texmf
--texlive/fonts/type1/public/amsfonts/symbols/msam10.pfb></opt/local/share/texmf
--texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Topics_of_Mathematical_Science.pdf (9 pages, 211046 bytes).
+</opt/local/share/texmf-texlive/fo
+nts/type1/public/amsfonts/cm/cmbx10.pfb></opt/local/share/texmf-texlive/fonts/t
+ype1/public/amsfonts/cm/cmbx12.pfb></opt/local/share/texmf-texlive/fonts/type1/
+public/amsfonts/cm/cmbxti10.pfb></opt/local/share/texmf-texlive/fonts/type1/pub
+lic/amsfonts/cm/cmex10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/a
+msfonts/cm/cmmi10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfon
+ts/cm/cmmi5.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
+cmmi7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.
+pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb></o
+pt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/loca
+l/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/local/share/tex
+mf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></opt/local/share/texmf-te
+xlive/fonts/type1/public/amsfonts/symbols/msam10.pfb></opt/local/share/texmf-te
+xlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Topics_of_Mathematical_Science.pdf (10 pages, 217098 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 97 PDF objects out of 1000 (max. 8388607)
+ 69 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

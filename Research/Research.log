@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  29 JUN 2018 05:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  29 JUN 2018 18:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -244,23 +244,30 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \c@lstlisting=\count114
-LaTeX Font Info:    Try loading font information for U+msa on input line 17.
+
+(/opt/local/share/texmf-texlive/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(/opt/local/share/texmf-texlive/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 33.
 
 (/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 17.
+LaTeX Font Info:    Try loading font information for U+msb on input line 33.
 
 (/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (16.24951pt too wide) in paragraph at lines 27--28
+Overfull \hbox (16.24951pt too wide) in paragraph at lines 43--44
 []\OT1/cmr/m/n/10 In this re-search, us-ing Fi-nite El-e-ment Method (FEM) and 
 soft-ware FreeFEM++,
  []
 
 
-Overfull \hbox (8.3304pt too wide) in paragraph at lines 43--44
+Overfull \hbox (8.3304pt too wide) in paragraph at lines 59--60
 \OT1/cmr/m/n/10 The weak for-mu-la-tion for equa-tion (1[]) is shown be-low. We
  want to find $\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 u; p\OT1/cmr
 /m/n/10 )(\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2
@@ -272,7 +279,7 @@ Overfull \hbox (8.3304pt too wide) in paragraph at lines 43--44
 <NS_3D/error_NS_3D.png, id=28, 481.8pt x 361.35pt>
 File: NS_3D/error_NS_3D.png Graphic file (type png)
  <use NS_3D/error_NS_3D.png>
-Package pdftex.def Info: NS_3D/error_NS_3D.png used on input line 113.
+Package pdftex.def Info: NS_3D/error_NS_3D.png used on input line 129.
 (pdftex.def)             Requested size: 345.0pt x 258.75476pt.
 
 
@@ -281,7 +288,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <NS_3D/error_cyl.png, id=29, 481.8pt x 361.35pt>
 File: NS_3D/error_cyl.png Graphic file (type png)
  <use NS_3D/error_cyl.png>
-Package pdftex.def Info: NS_3D/error_cyl.png used on input line 125.
+Package pdftex.def Info: NS_3D/error_cyl.png used on input line 143.
 (pdftex.def)             Requested size: 345.0pt x 258.75476pt.
 
 
@@ -300,14 +307,14 @@ Overfull \vbox (3.3984pt too high) has occurred while \output is active []
 File: NS_3D/error_tornado.png Graphic file (type png)
 
 <use NS_3D/error_tornado.png>
-Package pdftex.def Info: NS_3D/error_tornado.png used on input line 148.
+Package pdftex.def Info: NS_3D/error_tornado.png used on input line 166.
 (pdftex.def)             Requested size: 345.0pt x 258.75476pt.
 
 <NS_3D/magnitude_tornado.png, id=39, 481.8pt x 361.35pt>
 File: NS_3D/magnitude_tornado.png Graphic file (type png)
 
 <use NS_3D/magnitude_tornado.png>
-Package pdftex.def Info: NS_3D/magnitude_tornado.png used on input line 154.
+Package pdftex.def Info: NS_3D/magnitude_tornado.png used on input line 172.
 (pdftex.def)             Requested size: 345.0pt x 258.75476pt.
 
 
@@ -317,13 +324,13 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: NS_3D/error_curved.png Graphic file (type png)
 
 <use NS_3D/error_curved.png>
-Package pdftex.def Info: NS_3D/error_curved.png used on input line 163.
+Package pdftex.def Info: NS_3D/error_curved.png used on input line 182.
 (pdftex.def)             Requested size: 345.0pt x 258.75476pt.
  <NS_3D/curved.png, id=41, 481.8pt x 361.35pt>
 File: NS_3D/curved.png Graphic file (type png)
 
 <use NS_3D/curved.png>
-Package pdftex.def Info: NS_3D/curved.png used on input line 169.
+Package pdftex.def Info: NS_3D/curved.png used on input line 188.
 (pdftex.def)             Requested size: 345.0pt x 258.75476pt.
 
 
@@ -341,35 +348,66 @@ Overfull \vbox (3.3984pt too high) has occurred while \output is active []
 
 
 [7 <./NS_3D/magnitude_tornado.png> <./NS_3D/error_curved.png>] [8 <./NS_3D/curv
-ed.png>] (./Research.aux) ) 
+ed.png>] <../../july/Tornado_withswirl.png, id=56, 481.8pt x 361.35pt>
+File: ../../july/Tornado_withswirl.png Graphic file (type png)
+
+<use ../../july/Tornado_withswirl.png>
+Package pdftex.def Info: ../../july/Tornado_withswirl.png used on input line 20
+2.
+(pdftex.def)             Requested size: 276.00105pt x 207.00822pt.
+
+<../../july/Tornado_noswirl.png, id=57, 481.8pt x 361.35pt>
+File: ../../july/Tornado_noswirl.png Graphic file (type png)
+
+<use ../../july/Tornado_noswirl.png>
+Package pdftex.def Info: ../../july/Tornado_noswirl.png used on input line 209.
+
+(pdftex.def)             Requested size: 276.00105pt x 207.00822pt.
+
+<../../july/Curved_withswirl.png, id=58, 481.8pt x 361.35pt>
+File: ../../july/Curved_withswirl.png Graphic file (type png)
+
+<use ../../july/Curved_withswirl.png>
+Package pdftex.def Info: ../../july/Curved_withswirl.png used on input line 219
+.
+(pdftex.def)             Requested size: 276.00105pt x 207.00822pt.
+ [9 <../../july/Tornado_withswirl.png> <../../july/Tornado_noswirl.png>]
+<../../july/Curved_noswirl.png, id=64, 481.8pt x 361.35pt>
+File: ../../july/Curved_noswirl.png Graphic file (type png)
+
+<use ../../july/Curved_noswirl.png>
+Package pdftex.def Info: ../../july/Curved_noswirl.png used on input line 227.
+(pdftex.def)             Requested size: 276.00105pt x 207.00822pt.
+ [10 <../../july/Curved_withswirl.png> <../../july/Curved_noswirl.png>] (./Rese
+arch.aux) ) 
 Here is how much of TeX's memory you used:
- 3525 strings out of 492995
- 49416 string characters out of 6134533
- 119795 words of memory out of 5000000
- 7023 multiletter control sequences out of 15000+600000
+ 3609 strings out of 492995
+ 51242 string characters out of 6134533
+ 141758 words of memory out of 5000000
+ 7096 multiletter control sequences out of 15000+600000
  12110 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,11n,32p,456b,238s stack positions out of 5000i,500n,10000p,200000b,80000s
-</opt/local/share/texmf-texlive/fonts/type1/public/a
-msfonts/cm/cmbx10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfon
-ts/cm/cmbx12.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm
-/cmbx9.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex1
-0.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></opt
-/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/local
-/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/share
-/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/share/texmf
--texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb></opt/local/share/texmf-texliv
-e/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/local/share/texmf-texlive/fonts
-/type1/public/amsfonts/cm/cmr9.pfb></opt/local/share/texmf-texlive/fonts/type1/
-public/amsfonts/cm/cmsy10.pfb></opt/local/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmsy5.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsf
-onts/cm/cmsy7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/s
-ymbols/msbm10.pfb>
-Output written on Research.pdf (8 pages, 226689 bytes).
+ 39i,11n,49p,456b,238s stack positions out of 5000i,500n,10000p,200000b,80000s
+</opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx1
+0.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx9.pfb></opt
+/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/loca
+l/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/local/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></opt/local/share/tex
+mf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/local/share/texmf-tex
+live/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/share/texmf-texlive/f
+onts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/share/texmf-texlive/fonts/t
+ype1/public/amsfonts/cm/cmr5.pfb></opt/local/share/texmf-texlive/fonts/type1/pu
+blic/amsfonts/cm/cmr7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/am
+sfonts/cm/cmr9.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
+sy5.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pf
+b></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pf
+b>
+Output written on Research.pdf (10 pages, 253095 bytes).
 PDF statistics:
- 107 PDF objects out of 1000 (max. 8388607)
- 68 compressed objects within 1 object stream
+ 121 PDF objects out of 1000 (max. 8388607)
+ 72 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
