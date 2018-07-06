@@ -107,10 +107,12 @@
 
 \begin{frame}{Error estimate}
 \begin{block}{$ L^{2} $}
-	\[\| u_{h}^{n}-u^{n} \|_{L^\infty(L^2)} =  max \ \| u_{h}^{n}-u^{n} \|_{L^{2}}\]
+	\[\| u_{h}^{n}-u^{n} \|_{\ell^\infty(L^2)} =  max \ \| u_{h}^{n}-u^{n} \|_{L^{2}}\]
+	with $ O(h^2) $.
 \end{block}
 \begin{block}{$ H^{1} $}
-	\[\| u_{h}^{n}-u^{n} \|_{L^\infty(H^{1})} = max \sqrt{\| u_{h_{1}}^{n}-u_{1}^{n} \|_{L^2(\Omega)}^{2} + \| \nabla (u_{h_{1}}^{n}-u_{1}^{n}) \|_{L^2(\Omega)}^{2}}\]
+	\[\| u_{h}^{n}-u^{n} \|_{\ell^\infty(H^{1})} = max \sqrt{\| u_{h}^{n}-u^{n} \|_{L^2(}^{2} + \| \nabla (u_{h}^{n}-u^{n}) \|_{L^2}^{2}}\]
+	with $ O(h) $.
 \end{block}
 \end{frame}
 
@@ -128,11 +130,11 @@
 \end{frame}
 
 \begin{frame}
-\begin{block}{Error Estimate $ L_{2} $}
+\begin{block}{Error Estimate $ H^{1} $}
 	With $ c=\dfrac{\sqrt{2}}{4} $, we choose $ dt = c\sqrt{h} = \dfrac{c}{\sqrt{n}} $ such that
 	\[ O(dt^2) + O(h) = O(h) + O(h) = O(h) \]
 \end{block}
-\begin{block}{Error Estimate $ H_{1} $}
+\begin{block}{Error Estimate $ L^{2} $}
 	With $ c=\dfrac{\sqrt{2}}{4} $, we choose $ dt = c\sqrt{h} = \dfrac{c}{\sqrt{n}} $ such that
 	\[ O(dt^2) + O(h^2) = O(h) + O(h^2) = O(h) \]
 \end{block}
@@ -166,17 +168,42 @@ Using the first order in time for the first iteration, and then second order in 
 \end{figure}
 \end{frame}
 
+\begin{frame}{Other trial on exact}
+\begin{block}{Exact solution}
+	with $ c = 8\sqrt{3}/27\pi $
+	\begin{eqnarray}\nonumber
+	u1 &=& c\sin(\pi x)\sin^2(\pi y)\sin^2(\pi z)\sin(\pi(y+z+t)) \\ \nonumber
+	u2 &=& c\sin^2(\pi x)\sin(\pi y)\sin^2(\pi z)\sin(\pi(x+z+t)) \\ \nonumber
+	u1 &=& c\sin^2(\pi x)\sin^2(\pi y)\sin(\pi z)\sin(\pi(x+y+t))\\ \nonumber
+	p &=& \sin(\pi(x+y+z+t))
+	\end{eqnarray}
+\end{block}
+\end{frame}
+
+\begin{frame}
+Such that, for the cylindrical domain, we obtain the error
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{NS_3D/error_cyl_2}
+	\caption{}
+	\label{fig:errorcyl2}
+\end{figure}
+
+\end{frame}
+
 \begin{frame}{Tornado simulation on cylindrical domain}
 	\begin{block}{Domain and initial condition}
 		Taking $ a=1/8, \epsilon_{i} =1, \beta_{i}=1 \ (i=1,\dots,6) $, with domain $ \Omega = \{ x=(x,y,z) \in \R^3 ; -a\leq z\leq 4a, \ \sqrt{x^2+y^2}<1 \} $ and $ u=0 $ on boundary.
-		\begin{eqnarray}\nonumber
-		\psi(a,\epsilon,\sigma) &=& (a^{2}+\epsilon)^{\sigma}\\ \nonumber
-		u_{z} &=& \psi(r,\epsilon_{1},-\beta_{1})\psi(z,\epsilon_{2},-\beta_{2})\\ \nonumber
-		\rho &=& \psi(r,\epsilon_{3},-\beta_{3})\psi(z,\epsilon_{4},\beta_{4})\\ \nonumber
-		u_{0} &=& \psi(r,\epsilon_{5},-\beta_{5})\psi(z,\epsilon_{6},-\beta_{6}) \text{\hspace{1cm} (with swirl)}\\ \nonumber
-		u_{0} &=& 0 \text{ \hspace{5cm}(no swirl) }\\ \nonumber
-		u_{r} &=& sign(z)\rho u_{z}
-		\end{eqnarray}
+		\begin{equation}\label{initial}
+		\begin{cases}
+		\psi(a,\epsilon,\sigma) &= (a^{2}+\epsilon)^{\sigma}\\
+		u_{z} &= \psi(r,\epsilon_{1},-\beta_{1})\psi(z,\epsilon_{2},-\beta_{2})\\ 
+		\rho &= \psi(r,\epsilon_{3},-\beta_{3})\psi(z,\epsilon_{4},\beta_{4})\\ 
+		u_{0} &= \psi(r,\epsilon_{5},-\beta_{5})\psi(z,\epsilon_{6},-\beta_{6}) \text{\hspace{0.5cm} (with swirl)}\\
+		u_{0} &= 0 \text{ \hspace{4cm}(no swirl) }\\
+		u_{r} &= sign(z)\rho u_{z}
+		\end{cases}
+		\end{equation}
 	\end{block}
 \end{frame}
 
@@ -227,6 +254,68 @@ Using FreeFEM++ (applying Kazunori's ideas)
 	\includegraphics[width=0.9\linewidth]{NS_3D/error_curved}
 	\caption{}
 	\label{fig:errorcurved}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Labelling the domain cylinder}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{NS_3D/Label}
+	\caption{Labelling}
+	\label{fig:label}
+\end{figure}
+Which is in the program is written as\\
+rup=[0,1,1,1,2,1], rdown=[0,1,1,1,2,1], rmid=[1,4,2,3,3,3];
+\end{frame}
+
+\begin{frame}{Simulation with initial and Reynolds number}
+\begin{block}{Navier-Stokes problem}
+	\begin{equation}\nonumber
+	\begin{cases}
+		\partial_{t} u + (u \cdot \nabla) u - \nu\bigtriangleup u + \nabla p &= 0\\
+		u |_{t=0} &=u_{0} \\
+		u |_{\partial\Omega} &= 0 \\
+		\nabla \cdot u &= 0 \\
+	\end{cases}
+	\end{equation}
+	with the initial in (\ref{initial}). We do the simulation for $ \nu = \dfrac{1}{Re} $, where $ Re = 50000, 10000, 5000, 1000 $. With $ T=5 $, $ h = 1/n = 1/24 $ and $ dt=c\sqrt{h} $ with $ c = \sqrt{2}/8 $.
+\end{block}
+\end{frame}
+
+\begin{frame}{Cylindrical domain with swirl}
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{../../july/Tornado_withswirl}
+	\caption{}
+	\label{fig:tornadowithswirl}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cylindrical domain without swirl}
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{../../july/Tornado_noswirl}
+	\caption{}
+	\label{fig:tornadonoswirl}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Curved cylindrical domain with swirl}
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{../../july/Curved_withswirl}
+	\caption{}
+	\label{fig:curvedwithswirl}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Curved cylindrical domain without swirl}
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{../../july/Curved_noswirl}
+	\caption{}
+	\label{fig:curvednoswirl}
 \end{figure}
 
 \end{frame}

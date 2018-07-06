@@ -11,19 +11,58 @@ real T=1.0;
 real error, Herror, maxmag;
 real errormax = 0, Herrormax = 0;
 real t=0, c=0.0625*sqrt(2);
-
+/*
 func exactu1 = -cos(x)*sin(y)*cos(z)*exp(-2*t);
 func exactu2 = sin(x)*cos(y)*cos(z)*exp(-2*t);
 func exactu3 = 0.;
 func f1 = -cos(x)*sin(y)*cos(z)*exp(-2*t);
 func f2 = sin(x)*cos(y)*cos(z)*exp(-2*t);
 func f3 = (-exp(-4*t)/4)*sin(2*z)*(2*cos(2*z)+1);
+*/ 
+real k=(8*sqrt(3))/(27*pi);
+func exactu1 = k*(sin(pi*x))*(sin(pi*y))^2*(sin(pi*z))^2*sin(pi*(y+z+t));
+func exactu2 = k*(sin(pi*x))^2*(sin(pi*y))*(sin(pi*z))^2*sin(pi*(x+z+t));
+func exactu3 = k*(sin(pi*x))^2*(sin(pi*y))^2*(sin(pi*z))*sin(pi*(x+y+t));
+func p = sin(pi*(x+y+z+t));
+
+func dx1 = k*pi*(cos(pi*x))*(sin(pi*y))^2*(sin(pi*z))^2*sin(pi*(y+z+t));
+func dy1 = k*(sin(pi*x))*(2*sin(pi*y)*pi*cos(pi*y))*(sin(pi*z))^2*sin(pi*(y+z+t))+
+    k*(sin(pi*x))*(sin(pi*y))^2*(sin(pi*z))^2*pi*cos(pi*(y+z+t));
+func dz1 = k*(sin(pi*x))*(sin(pi*y))^2*(2*sin(pi*z)*pi*cos(pi*z))*sin(pi*(y+z+t))+
+    k*(sin(pi*x))*(sin(pi*y))^2*(sin(pi*z))^2*pi*cos(pi*(y+z+t));
+
+func dx2 = k*(2*sin(pi*x)*pi*cos(pi*x))*(sin(pi*y))*(sin(pi*z))^2*sin(pi*(x+z+t))+
+    k*(sin(pi*x))^2*(sin(pi*y))*(sin(pi*z))^2*pi*cos(pi*(x+z+t));
+func dy2 = k*pi*(sin(pi*x))^2*(cos(pi*y))*(sin(pi*z))^2*sin(pi*(x+z+t));
+func dz2 = k*(sin(pi*x))^2*(sin(pi*y))*(2*sin(pi*z)*pi*cos(pi*z))*sin(pi*(x+z+t))+
+    k*(sin(pi*x))^2*(sin(pi*y))*(sin(pi*z))^2*pi*cos(pi*(x+z+t));
+
+func dx3 = k*(2*sin(pi*x)*pi*cos(pi*x))*(sin(pi*y))^2*(sin(pi*z))*sin(pi*(x+y+t))+
+    k*(sin(pi*x))^2*(sin(pi*y))^2*(sin(pi*z))*pi*cos(pi*(x+y+t));
+func dy3 = k*(sin(pi*x))^2*(2*sin(pi*y)*pi*cos(pi*y))*(sin(pi*z))*sin(pi*(x+y+t))+
+    k*(sin(pi*x))^2*(sin(pi*y))^2*(sin(pi*z))*pi*cos(pi*(x+y+t));
+func dz3 = k*pi*(sin(pi*x))^2*(sin(pi*y))^2*(cos(pi*z))*sin(pi*(x+y+t));
+
+func dt1 = k*(sin(pi*x))*(sin(pi*y))^2*(sin(pi*z))^2*pi*cos(pi*(y+z+t));
+func dt2 = k*(sin(pi*x))^2*(sin(pi*y))*(sin(pi*z))^2*pi*cos(pi*(x+z+t));
+func dt3 = k*(sin(pi*x))^2*(sin(pi*y))^2*(sin(pi*z))*pi*cos(pi*(x+y+t));
+
+func dxx1 = -k*pi^2*(sin(pi*x))*(sin(pi*y))^2*(sin(pi*z))^2*sin(pi*(y+z+t));
+func dyy2 = -k*pi^2*(sin(pi*x))^2*(sin(pi*y))*(sin(pi*z))^2*sin(pi*(x+z+t));
+func dzz3 = -k*pi^2*(sin(pi*x))^2*(sin(pi*y))^2*(sin(pi*z))*sin(pi*(x+y+t));
+
+func dxp = pi*cos(pi*(x+y+z+t));
+func dyp = pi*cos(pi*(x+y+z+t));
+func dzp = pi*cos(pi*(x+y+z+t));
+
 
 int[int] rup=[0,1,1,1,2,1], rdown=[0,1,1,1,2,1], rmid=[1,4,2,3,3,3];
 real zmin=-1./8,zmax=1./2;
-
+/*
 ofstream ff("Cyl_error_3D.txt");
 ofstream umag("Max_magnitude.txt");
+*/
+ofstream ff("Cyl_2.txt");
 
 //iteration for each mesh devider
 for(int n=20; n>=4; n=n-4 )
@@ -56,6 +95,11 @@ for(int n=20; n>=4; n=n-4 )
   Vh u1oldd, u2oldd, u3oldd;
   Vh u1star,u2star,u3star;
   Vh proju1,proju2,proju3;
+  
+  Vh f1,f2,f3;
+  f1 = dt1 + exactu1*dx1 + exactu2*dy1 + exactu3*dz1 - nu*dxx1 + dxp;
+  f2 = dt2 + exactu1*dx2 + exactu2*dy2 + exactu3*dz2 - nu*dyy2 + dyp;
+  f3 = dt3 + exactu1*dz1 + exactu2*dy2 + exactu3*dz3 - nu*dzz3 + dzp;
 
   problem navierstokesinit ([u1,u2,u3,p],[v1,v2,v3,q]) = 
     int3d(Th) (u1*v1/dt) - int3d(Th) (convect([u1old,u2old,u3old],(-dt),u1old)*v1/dt)
@@ -64,7 +108,7 @@ for(int n=20; n>=4; n=n-4 )
   + int3d(Th,qforder=3)( nu*Grad(u1)'*Grad(v1) +  nu*Grad(u2)'*Grad(v2) +  nu*Grad(u3)'*Grad(v3) //)';
 		       - div(u1,u2,u3)*q - div(v1,v2,v3)*p)
   - int3d(Th) ((f1*v1) + (f2*v2) + (f3*v3))
-  - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))
+  - int3d(Th) (delta * hTriangle * hTriangle * Grad(p)'*Grad(q))
   + on(1,2,3,4,u1=exactu1,u2=exactu2,u3=exactu3);
 
   problem navierstokes ([u1,u2,u3,p],[v1,v2,v3,q]) = 
@@ -80,9 +124,15 @@ for(int n=20; n>=4; n=n-4 )
   - int3d(Th) (delta* hTriangle * hTriangle * Grad(p)'*Grad(q))
    + on(1,2,3,4,u1=exactu1,u2=exactu2,u3=exactu3);
 
+  /*
   u1old = -cos(x)*sin(y)*cos(z) ;
   u2old = sin(x)*cos(y)*cos(z) ;
   u3old = 0;
+  */
+
+  u1old = k*(sin(pi*x))*(sin(pi*y))^2*(sin(pi*z))^2*sin(pi*(y+z));
+  u2old = k*(sin(pi*x))^2*(sin(pi*y))*(sin(pi*z))^2*sin(pi*(x+z));
+  u3old = k*(sin(pi*x))^2*(sin(pi*y))^2*(sin(pi*z))*sin(pi*(x+y));
 
   for ( int it = 1; it <= Nt; it++ )
   {
@@ -104,13 +154,13 @@ for(int n=20; n>=4; n=n-4 )
     
     if(n==20){
       plot ( Th, [u1,u2,u3], nbiso = 60, fill = 0, value = 1, wait = 0);
-      savevtk("Cyl_NS_3D_plot"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
+      //savevtk("Cyl_NS_3D_plot"+n+"_"+it+".vtk",Th,[u1,u2,u3],p,dataname="Velocity");
       //plot (p, nbiso=60, fill =0, value =1, wait =0 );
 
       if (abs(u1)>abs(u2) && abs(u1)>abs(u3)) maxmag = abs(u1);
       else if (abs(u2)>abs(u1) && abs(u2)>abs(u3)) maxmag = abs(u2);
       else maxmag = abs(u3);
-      umag << t << "\t" << maxmag << "\n" ;
+      //umag << t << "\t" << maxmag << "\n" ;
       cout << u1 << "\t" << u2 << "\t" << u3 << "\t" << maxmag << "\n" ;
     }
   }
