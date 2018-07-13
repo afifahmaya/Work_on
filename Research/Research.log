@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  3 JUL 2018 23:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/MacPorts 2017_1) (preloaded format=pdflatex 2017.10.6)  12 JUL 2018 16:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -383,7 +383,7 @@ arch.aux) )
 Here is how much of TeX's memory you used:
  3609 strings out of 492995
  51242 string characters out of 6134533
- 141758 words of memory out of 5000000
+ 141774 words of memory out of 5000000
  7096 multiletter control sequences out of 15000+600000
  12110 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -404,7 +404,7 @@ cm/cmsy10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
 sy5.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pf
 b></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pf
 b>
-Output written on Research.pdf (10 pages, 251753 bytes).
+Output written on Research.pdf (10 pages, 252639 bytes).
 PDF statistics:
  121 PDF objects out of 1000 (max. 8388607)
  72 compressed objects within 1 object stream
